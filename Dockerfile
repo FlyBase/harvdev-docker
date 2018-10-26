@@ -4,6 +4,7 @@ LABEL maintainer="ctabone@morgan.harvard.edu"
 
 RUN apk add --update --no-cache \
     python3 \
+    python3-dev \
     perl \
     perl-utils \
     perl-dev \
