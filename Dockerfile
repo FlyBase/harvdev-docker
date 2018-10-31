@@ -16,7 +16,8 @@ RUN apk add --update --no-cache \
     gcc \
     g++ \
     build-base \
-    && pip3 install --no-cache-dir --upgrade pip
+    && pip3 install --no-cache-dir --upgrade pip \
+    && pip3 install --no-cache-dir psycopg2
 
 RUN cpan XML::DOM XML::Parsers::PerlSAX DBI \
     && git clone https://github.com/FlyBase/harvdev-XORT.git \
