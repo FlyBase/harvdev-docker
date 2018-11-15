@@ -17,6 +17,7 @@ RUN apk add --update --no-cache \
     g++ \
     build-base \
     tzdata \
+    gmp \
     && pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir psycopg2
 
