@@ -18,8 +18,7 @@ RUN apk add --update --no-cache \
     build-base \
     # tzdata for setting the timezone.
     tzdata \
-    # gmp-dev is for Crypt:openPGP and Math::BigInt::GMP
-    gmp-dev \
+    gnupg \
     && pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir psycopg2
 
@@ -27,8 +26,8 @@ RUN cp /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
 RUN apk del tzdata
 
-RUN cpan inc::latest XML::DOM XML::Parsers::PerlSAX DBI Math::BigInt::GMP \
-    && cpan Crypt::OpenPGP Bio::DB::GenBank DBD::Pg \
+RUN cpan inc::latest XML::DOM XML::Parsers::PerlSAX DBI  \
+    && cpan Bio::DB::GenBank DBD::Pg \
     && git clone https://github.com/FlyBase/harvdev-XORT.git \
     && cd harvdev-XORT \
     && tar -zxvf XML-XORT-0.010.tar.gz \
