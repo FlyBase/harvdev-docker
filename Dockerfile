@@ -25,7 +25,7 @@ RUN echo "America/New_York" > /etc/timezone
 RUN apk del tzdata
 
 RUN cpan inc::latest XML::DOM XML::Parsers::PerlSAX DBI \
-    && cpan Bio::DB::GenBank DBD::Pg \
+    && cpan Crypt::OpenPGP Bio::DB::GenBank DBD::Pg \
     && git clone https://github.com/FlyBase/harvdev-XORT.git \
     && cd harvdev-XORT \
     && tar -zxvf XML-XORT-0.010.tar.gz \
