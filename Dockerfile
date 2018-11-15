@@ -18,8 +18,8 @@ RUN apk add --update --no-cache \
     build-base \
     # tzdata for setting the timezone.
     tzdata \
-    # gmp is for Crypt:openPGP
-    gmp \
+    # gmp-dev is for Crypt:openPGP and Math::BigInt::GMP
+    gmp-dev \
     && pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir psycopg2
 
