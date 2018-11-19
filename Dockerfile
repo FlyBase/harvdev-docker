@@ -36,8 +36,9 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest XML::Parser::PerlSAX &&\
     cpanm --quiet --notest DBI &&\
     cpanm --quiet --notest Bio::DB::GenBank &&\
-    cpanm --quiet --notest DBD::Pg &&\
-    git clone https://github.com/FlyBase/harvdev-XORT.git &&\
+    cpanm --quiet --notest DBD::Pg 
+    
+RUN git clone https://github.com/FlyBase/harvdev-XORT.git &&\
     cd harvdev-XORT &&\
     tar -zxvf XML-XORT-0.010.tar.gz &&\
     cd XML-XORT-0.010 &&\
@@ -47,16 +48,3 @@ RUN cpanm --quiet --notest XML::DOM &&\
     make clean &&\
     # Remove CPANM cache.
     rm -fr /root/.cpanm/work
-
-# RUN cpan inc::latest XML::DOM XML::Parsers::PerlSAX DBI  \
-#     && cpan Bio::DB::GenBank DBD::Pg \
-#     && git clone https://github.com/FlyBase/harvdev-XORT.git \
-#     && cd harvdev-XORT \
-#     && tar -zxvf XML-XORT-0.010.tar.gz \
-#     && cd XML-XORT-0.010 \
-#     && perl Makefile.PL \
-#     && make \
-#     && make install \
-#     && make clean \
-#     # Remove CPAN cache.
-#     && rm -rf ~/.cpan/{build,sources}/*
