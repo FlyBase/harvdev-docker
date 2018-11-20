@@ -19,6 +19,7 @@ RUN apk add --update --no-cache \
     git \
     gcc \
     g++ \
+    vim \
     build-base \
     # tzdata for setting the timezone.
     tzdata \
