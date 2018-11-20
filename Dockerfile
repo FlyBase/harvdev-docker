@@ -20,6 +20,7 @@ RUN apk add --update --no-cache \
     gcc \
     g++ \
     vim \
+    bash \
     build-base \
     # tzdata for setting the timezone.
     tzdata \
