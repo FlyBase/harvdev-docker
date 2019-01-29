@@ -10,7 +10,7 @@ RUN apk add --update --no-cache \
     perl \
     perl-utils \
     perl-dev \
-    libdbd-pg-perl \
+    perl-dbd-pg \
     # Expat and expat-dev are for XML::DOM.
     curl \
     wget \
