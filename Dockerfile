@@ -39,7 +39,8 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest XML::Parser::PerlSAX &&\
     cpanm --quiet --notest DBI &&\
     cpanm --quiet --notest Bio::DB::GenBank &&\
-    cpanm --quiet --notest DBD::Pg 
+    cpanm --quiet --notest DBD::Pg &&\
+    cpanm --query --notest Sort::Key::Natural
     
 RUN git clone https://github.com/FlyBase/harvdev-XORT.git &&\
     cd harvdev-XORT &&\
