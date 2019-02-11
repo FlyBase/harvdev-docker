@@ -40,7 +40,8 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest DBI &&\
     cpanm --quiet --notest Bio::DB::GenBank &&\
     cpanm --quiet --notest DBD::Pg &&\
-    cpanm --query --notest Sort::Key::Natural
+    cpanm --query --notest Sort::Key::Natural &&\
+    cpanm --query --notest LWP::Protocol::https
     
 RUN git clone https://github.com/FlyBase/harvdev-XORT.git &&\
     cd harvdev-XORT &&\
