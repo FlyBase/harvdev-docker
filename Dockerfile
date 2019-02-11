@@ -11,6 +11,8 @@ RUN apk add --update --no-cache \
     perl-utils \
     perl-dev \
     perl-dbd-pg \
+    libnet-ssleay-perl \
+    libcrypt-ssleay-perl \
     # Expat and expat-dev are for XML::DOM.
     curl \
     wget \
