@@ -11,6 +11,7 @@ RUN apk add --update --no-cache \
     perl-utils \
     perl-dev \
     perl-dbd-pg \
+    perl-db_file \
     perl-net-ssleay \
     perl-crypt-ssleay \
     # Expat and expat-dev are for XML::DOM.
@@ -22,9 +23,11 @@ RUN apk add --update --no-cache \
     git \
     gcc \
     g++ \
+    gd-dev \
     vim \
     bash \
     build-base \
+    libxml2-dev \
     # tzdata for setting the timezone.
     tzdata \
     gnupg &&\
