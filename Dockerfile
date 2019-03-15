@@ -44,14 +44,6 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest DBD::Pg &&\
     cpanm --query --notest Sort::Key::Natural &&\
     cpanm --query --notest LWP::Protocol::https
-    
-RUN git clone https://github.com/FlyBase/harvdev-XORT.git &&\
-    cd harvdev-XORT &&\
-    tar -zxvf XML-XORT-0.010.tar.gz &&\
-    cd XML-XORT-0.010 &&\
-    perl Makefile.PL &&\
-    make &&\
-    make install &&\
-    make clean &&\
-    # Remove CPANM cache.
-    rm -fr /root/.cpanm/work
+
+# Remove CPANM cache. 
+RUN rm -fr /root/.cpanm/work
