@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9.2
 
 LABEL maintainer="ctabone@morgan.harvard.edu"
 
@@ -11,6 +11,7 @@ RUN apk add --update --no-cache \
     perl-utils \
     perl-dev \
     perl-dbd-pg \
+    perl-db_file \
     perl-net-ssleay \
     perl-crypt-ssleay \
     # Expat and expat-dev are for XML::DOM.
@@ -22,14 +23,17 @@ RUN apk add --update --no-cache \
     git \
     gcc \
     g++ \
+    gd-dev \
     vim \
     bash \
     build-base \
+    libxml2-dev \
     # tzdata for setting the timezone.
     tzdata \
     gnupg &&\
     pip3 install --no-cache-dir --upgrade pip &&\
-    pip3 install --no-cache-dir psycopg2
+    pip3 install --no-cache-dir psycopg2 &&\
+    pip3 install --no-cache-dir sqlalchemy
 
 RUN cp /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
@@ -47,3 +51,4 @@ RUN cpanm --quiet --notest XML::DOM &&\
 
 # Remove CPANM cache. 
 RUN rm -fr /root/.cpanm/work
+
