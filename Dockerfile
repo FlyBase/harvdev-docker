@@ -28,6 +28,7 @@ RUN apk add --update --no-cache \
     bash \
     build-base \
     libxml2-dev \
+    libxslt-dev \
     # tzdata for setting the timezone.
     tzdata \
     gnupg &&\
