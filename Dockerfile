@@ -26,6 +26,7 @@ RUN apk add --update --no-cache \
     gd-dev \
     vim \
     bash \
+    musl-dev \
     build-base \
     libxml2-dev \
     libxslt-dev \
