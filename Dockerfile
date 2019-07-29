@@ -26,12 +26,12 @@ RUN apk add --update --no-cache \
     gd-dev \
     vim \
     bash \
+    musl-dev \
     build-base \
     libxml2-dev \
     libxslt-dev \
     # tzdata for setting the timezone.
     tzdata \
-    zlib1g-dev \
     gnupg &&\
     pip3 install --no-cache-dir --upgrade pip &&\
     pip3 install --no-cache-dir psycopg2 &&\
