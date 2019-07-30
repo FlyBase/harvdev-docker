@@ -33,10 +33,10 @@ RUN apk add --update --no-cache \
     # tzdata for setting the timezone.
     tzdata \
     gnupg &&\
-    pip3 install --no-cache-dir --upgrade pip &&\
-    pip3 install --no-cache-dir psycopg2 &&\
-    pip3 install --no-cache-dir sqlalchemy &&\
-    pip3 install --no-cache-dir bioservices
+    pip3 install --upgrade pip &&\
+    pip3 install psycopg2 &&\
+    pip3 install sqlalchemy &&\
+    pip3 install bioservices
 
 RUN cp /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
