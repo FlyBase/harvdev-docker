@@ -35,7 +35,8 @@ RUN apk add --update --no-cache \
     gnupg &&\
     pip3 install --no-cache-dir --upgrade pip &&\
     pip3 install --no-cache-dir psycopg2 &&\
-    pip3 install --no-cache-dir sqlalchemy
+    pip3 install --no-cache-dir sqlalchemy &&\
+    pip3 install --no-cache-dir bioservices
 
 RUN cp /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
