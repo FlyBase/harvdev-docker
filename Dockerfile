@@ -1,4 +1,4 @@
-FROM alpine:3.9.2
+FROM alpine:3.10.2
 
 LABEL maintainer="ctabone@morgan.harvard.edu"
 
