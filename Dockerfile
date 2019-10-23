@@ -49,6 +49,7 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest XML::Parser::PerlSAX &&\
     cpanm --quiet --notest DBI &&\
     cpanm --quiet --notest Bio::DB::GenBank &&\
+    cpanm --quiet --notest Bio::Tools::Run::StandAloneBlast &&\
     cpanm --quiet --notest DBD::Pg &&\
     cpanm --query --notest Sort::Key::Natural &&\
     cpanm --query --notest LWP::Protocol::https
