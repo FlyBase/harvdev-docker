@@ -2,7 +2,8 @@ FROM alpine:3.10.2
 
 LABEL maintainer="ctabone@morgan.harvard.edu"
 
-ENV PERL_MM_USE_DEFAULT=1
+ENV PERL_MM_USE_DEFAULT=1 \
+    PERL_UNICODE=SDL
 
 RUN apk add --update --no-cache \
     python3 \
