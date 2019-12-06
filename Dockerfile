@@ -36,6 +36,8 @@ RUN apk add --update --no-cache \
     gnupg &&\
     pip3 install --upgrade pip &&\
     pip3 install --upgrade cython &&\
+    pip3 install numpy &&\
+    pip3 install pandas &&\
     pip3 install psycopg2 &&\
     pip3 install sqlalchemy &&\
     pip3 install bioservices &&\
