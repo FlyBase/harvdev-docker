@@ -35,6 +35,7 @@ RUN apk add --update --no-cache \
     tzdata \
     gnupg &&\
     pip3 install --upgrade pip &&\
+    pip3 install --upgrade cython &&\
     pip3 install psycopg2 &&\
     pip3 install sqlalchemy &&\
     pip3 install bioservices &&\
