@@ -9,6 +9,9 @@ RUN apk add --update --no-cache \
     python3 \
     python3-dev \
     py3-pip \
+    py3-pandas \
+    py3-numpy \
+    py3-matplotlib \
     perl \
     perl-utils \
     perl-dev \
@@ -39,8 +42,6 @@ RUN apk add --update --no-cache \
 
 RUN pip install --upgrade pip &&\
     pip install --upgrade cython &&\
-    pip install numpy &&\
-    pip install pandas &&\
     pip install psycopg2 &&\
     pip install sqlalchemy &&\
     pip install bioservices &&\
