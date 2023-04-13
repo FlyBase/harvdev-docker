@@ -34,14 +34,14 @@ RUN apk add --update --no-cache \
     # tzdata for setting the timezone.
     tzdata \
     gnupg &&\
-    pip3 install --upgrade pip &&\
-    pip3 install --upgrade cython &&\
-    pip3 install numpy &&\
-    pip3 install pandas &&\
-    pip3 install psycopg2 &&\
-    pip3 install sqlalchemy &&\
-    pip3 install bioservices &&\
-    pip3 install pubchempy
+    pip install --upgrade pip &&\
+    pip install --upgrade cython &&\
+    pip install numpy &&\
+    pip install pandas &&\
+    pip install psycopg2 &&\
+    pip install sqlalchemy &&\
+    pip install bioservices &&\
+    pip install pubchempy
 
 RUN cp /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
