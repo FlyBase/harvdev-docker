@@ -43,7 +43,7 @@ RUN apk add --update --no-cache \
 RUN pip install --upgrade pip &&\
     pip install --upgrade cython &&\
     pip install psycopg2 &&\
-    pip install sqlalchemy &&\
+    pip install 'sqlalchemy>=1.4,<2.0' &&\
     pip install bioservices &&\
     pip install pubchempy
 
