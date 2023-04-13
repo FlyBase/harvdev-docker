@@ -8,6 +8,7 @@ ENV PERL_MM_USE_DEFAULT=1 \
 RUN apk add --update --no-cache \
     python3 \
     python3-dev \
+    py3-pip \
     perl \
     perl-utils \
     perl-dev \
