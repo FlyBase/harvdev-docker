@@ -1,4 +1,4 @@
-FROM alpine:3.10.2
+FROM alpine:3.17.3
 
 LABEL maintainer="ctabone@morgan.harvard.edu"
 
@@ -8,6 +8,10 @@ ENV PERL_MM_USE_DEFAULT=1 \
 RUN apk add --update --no-cache \
     python3 \
     python3-dev \
+    py3-pip \
+    py3-pandas \
+    py3-numpy \
+    py3-matplotlib \
     perl \
     perl-utils \
     perl-dev \
@@ -15,6 +19,7 @@ RUN apk add --update --no-cache \
     perl-db_file \
     perl-net-ssleay \
     perl-crypt-ssleay \
+    perl-app-cpanminus \
     # Expat and expat-dev are for XML::DOM.
     curl \
     wget \
@@ -33,15 +38,14 @@ RUN apk add --update --no-cache \
     libxslt-dev \
     # tzdata for setting the timezone.
     tzdata \
-    gnupg &&\
-    pip3 install --upgrade pip &&\
-    pip3 install --upgrade cython &&\
-    pip3 install numpy &&\
-    pip3 install pandas &&\
-    pip3 install psycopg2 &&\
-    pip3 install sqlalchemy &&\
-    pip3 install bioservices &&\
-    pip3 install pubchempy
+    gnupg
+
+RUN pip install --upgrade pip &&\
+    pip install --upgrade cython &&\
+    pip install psycopg2 &&\
+    pip install 'sqlalchemy>=1.4,<2.0' &&\
+    pip install bioservices &&\
+    pip install pubchempy
 
 RUN cp /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN echo "America/New_York" > /etc/timezone
