@@ -16,6 +16,7 @@ RUN apk add --update --no-cache \
     perl-db_file \
     perl-net-ssleay \
     perl-crypt-ssleay \
+    perl-app-cpanminus \
     # Expat and expat-dev are for XML::DOM.
     curl \
     wget \
@@ -34,8 +35,9 @@ RUN apk add --update --no-cache \
     libxslt-dev \
     # tzdata for setting the timezone.
     tzdata \
-    gnupg &&\
-    pip install --upgrade pip &&\
+    gnupg
+
+RUN pip install --upgrade pip &&\
     pip install --upgrade cython &&\
     pip install numpy &&\
     pip install pandas &&\
