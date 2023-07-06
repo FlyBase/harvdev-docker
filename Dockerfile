@@ -38,7 +38,9 @@ RUN apk add --update --no-cache \
     libxslt-dev \
     # tzdata for setting the timezone.
     tzdata \
-    gnupg
+    gnupg \
+    rust \
+    cargo 
 
 RUN pip install --upgrade pip &&\
     pip install --upgrade cython &&\
