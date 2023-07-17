@@ -43,7 +43,8 @@ RUN apk add --update --no-cache \
     cargo 
 
 RUN pip install --upgrade pip &&\
-    pip install --upgrade cython &&\
+    pip install wheel &&\
+    pip install "Cython<3.0" pyyaml --no-build-isolation &&\ 
     pip install psycopg2 &&\
     pip install 'sqlalchemy>=1.4,<2.0' &&\
     pip install bioservices &&\
