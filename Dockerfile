@@ -40,7 +40,8 @@ RUN apk add --update --no-cache \
     tzdata \
     gnupg \
     rust \
-    cargo 
+    cargo \
+    zip
 
 RUN pip install --upgrade pip &&\
     pip install wheel &&\
