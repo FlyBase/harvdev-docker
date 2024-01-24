@@ -41,7 +41,8 @@ RUN apk add --update --no-cache \
     gnupg \
     rust \
     cargo \
-    zip
+    zip \
+    sed
 
 RUN pip install --upgrade pip &&\
     pip install wheel &&\
