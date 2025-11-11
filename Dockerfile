@@ -59,6 +59,8 @@ RUN curl -L http://xrl.us/cpanm > /bin/cpanm && chmod +x /bin/cpanm
 
 RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest XML::Parser::PerlSAX &&\
+    cpanm --quiet --notest XML::XQL &&\
+    cpanm --quiet --notest XML::XPath &&\
     cpanm --quiet --notest DBI &&\
     cpanm --quiet --notest Bio::DB::GenBank &&\
     cpanm --quiet --notest Bio::Tools::Run::StandAloneBlast &&\
@@ -66,6 +68,9 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --query --notest Sort::Key::Natural &&\
     cpanm --query --notest LWP::Protocol::https
 
-# Remove CPANM cache. 
+# Remove CPANM cache.
 RUN rm -fr /root/.cpanm/work
+
+# Copy XML-XORT library for ARGS metrics script
+COPY lib/XML-XORT-0.007 /usr/local/lib/XML-XORT-0.007
 

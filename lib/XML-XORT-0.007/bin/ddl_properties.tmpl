@@ -1,0 +1,13 @@
+-- to create ddl.properties file with this template, execute:
+-- sqlt -f PostgreSQL -t TTSchema --template ddl_properties.tmpl nofuncs.sql > ddl.properties
+
+[% FOREACH table IN schema.get_tables %]
+[% table.name %]=[% FOREACH field IN table.get_fields %][% field.name %] [% END %]
+[% table.name %]_primary_key=[% table.pkey_fields %]
+[% table.name %]_data_type=[% FOREACH field IN table.get_fields %][% field.name %]:[% field.data_type %];[% END %]
+[% FOREACH contraint IN table.unique_constraints %][% table.name %]_unique=[% FOREACH field IN contraint.fields %][% field.name %][% END %][% END %]
+[% table.name %]_non_null_cols=[% FOREACH field IN table.get_fields %][% IF field.is_nullable %][% field %] [% END %][% END %]
+[% table.name %]_non_null_default=[% FOREACH field IN table.get_fields %][% IF field.default_value %][% field %] [% END %][% END %]
+[% FOREACH field IN table.get_fields %][% IF field.default_value %][% table.name %]:[% field %]_default=[% IF field.default_value == 'NULL' %]''[% ELSE %][% field.default_value %][% END %][% END %]
+[% END %]
+[% END %]

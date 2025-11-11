@@ -1,0 +1,21 @@
+<xortviz schema="chado" id="chado-basic-feature">
+  <opts rankdir='1' overlap='compress'/>
+  <node element="feature" pk=".">
+    <opts shape='ellipse' style='filled' fillcolor='#FF8888' fontsize='10'
+      fontname='arial'/>
+    <label>
+      <copy element="name"/>
+      <text>[</text>
+      <copy element="type_id"/>
+      <s>/sequence__//</s>
+      <text>]</text>
+    </label>
+  </node>
+  <table id="feature">
+    <unique>
+      <col name="organism_id"/>
+      <col name="uniquename"/>
+      <col name="type_id"/>
+    </unique>
+  </table>
+</xortviz>

@@ -1,0 +1,38 @@
+create or replace view alignment_evidence(alignment_evidence_id, feature_id, evidence_id, analysis_id) as 
+select  anchor.feature_id||':'||fr.object_id||':'||af.analysis_id,   anchor.feature_id, fr.object_id, af.analysis_id
+from featureloc anchor, analysisfeature af, feature_relationship fr, featureloc hsploc
+where anchor.srcfeature_id=hsploc.srcfeature_id 
+and hsploc.feature_id = af.feature_id
+and hsploc.feature_id=fr.subject_id
+and (hsploc.fmin<=anchor.fmax and hsploc.fmax>=anchor.fmin)
+group by anchor.feature_id, fr.object_id, af.analysis_id
+;
+
+create or replace view prediction_evidence(prediction_evidence_id, feature_id, evidence_id, analysis_id) as 
+select anchor.feature_id||':'||evloc.feature_id||':'||af.analysis_id, anchor.feature_id, evloc.feature_id, af.analysis_id
+from featureloc anchor, featureloc evloc, analysisfeature af
+where anchor.srcfeature_id=evloc.srcfeature_id 
+and evloc.feature_id = af.feature_id 
+and (evloc.fmin<=anchor.fmax and evloc.fmax>=anchor.fmin);
+
+
+CREATE OR REPLACE FUNCTION p (int, int) RETURNS point AS
+ 'SELECT point ($1, $2)'
+LANGUAGE 'sql'		;
+
+
+CREATE OR REPLACE FUNCTION boxrange (int, int) RETURNS box AS
+ 'SELECT box (p(0, $1), p($2,500000000))'
+LANGUAGE 'sql' IMMUTABLE;
+
+
+CREATE OR REPLACE FUNCTION boxquery (int, int) RETURNS box AS
+ 'SELECT box (p($1, $2), p($1, $2))'
+LANGUAGE 'sql' IMMUTABLE;
+
+CREATE OR REPLACE FUNCTION featureslice(int, int) RETURNS setof featureloc AS
+  'SELECT * from featureloc where boxquery($1, $2) @ boxrange(fmin,fmax)'
+  LANGUAGE 'sql'		;
+
+
+CREATE INDEX binloc_boxrange ON featureloc USING RTREE (boxrange(fmin, fmax));

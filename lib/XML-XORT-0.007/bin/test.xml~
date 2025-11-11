@@ -1,0 +1,18 @@
+hadoXML file (FlyBase v1.0, no macros) created by crosby on Wed Jul 02 20:21:51 GMT 2014 --><!-- Apollo version: Apollo Genome Annotation and Curation Tool, version 1.11.6, last updated May 12 2010 --><!-- Header lines that follow were preserved from the input source: /data/apollo/r6_02/r6_02_load/3L.CG40467.merge.lc.xml --><!-- ChadoXML file (FlyBase v1.0, no macros) created by crosby on Wed May 28 17:21:00 GMT 2014 --><!-- Apollo version: Apollo Genome Annotation and Curation Tool, version 1.11.6, last updated May 12 2010 --><!-- Header lines that follow were preserved from the input source: /data/apollo/r6_01/r6_01_fresh/3L..check2.lc.xml --><chado date="Wed Jul 02 20:21:51 GMT 2014">
+  <cvterm op="lookup">
+          <cv_id>
+                    <cv>
+                                <name>SO</name>
+                                          </cv>
+                                                  </cv_id>
+                                                          <name>gene</name>
+                                                                </cvterm>
+                                                                <cvterm op="lookup">
+                                                                        <cv_id>
+                                                                                  <cv>
+                                                                                              <name>SO</name>
+                                                                                                        </cv>
+                                                                                                                </cv_id>
+                                                                                                                        <name>gene</name>
+                                                                                                                              </cvterm>
+                                                                                                                              </chado>

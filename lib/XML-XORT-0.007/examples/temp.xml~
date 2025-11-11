@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by Pinglei Zhou, Flybase Harvard University -->
+<!--created from Database:fb_2008_06 using dump_spec:dumpspec_pub.xml at Tue May 27 11:14:35 2008 -->
+<!DOCTYPE FBchado [
+<!ENTITY lt "&#38;#60;">
+<!ENTITY gt "&#62;">
+<!ENTITY amp "&#38;#38;">
+<!ENTITY apos "&#39;">
+<!ENTITY quot "&#34;">
+<!ENTITY agrave "&#224;">
+<!ENTITY Agr "&#913;">
+<!ENTITY Bgr "&#914;">
+<!ENTITY Ggr "&#915;">
+<!ENTITY Dgr "&#916;">
+<!ENTITY Egr "&#917;">
+<!ENTITY Zgr "&#918;">
+<!ENTITY EEgr "&#919;">
+<!ENTITY THgr "&#920;">
+<!ENTITY Igr "&#921;">
+<!ENTITY Kgr "&#922;">
+<!ENTITY Lgr "&#923;">
+<!ENTITY Mgr "&#924;">
+<!ENTITY Ngr "&#925;">
+<!ENTITY Xgr "&#926;">
+<!ENTITY Ogr "&#927;">
+<!ENTITY Pgr "&#928;">
+<!ENTITY Rgr "&#929;">
+<!ENTITY Sgr "&#931;">
+<!ENTITY Tgr "&#932;">
+<!ENTITY Ugr "&#933;">
+<!ENTITY PHgr "&#934;">
+<!ENTITY KHgr "&#935;">
+<!ENTITY PSgr "&#936;">
+<!ENTITY OHgr "&#937;">
+<!ENTITY agr "&#945;">
+<!ENTITY bgr "&#946;">
+<!ENTITY ggr "&#947;">
+<!ENTITY dgr "&#948;">
+<!ENTITY egr "&#949;">
+<!ENTITY zgr "&#950;">
+<!ENTITY eegr "&#951;">
+<!ENTITY thgr "&#952;">
+<!ENTITY igr "&#953;">
+<!ENTITY kgr "&#954;">
+<!ENTITY lgr "&#955;">
+<!ENTITY mgr "&#956;">
+<!ENTITY ngr "&#957;">
+<!ENTITY xgr "&#958;">
+<!ENTITY ogr "&#959;">
+<!ENTITY pgr "&#960;">
+<!ENTITY rgr "&#961;">
+<!ENTITY sgr "&#963;">
+<!ENTITY tgr "&#964;">
+<!ENTITY ugr "&#965;">
+<!ENTITY phgr "&#966;">
+<!ENTITY khgr "&#967;">
+<!ENTITY psgr "&#968;">
+<!ENTITY ohgr "&#969;">
+<!ENTITY temp "&lt;t&gt;">
+<!ENTITY anat "&lt;a&gt;">
+<!ENTITY posit "&lt;p&gt;">
+<!ENTITY of "&lt;of&gt;">
+<!ENTITY and "&lt;&amp;&gt;">
+<!ENTITY Agrave  	"&#192;">
+<!ENTITY Aacute 	"&#193;">
+<!ENTITY Acirc 	"&#194;">
+<!ENTITY Atilde 	"&#195;">
+<!ENTITY Auml 	"&#196;">
+<!ENTITY Aring 	"&#197;">
+<!ENTITY AElig 	"&#198;">
+<!ENTITY Ccedil 	"&#199;">
+<!ENTITY Egrave 	"&#200;">
+<!ENTITY Eacute 	"&#201;">
+<!ENTITY Ecirc 	"&#202;">
+<!ENTITY Euml 	"&#203;">
+<!ENTITY Igrave 	"&#204;">
+<!ENTITY Iacute 	"&#205;">
+<!ENTITY Icirc 	"&#206;">
+<!ENTITY Iuml 	"&#207;">
+<!ENTITY ETH 	"&#208;">
+<!ENTITY Ntilde 	"&#209;">
+<!ENTITY Ograve 	"&#210;">
+<!ENTITY Oacute 	"&#211;">
+<!ENTITY Ocirc 	"&#212;">
+<!ENTITY Otilde 	"&#213;">
+<!ENTITY Ouml 	"&#214;">
+<!ENTITY Oslash 	"&#216;">
+<!ENTITY Ugrave 	"&#217;">
+<!ENTITY Uacute 	"&#218;">
+<!ENTITY Ucirc 	"&#219;">
+<!ENTITY Uuml 	"&#220;">
+<!ENTITY Yacute 	"&#221;">
+<!ENTITY THORN 	"&#222;">
+<!ENTITY szlig 	"&#223;">
+<!ENTITY agrave 	"&#224;">
+<!ENTITY aacute 	"&#225;">
+<!ENTITY acirc;	"&#226;">
+<!ENTITY atilde 	"&#227;">
+<!ENTITY auml 	"&#228;">
+<!ENTITY aring 	"&#229;">
+<!ENTITY aelig 	"&#230;">
+<!ENTITY ccedil 	"&#231;">
+<!ENTITY egrave 	"&#232;">
+<!ENTITY eacute	"&#233;">
+<!ENTITY ecirc 	"&#234;">
+<!ENTITY euml 	"&#235;">
+<!ENTITY igrave 	"&#236;">
+<!ENTITY iacute 	"&#237;">
+<!ENTITY icirc 	"&#238;">
+<!ENTITY iuml 	"&#239;">
+<!ENTITY eth 	"&#240;">
+<!ENTITY ntilde 	"&#241;">
+<!ENTITY ograve 	"&#242;">
+<!ENTITY oacute 	"&#243;">
+<!ENTITY ocirc 	"&#244;">
+<!ENTITY otilde 	"&#245;">
+<!ENTITY ouml 	"&#246;">
+<!ENTITY oslash 	"&#248;">
+<!ENTITY ugrave 	"&#249;">
+<!ENTITY uacute 	"&#250;">
+<!ENTITY ucirc 	"&#251;">
+<!ENTITY uuml 	"&#252;">
+<!ENTITY yacute 	"&#253;">
+<!ENTITY thorn 	"&#254;">
+<!ENTITY yuml 	"&#255;">
+]>
+
+
+<chado >
+	<pub id="pub_345453">
+		<type_id>
+			<cvterm id="cvterm_57094">
+				<cv_id>
+					<cv id="cv_1">
+						<name>pub type</name>
+					</cv>
+				</cv_id>
+				<name>paper</name>
+				<is_obsolete>0</is_obsolete>
+			</cvterm>
+		</type_id>
+		<is_obsolete>0</is_obsolete>
+		<issue>1</issue>
+		<pages>19--31</pages>
+		<pyear>2008</pyear>
+		<title>Progression of colorectal cancers correlates with overexpression and loss of polarization of expression of the htid-1 tumor suppressor.</title>
+		<uniquename>FBrf0201403</uniquename>
+		<volume>21</volume>
+		<pub_dbxref id="pub_dbxref_386922">
+			<dbxref_id>
+				<dbxref id="dbxref_3870569">
+					<db_id>
+						<db id="db_50">
+							<name>pubmed</name>
+						</db>
+					</db_id>
+					<accession>18097612</accession>
+				</dbxref>
+			</dbxref_id>
+			<is_current>1</is_current>
+		</pub_dbxref>		
+		<pub_dbxref id="pub_dbxref_391599">
+			<dbxref_id>
+				<dbxref id="dbxref_3974045">
+					<db_id>
+						<db id="db_43">
+							<name>biosis</name>
+						</db>
+					</db_id>
+					<accession>2008.100622</accession>
+				</dbxref>
+			</dbxref_id>
+			<is_current>1</is_current>
+		</pub_dbxref>		
+		<pub_relationship id="pub_relationship_327750">
+			<type_id>
+				<cvterm id="cvterm_57039">
+					<cv_id>
+						<cv id="cv_10">
+							<name>pub relationship type</name>
+						</cv>
+					</cv_id>
+					<name>published_in</name>
+					<is_obsolete>0</is_obsolete>
+				</cvterm>
+			</type_id>
+			<object_id>
+				<pub id="pub_162104">
+					<uniquename>multipub_8228</uniquename>
+				</pub>
+			</object_id>
+		</pub_relationship>		
+		<pubauthor id="pubauthor_434378">
+			<rank>1</rank>
+			<editor>0</editor>
+			<surname>Kurzik-Dumke</surname>
+			<givennames>U.</givennames>
+		</pubauthor>		
+		<pubauthor id="pubauthor_434379">
+			<rank>2</rank>
+			<editor>0</editor>
+			<surname>Hörner</surname>
+			<givennames>M.</givennames>
+		</pubauthor>		
+		<pubauthor id="pubauthor_434380">
+			<rank>3</rank>
+			<editor>0</editor>
+			<surname>Czaja</surname>
+			<givennames>J.</givennames>
+		</pubauthor>		
+		<pubauthor id="pubauthor_434381">
+			<rank>4</rank>
+			<editor>0</editor>
+			<surname>Nicotra</surname>
+			<givennames>M.R.</givennames>
+		</pubauthor>		
+		<pubauthor id="pubauthor_434382">
+			<rank>5</rank>
+			<editor>0</editor>
+			<surname>Simiantonaki</surname>
+			<givennames>N.</givennames>
+		</pubauthor>		
+		<pubauthor id="pubauthor_434383">
+			<rank>6</rank>
+			<editor>0</editor>
+			<surname>Koslowski</surname>
+			<givennames>M.</givennames>
+		</pubauthor>		
+		<pubauthor id="pubauthor_434384">
+			<rank>7</rank>
+			<editor>0</editor>
+			<surname>Natali</surname>
+			<givennames>P.G.</givennames>
+		</pubauthor>		
+		<pubprop id="pubprop_481036">
+			<type_id>
+				<cvterm id="cvterm_92321">
+					<cv_id>
+						<cv id="cv_11">
+							<name>pubprop type</name>
+						</cv>
+					</cv_id>
+					<name>curated_by</name>
+					<is_obsolete>0</is_obsolete>
+				</cvterm>
+			</type_id>
+			<value>Curator: P. Leyland;Proforma: pl133848;timelastmodified: Thu Jan 17 07:47:54 2008</value>
+			<rank>0</rank>
+		</pubprop>		
+		<pubprop id="pubprop_481037">
+			<type_id>
+				<cvterm id="cvterm_57048">
+					<name>languages</name>
+					<cv_id>cv_11</cv_id>
+					<is_obsolete>0</is_obsolete>
+				</cvterm>
+			</type_id>
+			<value>English</value>
+			<rank>0</rank>
+		</pubprop>		
+		<pubprop id="pubprop_504448">
+			<type_id>
+				<cvterm id="cvterm_57047">
+					<name>internalnotes</name>
+					<cv_id>cv_11</cv_id>
+					<is_obsolete>0</is_obsolete>
+				</cvterm>
+			</type_id>
+			<value>BIOSIS Gene Name field: human APC gene [Hominidae]; human adenomatous polyposis coli gene; expression/human htid-1 gene [Hominidae]; expression, splice variant/Drosophila 1(2)tid gene [Diptera]; Drosophila lethal(2)tumorous imaginal discs gene</value>
+			<rank>0</rank>
+		</pubprop>		
+		<pubprop id="pubprop_504449">
+			<type_id>cvterm_92321</type_id>
+			<value>Curator: P. Leyland;Proforma: pl136029;timelastmodified: Thu Feb 28 07:34:46 2008</value>
+			<rank>1</rank>
+		</pubprop>		
+	</pub>
+</chado>

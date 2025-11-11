@@ -1,0 +1,1587 @@
+
+start_element:chado
+start_element:feature
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:FlyBase:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:6-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:4:
+in data_check col:accession	value:FBtr0078536:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:284950:
+substitute it with db_id:284950:level:4-1:key:feature.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:is_analysis
+end_element_name:is_analysis
+is_analysis is column_element
+start_element:is_obsolete
+end_element_name:is_obsolete
+is_obsolete is column_element
+start_element:name
+end_element_name:name
+name is column_element
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:4-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:residues
+end_element_name:residues
+residues is column_element
+start_element:seqlen
+end_element_name:seqlen
+seqlen is column_element
+start_element:timeaccessioned
+end_element_name:timeaccessioned
+timeaccessioned is column_element
+start_element:timelastmodified
+end_element_name:timelastmodified
+timelastmodified is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:6-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:6:
+in data_check col:name	value:mRNA:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:368:
+substitute it with db_id:368:level:4-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+start_element:feature_relationship
+start to output the module table:feature, level:3 before parse sub table:feature_relationship
+in data_check col:dbxref_id	value:284950:
+in data_check col:uniquename	value:FBtr0078536:
+in data_check col:name	value:CG11241-RA:
+in data_check col:timeaccessioned	value:2004-06-05 02:05:22:
+in data_check col:residues	value:AGTTGCTTCACCTCCGCCGTTACTAGTGGACGACTGTCCTCGCGAAAAACACGTGCCACACAGTTGATTCGAGTTCAAAAAGTGCATCCAAACCAGAAAAGTTTACATAGAAAGTGATAGGAGCGTAGAAAAGAATCCGAAACCAAAAATGATATCCAAGCGAGTGTTAGCTCAGACCCGGCAGCTCCTTCCCAGGTCCTCGGTCCGTAGGAGCTCCAGCTCATCGGTGCACTCAAAGGCAGCCCCCGCCATGATAGCACAGATGCAGGGCGAGATGCCCGACTGCAACCACCGCCCGGCGGCCTACGAGGGCTCCACCTACGAGCAGATTCTCAAGACCCGACGCAACCACCTGACACCGAATCTGCTGGCCCACTTCAAAAAGCCACTTGTGATCCACGCTGGCCACATGCAGTGGCTGTACGATCATGAGGGCCGGCGCTACCTGGACATGTTTGGTGGAATCGTTACTGTGTCCGTTGGACATTGTCACCCAAAGGTTAACCAGGCGCTCAGCGAGCAGACTGCCAAACTGTGGCACACGACAAACATCTACATGCACCCCAAGATCCACGAGTATGCCGAGCGATTGGTGGCCAAGTTCCCAGGAGACCTCAAGAGCGTGTGCTTTGTGAACTCCGGTTCGGAGGCCAACGATCTTGCTATGTTAATGGCGCGCCTTTACACAGGCAACCAGGATATCCTTTCCTTGCGCAACTGCTACCACGGAATGTCCCCCTACACCATGGGCCTCACGGCACACTCCACCTGGCGCTTTCCACTGCCCGGGGTGAACAGCGGACTTGTGCACGTGATGAACCCCGATCCGTACCAGGGCATTTGGGGCGGCTCAAACTGCCGGGACTCCCCTGTGCAGACCACCCGCAAATGCCAGTGCACCGTAGGCTGCCAGGCCGGTGACGCCTACTATAATGAGCTGGAGGAGACCTTCAAGTATTCCCTGCCGCGCGGCAAGGTGGCTGCTATGTTTGCAGAGTCAATCCAGGGGGTCGGCGGAACGGTTCAGTTCCCAAAAGGGTACCTCAAGCGGGCAGCAGCTCTGGTCAGAGCTAATGGAGGACTCTTTGTGGCCGACGAGGTTCAGACTGGCTTCGGGCGAACCGGTGAGCACTTCTGGGGCTTCGAGAGCCACGACTATGTCCCCGACATAGTCACCATGGCCAAGGGCATTGGGAACGGCTTCCCACTGGCAGCCGTTGTCACCACGCCAGAGATCGCGGCATCCCTGAGCCAGGCCCTGCATTTTAACACTTACGGGGGGAACCCGATGGCCAGTGCCGTGGGCATTGCCGTGCTGGACGTGATCGAGGAGGAGCAACTGCAGCGCAACTCCCTTGAAGTGGGCACGTACTTCCTCAAAGGTCTGGCTGAATTGCAGCAGCGCTTCGAGATTATTGGCGACGTGCGGGGAAAAGGCCTGATGATCGGCGTCGAGCTGGTGGGCAATCGTGAAAAGCGTACCCCTCTGGCTACGCCCCACGTCCTGGACATCTGGGAGAAGTGCAAGGACCAAGGAGTGCTCCTTGGACGCGGCGGTCTTCATGGAAACGTTCTGCGCATTAAGCCTCCCATGTGCATCACGCTGGCTGATGCCAAGTTCGCCGTGGATGTGCTGGCCCTGGCCATCACGGAGACTCTACCCGAGAATAACTAATGAAGATTGGAGAAGACGAGTACACATACACGGGAGAGCGTTTGTAGGATGGTCTCAGCTGCATTTATTAACTATCTAAGCTATCTAAGCAGATCTCTAAGTAGTTACTCCTAACAAAGACTTATGGACCTCTAAATCGTCAACTGTTCAATATTTAAAAGAATTGGTTTTTATACATTAAATTGTTGAAGATCCCACAAGA:
+in data_check col:type_id	value:368:
+in data_check col:organism_id	value:1:
+in data_check col:seqlen	value:1877:
+in data_check col:is_analysis	value:0:
+in data_check col:is_obsolete	value:0:
+in data_check col:timelastmodified	value:2004-06-05 02:05:22:
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:subject_id
+start_element:feature
+start_element:is_analysis
+end_element_name:is_analysis
+is_analysis is column_element
+start_element:is_obsolete
+end_element_name:is_obsolete
+is_obsolete is column_element
+start_element:name
+end_element_name:name
+name is column_element
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:7-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:seqlen
+end_element_name:seqlen
+seqlen is column_element
+start_element:timeaccessioned
+end_element_name:timeaccessioned
+timeaccessioned is column_element
+start_element:timelastmodified
+end_element_name:timelastmodified
+timelastmodified is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:9-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:6:
+in data_check col:name	value:exon:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:257:
+substitute it with db_id:257:level:7-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+start_element:featureloc
+start to output the module table:feature, level:6 before parse sub table:featureloc
+in data_check col:uniquename	value:FBgn0037186:5:
+in data_check col:name	value:CG11241:5:
+in data_check col:timeaccessioned	value:2003-12-01 19:45:32.433729:
+in data_check col:type_id	value:257:
+in data_check col:organism_id	value:1:
+in data_check col:seqlen	value:170:
+in data_check col:is_obsolete	value:0:
+in data_check col:is_analysis	value:0:
+in data_check col:timelastmodified	value:2003-12-01 19:45:32.433729:
+start_element:fmax
+end_element_name:fmax
+fmax is column_element
+start_element:fmin
+end_element_name:fmin
+fmin is column_element
+start_element:is_fmax_partial
+end_element_name:is_fmax_partial
+is_fmax_partial is column_element
+start_element:is_fmin_partial
+end_element_name:is_fmin_partial
+is_fmin_partial is column_element
+start_element:locgroup
+end_element_name:locgroup
+locgroup is column_element
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:srcfeature_id
+start_element:feature
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:SO:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:2:
+substitute it with db_id:2:level:14-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:2:
+in data_check col:accession	value:SO:0000105:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:182:
+substitute it with db_id:182:level:12-1:key:cvterm.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:dbxref_id	value:182:
+in data_check col:cv_id	value:6:
+in data_check col:name	value:chromosome_arm:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:210:
+substitute it with db_id:210:level:10-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+end_element_name:feature
+in data_check col:uniquename	value:3L:
+in data_check col:type_id	value:210:
+in data_check col:organism_id	value:1:
+end_element is feature table element, and sub element is col of this table
+local_id::	db_id:11494725:
+substitute it with db_id:11494725:level:8-1:key:featureloc.srcfeature_id:
+end_element_name:srcfeature_id
+srcfeature_id is column_element
+start_element:strand
+end_element_name:strand
+strand is column_element
+end_element_name:featureloc
+data_check temp_key:featureloc:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:27491526
+result is:27491526
+in data_check col:feature_id	value:27491526:
+in data_check col:fmin	value:22731347:
+in data_check col:is_fmin_partial	value:0:
+in data_check col:fmax	value:22731517:
+in data_check col:strand	value:-1:
+in data_check col:is_fmax_partial	value:0:
+in data_check col:rank	value:0:
+in data_check col:locgroup	value:0:
+in data_check col:srcfeature_id	value:11494725:
+end_element is featureloc table element, and sub element is col of this table
+local_id::	db_id:23775381:
+end_element_name:feature
+substitute it with db_id:27491526:level:5-1:key:feature_relationship.subject_id:
+end_element_name:subject_id
+subject_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:relationship type:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:7-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:4:
+in data_check col:name	value:partof:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:26:
+substitute it with db_id:26:level:5-1:key:feature_relationship.type_id:
+end_element_name:type_id
+type_id is column_element
+end_element_name:feature_relationship
+data_check temp_key:feature_relationship:object_id_ref_table:value:feature
+context_retrieve:level:4:primary_table:feature:value:3134684
+result is:3134684
+in data_check col:subject_id	value:27491526:
+in data_check col:type_id	value:26:
+in data_check col:object_id	value:3134684:
+in data_check col:rank	value:1:
+end_element is feature_relationship table element, and sub element is col of this table
+local_id::	db_id:-20:
+start_element:feature_relationship
+start to output the module table:feature, level:3 before parse sub table:feature_relationship
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:subject_id
+start_element:feature
+start_element:is_analysis
+end_element_name:is_analysis
+is_analysis is column_element
+start_element:is_obsolete
+end_element_name:is_obsolete
+is_obsolete is column_element
+start_element:name
+end_element_name:name
+name is column_element
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:7-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:seqlen
+end_element_name:seqlen
+seqlen is column_element
+start_element:timeaccessioned
+end_element_name:timeaccessioned
+timeaccessioned is column_element
+start_element:timelastmodified
+end_element_name:timelastmodified
+timelastmodified is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:9-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:6:
+in data_check col:name	value:exon:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:257:
+substitute it with db_id:257:level:7-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+start_element:featureloc
+start to output the module table:feature, level:6 before parse sub table:featureloc
+in data_check col:uniquename	value:FBgn0037186:4:
+in data_check col:name	value:CG11241:4:
+in data_check col:timeaccessioned	value:2003-12-01 19:45:32.466079:
+in data_check col:type_id	value:257:
+in data_check col:organism_id	value:1:
+in data_check col:seqlen	value:325:
+in data_check col:is_analysis	value:0:
+in data_check col:is_obsolete	value:0:
+in data_check col:timelastmodified	value:2003-12-01 19:45:32.466079:
+start_element:fmax
+end_element_name:fmax
+fmax is column_element
+start_element:fmin
+end_element_name:fmin
+fmin is column_element
+start_element:is_fmax_partial
+end_element_name:is_fmax_partial
+is_fmax_partial is column_element
+start_element:is_fmin_partial
+end_element_name:is_fmin_partial
+is_fmin_partial is column_element
+start_element:locgroup
+end_element_name:locgroup
+locgroup is column_element
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:srcfeature_id
+start_element:feature
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:SO:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:2:
+substitute it with db_id:2:level:14-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:2:
+in data_check col:accession	value:SO:0000105:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:182:
+substitute it with db_id:182:level:12-1:key:cvterm.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:dbxref_id	value:182:
+in data_check col:cv_id	value:6:
+in data_check col:name	value:chromosome_arm:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:210:
+substitute it with db_id:210:level:10-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+end_element_name:feature
+in data_check col:uniquename	value:3L:
+in data_check col:type_id	value:210:
+in data_check col:organism_id	value:1:
+end_element is feature table element, and sub element is col of this table
+local_id::	db_id:11494725:
+substitute it with db_id:11494725:level:8-1:key:featureloc.srcfeature_id:
+end_element_name:srcfeature_id
+srcfeature_id is column_element
+start_element:strand
+end_element_name:strand
+strand is column_element
+end_element_name:featureloc
+data_check temp_key:featureloc:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:27491527
+result is:27491527
+in data_check col:feature_id	value:27491527:
+in data_check col:fmin	value:22729541:
+in data_check col:is_fmin_partial	value:0:
+in data_check col:fmax	value:22729866:
+in data_check col:strand	value:-1:
+in data_check col:is_fmax_partial	value:0:
+in data_check col:rank	value:0:
+in data_check col:locgroup	value:0:
+in data_check col:srcfeature_id	value:11494725:
+end_element is featureloc table element, and sub element is col of this table
+local_id::	db_id:23775382:
+end_element_name:feature
+substitute it with db_id:27491527:level:5-1:key:feature_relationship.subject_id:
+end_element_name:subject_id
+subject_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:relationship type:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:7-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:4:
+in data_check col:name	value:partof:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:26:
+substitute it with db_id:26:level:5-1:key:feature_relationship.type_id:
+end_element_name:type_id
+type_id is column_element
+end_element_name:feature_relationship
+data_check temp_key:feature_relationship:object_id_ref_table:value:feature
+context_retrieve:level:4:primary_table:feature:value:3134684
+result is:3134684
+in data_check col:subject_id	value:27491527:
+in data_check col:type_id	value:26:
+in data_check col:object_id	value:3134684:
+in data_check col:rank	value:2:
+end_element is feature_relationship table element, and sub element is col of this table
+local_id::	db_id:19839975:
+start_element:feature_relationship
+start to output the module table:feature, level:3 before parse sub table:feature_relationship
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:subject_id
+start_element:feature
+start_element:is_analysis
+end_element_name:is_analysis
+is_analysis is column_element
+start_element:is_obsolete
+end_element_name:is_obsolete
+is_obsolete is column_element
+start_element:name
+end_element_name:name
+name is column_element
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:7-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:seqlen
+end_element_name:seqlen
+seqlen is column_element
+start_element:timeaccessioned
+end_element_name:timeaccessioned
+timeaccessioned is column_element
+start_element:timelastmodified
+end_element_name:timelastmodified
+timelastmodified is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:9-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:6:
+in data_check col:name	value:exon:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:257:
+substitute it with db_id:257:level:7-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+start_element:featureloc
+start to output the module table:feature, level:6 before parse sub table:featureloc
+in data_check col:uniquename	value:FBgn0037186:3:
+in data_check col:name	value:CG11241:3:
+in data_check col:timeaccessioned	value:2003-12-01 19:45:32.497824:
+in data_check col:type_id	value:257:
+in data_check col:organism_id	value:1:
+in data_check col:seqlen	value:1075:
+in data_check col:is_analysis	value:0:
+in data_check col:is_obsolete	value:0:
+in data_check col:timelastmodified	value:2003-12-01 19:45:32.497824:
+start_element:fmax
+end_element_name:fmax
+fmax is column_element
+start_element:fmin
+end_element_name:fmin
+fmin is column_element
+start_element:is_fmax_partial
+end_element_name:is_fmax_partial
+is_fmax_partial is column_element
+start_element:is_fmin_partial
+end_element_name:is_fmin_partial
+is_fmin_partial is column_element
+start_element:locgroup
+end_element_name:locgroup
+locgroup is column_element
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:srcfeature_id
+start_element:feature
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:SO:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:2:
+substitute it with db_id:2:level:14-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:2:
+in data_check col:accession	value:SO:0000105:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:182:
+substitute it with db_id:182:level:12-1:key:cvterm.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:dbxref_id	value:182:
+in data_check col:cv_id	value:6:
+in data_check col:name	value:chromosome_arm:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:210:
+substitute it with db_id:210:level:10-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+end_element_name:feature
+in data_check col:uniquename	value:3L:
+in data_check col:type_id	value:210:
+in data_check col:organism_id	value:1:
+end_element is feature table element, and sub element is col of this table
+local_id::	db_id:11494725:
+substitute it with db_id:11494725:level:8-1:key:featureloc.srcfeature_id:
+end_element_name:srcfeature_id
+srcfeature_id is column_element
+start_element:strand
+end_element_name:strand
+strand is column_element
+end_element_name:featureloc
+data_check temp_key:featureloc:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:27491528
+result is:27491528
+in data_check col:feature_id	value:27491528:
+in data_check col:fmin	value:22728008:
+in data_check col:is_fmin_partial	value:0:
+in data_check col:fmax	value:22729083:
+in data_check col:strand	value:-1:
+in data_check col:is_fmax_partial	value:0:
+in data_check col:rank	value:0:
+in data_check col:locgroup	value:0:
+in data_check col:srcfeature_id	value:11494725:
+end_element is featureloc table element, and sub element is col of this table
+local_id::	db_id:23775383:
+end_element_name:feature
+substitute it with db_id:27491528:level:5-1:key:feature_relationship.subject_id:
+end_element_name:subject_id
+subject_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:relationship type:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:7-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:4:
+in data_check col:name	value:partof:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:26:
+substitute it with db_id:26:level:5-1:key:feature_relationship.type_id:
+end_element_name:type_id
+type_id is column_element
+end_element_name:feature_relationship
+data_check temp_key:feature_relationship:object_id_ref_table:value:feature
+context_retrieve:level:4:primary_table:feature:value:3134684
+result is:3134684
+in data_check col:subject_id	value:27491528:
+in data_check col:type_id	value:26:
+in data_check col:object_id	value:3134684:
+in data_check col:rank	value:3:
+end_element is feature_relationship table element, and sub element is col of this table
+local_id::	db_id:-48:
+start_element:feature_relationship
+start to output the module table:feature, level:3 before parse sub table:feature_relationship
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:subject_id
+start_element:feature
+start_element:is_analysis
+end_element_name:is_analysis
+is_analysis is column_element
+start_element:is_obsolete
+end_element_name:is_obsolete
+is_obsolete is column_element
+start_element:name
+end_element_name:name
+name is column_element
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:7-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:seqlen
+end_element_name:seqlen
+seqlen is column_element
+start_element:timeaccessioned
+end_element_name:timeaccessioned
+timeaccessioned is column_element
+start_element:timelastmodified
+end_element_name:timelastmodified
+timelastmodified is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:9-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:6:
+in data_check col:name	value:exon:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:257:
+substitute it with db_id:257:level:7-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+start_element:featureloc
+start to output the module table:feature, level:6 before parse sub table:featureloc
+in data_check col:uniquename	value:FBgn0037186:2:
+in data_check col:name	value:CG11241:2:
+in data_check col:timeaccessioned	value:2003-12-01 19:45:32.530447:
+in data_check col:type_id	value:257:
+in data_check col:organism_id	value:1:
+in data_check col:seqlen	value:307:
+in data_check col:is_analysis	value:0:
+in data_check col:is_obsolete	value:0:
+in data_check col:timelastmodified	value:2003-12-01 19:45:32.530447:
+start_element:fmax
+end_element_name:fmax
+fmax is column_element
+start_element:fmin
+end_element_name:fmin
+fmin is column_element
+start_element:is_fmax_partial
+end_element_name:is_fmax_partial
+is_fmax_partial is column_element
+start_element:is_fmin_partial
+end_element_name:is_fmin_partial
+is_fmin_partial is column_element
+start_element:locgroup
+end_element_name:locgroup
+locgroup is column_element
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:srcfeature_id
+start_element:feature
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:SO:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:2:
+substitute it with db_id:2:level:14-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:2:
+in data_check col:accession	value:SO:0000105:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:182:
+substitute it with db_id:182:level:12-1:key:cvterm.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:dbxref_id	value:182:
+in data_check col:cv_id	value:6:
+in data_check col:name	value:chromosome_arm:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:210:
+substitute it with db_id:210:level:10-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+end_element_name:feature
+in data_check col:uniquename	value:3L:
+in data_check col:type_id	value:210:
+in data_check col:organism_id	value:1:
+end_element is feature table element, and sub element is col of this table
+local_id::	db_id:11494725:
+substitute it with db_id:11494725:level:8-1:key:featureloc.srcfeature_id:
+end_element_name:srcfeature_id
+srcfeature_id is column_element
+start_element:strand
+end_element_name:strand
+strand is column_element
+end_element_name:featureloc
+data_check temp_key:featureloc:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:27502112
+result is:27502112
+in data_check col:feature_id	value:27502112:
+in data_check col:fmin	value:22727529:
+in data_check col:is_fmin_partial	value:0:
+in data_check col:fmax	value:22727836:
+in data_check col:strand	value:-1:
+in data_check col:is_fmax_partial	value:0:
+in data_check col:rank	value:0:
+in data_check col:locgroup	value:0:
+in data_check col:srcfeature_id	value:11494725:
+end_element is featureloc table element, and sub element is col of this table
+local_id::	db_id:-60:
+end_element_name:feature
+substitute it with db_id:27502112:level:5-1:key:feature_relationship.subject_id:
+end_element_name:subject_id
+subject_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:relationship type:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:7-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:4:
+in data_check col:name	value:partof:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:26:
+substitute it with db_id:26:level:5-1:key:feature_relationship.type_id:
+end_element_name:type_id
+type_id is column_element
+end_element_name:feature_relationship
+data_check temp_key:feature_relationship:object_id_ref_table:value:feature
+context_retrieve:level:4:primary_table:feature:value:3134684
+result is:3134684
+in data_check col:subject_id	value:27502112:
+in data_check col:type_id	value:26:
+in data_check col:object_id	value:3134684:
+in data_check col:rank	value:4:
+end_element is feature_relationship table element, and sub element is col of this table
+local_id::	db_id:19839973:
+start_element:feature_relationship
+start to output the module table:feature, level:3 before parse sub table:feature_relationship
+start_element:subject_id
+start_element:feature
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:FlyBase:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:9-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:4:
+in data_check col:accession	value:FBpp0078188:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:284951:
+substitute it with db_id:284951:level:7-1:key:feature.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:is_analysis
+end_element_name:is_analysis
+is_analysis is column_element
+start_element:is_obsolete
+end_element_name:is_obsolete
+is_obsolete is column_element
+start_element:name
+end_element_name:name
+name is column_element
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:7-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:residues
+end_element_name:residues
+residues is column_element
+start_element:seqlen
+end_element_name:seqlen
+seqlen is column_element
+start_element:timeaccessioned
+end_element_name:timeaccessioned
+timeaccessioned is column_element
+start_element:timelastmodified
+end_element_name:timelastmodified
+timelastmodified is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:9-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:6:
+in data_check col:name	value:protein:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:1179:
+substitute it with db_id:1179:level:7-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+start_element:featureloc
+start to output the module table:feature, level:6 before parse sub table:featureloc
+in data_check col:dbxref_id	value:284951:
+in data_check col:uniquename	value:FBpp0078188:
+in data_check col:name	value:CG11241-PA:
+in data_check col:timeaccessioned	value:2004-06-05 02:05:13:
+in data_check col:residues	value:MISKRVLAQTRQLLPRSSVRRSSSSSVHSKAAPAMIAQMQGEMPDCNHRPAAYEGSTYEQILKTRRNHLTPNLLAHFKKPLVIHAGHMQWLYDHEGRRYLDMFGGIVTVSVGHCHPKVNQALSEQTAKLWHTTNIYMHPKIHEYAERLVAKFPGDLKSVCFVNSGSEANDLAMLMARLYTGNQDILSLRNCYHGMSPYTMGLTAHSTWRFPLPGVNSGLVHVMNPDPYQGIWGGSNCRDSPVQTTRKCQCTVGCQAGDAYYNELEETFKYSLPRGKVAAMFAESIQGVGGTVQFPKGYLKRAAALVRANGGLFVADEVQTGFGRTGEHFWGFESHDYVPDIVTMAKGIGNGFPLAAVVTTPEIAASLSQALHFNTYGGNPMASAVGIAVLDVIEEEQLQRNSLEVGTYFLKGLAELQQRFEIIGDVRGKGLMIGVELVGNREKRTPLATPHVLDIWEKCKDQGVLLGRGGLHGNVLRIKPPMCITLADAKFAVDVLALAITETLPENN:
+in data_check col:type_id	value:1179:
+in data_check col:organism_id	value:1:
+in data_check col:seqlen	value:508:
+in data_check col:is_analysis	value:0:
+in data_check col:is_obsolete	value:0:
+in data_check col:timelastmodified	value:2004-06-05 02:05:13:
+start_element:fmax
+end_element_name:fmax
+fmax is column_element
+start_element:fmin
+end_element_name:fmin
+fmin is column_element
+start_element:is_fmax_partial
+end_element_name:is_fmax_partial
+is_fmax_partial is column_element
+start_element:is_fmin_partial
+end_element_name:is_fmin_partial
+is_fmin_partial is column_element
+start_element:locgroup
+end_element_name:locgroup
+locgroup is column_element
+start_element:rank
+end_element_name:rank
+rank is column_element
+start_element:srcfeature_id
+start_element:feature
+start_element:organism_id
+start_element:organism
+start_element:genus
+end_element_name:genus
+genus is column_element
+start_element:species
+end_element_name:species
+species is column_element
+end_element_name:organism
+in data_check col:genus	value:Drosophila:
+in data_check col:species	value:melanogaster:
+end_element is organism table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:feature.organism_id:
+end_element_name:organism_id
+organism_id is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:SO:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:6:
+substitute it with db_id:6:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:SO:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:2:
+substitute it with db_id:2:level:14-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:2:
+in data_check col:accession	value:SO:0000105:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:182:
+substitute it with db_id:182:level:12-1:key:cvterm.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:dbxref_id	value:182:
+in data_check col:cv_id	value:6:
+in data_check col:name	value:chromosome_arm:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:210:
+substitute it with db_id:210:level:10-1:key:feature.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+end_element_name:feature
+in data_check col:uniquename	value:3L:
+in data_check col:type_id	value:210:
+in data_check col:organism_id	value:1:
+end_element is feature table element, and sub element is col of this table
+local_id::	db_id:11494725:
+substitute it with db_id:11494725:level:8-1:key:featureloc.srcfeature_id:
+end_element_name:srcfeature_id
+srcfeature_id is column_element
+start_element:strand
+end_element_name:strand
+strand is column_element
+end_element_name:featureloc
+data_check temp_key:featureloc:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:3134689
+result is:3134689
+in data_check col:feature_id	value:3134689:
+in data_check col:fmin	value:22727734:
+in data_check col:is_fmin_partial	value:0:
+in data_check col:fmax	value:22731369:
+in data_check col:strand	value:-1:
+in data_check col:is_fmax_partial	value:0:
+in data_check col:rank	value:0:
+in data_check col:locgroup	value:0:
+in data_check col:srcfeature_id	value:11494725:
+end_element is featureloc table element, and sub element is col of this table
+local_id::	db_id:23788966:
+start_element:feature_dbxref
+start to output the module table:feature, level:6 before parse sub table:feature_dbxref
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:FlyBase Annotation IDs:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:1:
+in data_check col:accession	value:CG11241-PA:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:152156:
+substitute it with db_id:152156:level:8-1:key:feature_dbxref.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:is_current
+end_element_name:is_current
+is_current is column_element
+end_element_name:feature_dbxref
+data_check temp_key:feature_dbxref:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:3134689
+result is:3134689
+in data_check col:feature_id	value:3134689:
+in data_check col:dbxref_id	value:152156:
+in data_check col:is_current	value:1:
+end_element is feature_dbxref table element, and sub element is col of this table
+local_id::	db_id:326418:
+start_element:feature_dbxref
+start to output the module table:feature, level:6 before parse sub table:feature_dbxref
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:FlyBase:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:4:
+substitute it with db_id:4:level:10-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:4:
+in data_check col:accession	value:FBpp0078188:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:284951:
+substitute it with db_id:284951:level:8-1:key:feature_dbxref.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:is_current
+end_element_name:is_current
+is_current is column_element
+end_element_name:feature_dbxref
+data_check temp_key:feature_dbxref:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:3134689
+result is:3134689
+in data_check col:feature_id	value:3134689:
+in data_check col:dbxref_id	value:284951:
+in data_check col:is_current	value:1:
+end_element is feature_dbxref table element, and sub element is col of this table
+local_id::	db_id:326419:
+start_element:feature_dbxref
+start to output the module table:feature, level:6 before parse sub table:feature_dbxref
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:GB_protein:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:45:
+substitute it with db_id:45:level:10-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+start_element:version
+end_element_name:version
+version is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:45:
+in data_check col:version	value:3:
+in data_check col:accession	value:AAF51855:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:1946532:
+substitute it with db_id:1946532:level:8-1:key:feature_dbxref.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:is_current
+end_element_name:is_current
+is_current is column_element
+end_element_name:feature_dbxref
+data_check temp_key:feature_dbxref:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:3134689
+result is:3134689
+in data_check col:feature_id	value:3134689:
+in data_check col:dbxref_id	value:1946532:
+in data_check col:is_current	value:1:
+end_element is feature_dbxref table element, and sub element is col of this table
+local_id::	db_id:1980117:
+start_element:feature_dbxref
+start to output the module table:feature, level:6 before parse sub table:feature_dbxref
+start_element:dbxref_id
+start_element:dbxref
+start_element:accession
+end_element_name:accession
+accession is column_element
+start_element:db_id
+start_element:db
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:db
+in data_check col:name	value:GB_protein:
+end_element is db table element, and sub element is col of this table
+local_id::	db_id:45:
+substitute it with db_id:45:level:10-1:key:dbxref.db_id:
+end_element_name:db_id
+db_id is column_element
+end_element_name:dbxref
+in data_check col:db_id	value:45:
+in data_check col:accession	value:AAF51855.3:
+end_element is dbxref table element, and sub element is col of this table
+local_id::	db_id:580735:
+substitute it with db_id:580735:level:8-1:key:feature_dbxref.dbxref_id:
+end_element_name:dbxref_id
+dbxref_id is column_element
+start_element:is_current
+end_element_name:is_current
+is_current is column_element
+end_element_name:feature_dbxref
+data_check temp_key:feature_dbxref:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:3134689
+result is:3134689
+in data_check col:feature_id	value:3134689:
+in data_check col:dbxref_id	value:580735:
+in data_check col:is_current	value:0:
+end_element is feature_dbxref table element, and sub element is col of this table
+local_id::	db_id:418291:
+start_element:feature_synonym
+start to output the module table:feature, level:6 before parse sub table:feature_synonym
+start_element:is_current
+end_element_name:is_current
+is_current is column_element
+start_element:is_internal
+end_element_name:is_internal
+is_internal is column_element
+start_element:pub_id
+start_element:pub
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:pub type:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:1:
+in data_check col:name	value:computer file:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:1:
+substitute it with db_id:1:level:10-1:key:pub.type_id:
+end_element_name:type_id
+type_id is column_element
+start_element:uniquename
+end_element_name:uniquename
+uniquename is column_element
+end_element_name:pub
+in data_check col:uniquename	value:FBrf0104946:
+in data_check col:type_id	value:1:
+end_element is pub table element, and sub element is col of this table
+local_id::	db_id:99159:
+substitute it with db_id:99159:level:8-1:key:feature_synonym.pub_id:
+end_element_name:pub_id
+pub_id is column_element
+start_element:synonym_id
+start_element:synonym
+start_element:name
+end_element_name:name
+name is column_element
+start_element:synonym_sgml
+end_element_name:synonym_sgml
+synonym_sgml is column_element
+start_element:type_id
+start_element:cvterm
+start_element:cv_id
+start_element:cv
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cv
+in data_check col:name	value:synonym type:
+end_element is cv table element, and sub element is col of this table
+local_id::	db_id:5:
+substitute it with db_id:5:level:12-1:key:cvterm.cv_id:
+end_element_name:cv_id
+cv_id is column_element
+start_element:name
+end_element_name:name
+name is column_element
+end_element_name:cvterm
+in data_check col:cv_id	value:5:
+in data_check col:name	value:synonym:
+end_element is cvterm table element, and sub element is col of this table
+local_id::	db_id:28:
+substitute it with db_id:28:level:10-1:key:synonym.type_id:
+end_element_name:type_id
+type_id is column_element
+end_element_name:synonym
+in data_check col:synonym_sgml	value:CG11241-PA:
+in data_check col:type_id	value:28:
+in data_check col:name	value:CG11241-PA:
+end_element is synonym table element, and sub element is col of this table
+local_id::	db_id:1495446:
+substitute it with db_id:1495446:level:8-1:key:feature_synonym.synonym_id:
+end_element_name:synonym_id
+synonym_id is column_element
+end_element_name:feature_synonym
+data_check temp_key:feature_synonym:feature_id_ref_table:value:feature
+context_retrieve:level:7:primary_table:feature:value:3134689
+result is:3134689
+in data_check col:feature_id	value:3134689:
+in data_check col:is_current	value:1:
+in data_check col:pub_id	value:99159:
+in data_check col:is_internal	value:0:
+in data_check col:synonym_id	value:1495446:
+end_element is feature_synonym table element, and sub element is col of this table
+local_id::	db_id:2184156:
+end_element_name:feature
+substitute it with db_id:3134689:level:5-1:key:feature_relationship.subject_id:
+end_element_name:subject_id
+subject_id is column_element
+end_element_name:feature_relationship
+data_check temp_key:feature_relationship:type_id_ref_table:value:cvterm
+result is:
+data_check temp_key:feature_relationship:object_id_ref_table:value:feature
+context_retrieve:level:4:primary_table:feature:value:3134684
+result is:3134684
+data_check temp_key:feature_relationship:type_id_ref_table:value:cvterm
+result is:
+
+can not find the value for required element(unique key):type_id of table:feature_relationship from context .....
+sorry, for some reason, this process stop before finish the following main transaction(child of root):
+problem around the following line:545
+
+element:uniquename	value:FBtr0078536
+element:name	value:CG11241-RA
+element:timeaccessioned	value:2004-06-05 02:05:22
+element:residues	value:AGTTGCTTCACCTCCGCCGTTACTAGTGGACGACTGTCCTCGCGAAAAACACGTGCCACACAGTTGATTCGAGTTCAAAAAGTGCATCCAAACCAGAAAAGTTTACATAGAAAGTGATAGGAGCGTAGAAAAGAATCCGAAACCAAAAATGATATCCAAGCGAGTGTTAGCTCAGACCCGGCAGCTCCTTCCCAGGTCCTCGGTCCGTAGGAGCTCCAGCTCATCGGTGCACTCAAAGGCAGCCCCCGCCATGATAGCACAGATGCAGGGCGAGATGCCCGACTGCAACCACCGCCCGGCGGCCTACGAGGGCTCCACCTACGAGCAGATTCTCAAGACCCGACGCAACCACCTGACACCGAATCTGCTGGCCCACTTCAAAAAGCCACTTGTGATCCACGCTGGCCACATGCAGTGGCTGTACGATCATGAGGGCCGGCGCTACCTGGACATGTTTGGTGGAATCGTTACTGTGTCCGTTGGACATTGTCACCCAAAGGTTAACCAGGCGCTCAGCGAGCAGACTGCCAAACTGTGGCACACGACAAACATCTACATGCACCCCAAGATCCACGAGTATGCCGAGCGATTGGTGGCCAAGTTCCCAGGAGACCTCAAGAGCGTGTGCTTTGTGAACTCCGGTTCGGAGGCCAACGATCTTGCTATGTTAATGGCGCGCCTTTACACAGGCAACCAGGATATCCTTTCCTTGCGCAACTGCTACCACGGAATGTCCCCCTACACCATGGGCCTCACGGCACACTCCACCTGGCGCTTTCCACTGCCCGGGGTGAACAGCGGACTTGTGCACGTGATGAACCCCGATCCGTACCAGGGCATTTGGGGCGGCTCAAACTGCCGGGACTCCCCTGTGCAGACCACCCGCAAATGCCAGTGCACCGTAGGCTGCCAGGCCGGTGACGCCTACTATAATGAGCTGGAGGAGACCTTCAAGTATTCCCTGCCGCGCGGCAAGGTGGCTGCTATGTTTGCAGAGTCAATCCAGGGGGTCGGCGGAACGGTTCAGTTCCCAAAAGGGTACCTCAAGCGGGCAGCAGCTCTGGTCAGAGCTAATGGAGGACTCTTTGTGGCCGACGAGGTTCAGACTGGCTTCGGGCGAACCGGTGAGCACTTCTGGGGCTTCGAGAGCCACGACTATGTCCCCGACATAGTCACCATGGCCAAGGGCATTGGGAACGGCTTCCCACTGGCAGCCGTTGTCACCACGCCAGAGATCGCGGCATCCCTGAGCCAGGCCCTGCATTTTAACACTTACGGGGGGAACCCGATGGCCAGTGCCGTGGGCATTGCCGTGCTGGACGTGATCGAGGAGGAGCAACTGCAGCGCAACTCCCTTGAAGTGGGCACGTACTTCCTCAAAGGTCTGGCTGAATTGCAGCAGCGCTTCGAGATTATTGGCGACGTGCGGGGAAAAGGCCTGATGATCGGCGTCGAGCTGGTGGGCAATCGTGAAAAGCGTACCCCTCTGGCTACGCCCCACGTCCTGGACATCTGGGAGAAGTGCAAGGACCAAGGAGTGCTCCTTGGACGCGGCGGTCTTCATGGAAACGTTCTGCGCATTAAGCCTCCCATGTGCATCACGCTGGCTGATGCCAAGTTCGCCGTGGATGTGCTGGCCCTGGCCATCACGGAGACTCTACCCGAGAATAACTAATGAAGATTGGAGAAGACGAGTACACATACACGGGAGAGCGTTTGTAGGATGGTCTCAGCTGCATTTATTAACTATCTAAGCTATCTAAGCAGATCTCTAAGTAGTTACTCCTAACAAAGACTTATGGACCTCTAAATCGTCAACTGTTCAATATTTAAAAGAATTGGTTTTTATACATTAAATTGTTGAAGATCCCACAAGA
+element:seqlen	value:1877
+element:is_analysis	value:0
+element:is_obsolete	value:0
+element:timelastmodified	value:2004-06-05 02:05:22
+
+table name for this specific record:feature_relationship
+
+
+
+in data_check col:subject_id	value:3134689:
+in data_check col:object_id	value:3134684:
+in db_select, you missed this not null column:type_id of table: feature_relationship  which has NO default value
+record for this table:feature_relationship missed value for the unique column:type_id
+sorry, for some reason, this process stop before finish the following main transaction(child of root):
+problem around the following line:545
+
+element:uniquename	value:FBtr0078536
+element:name	value:CG11241-RA
+element:timeaccessioned	value:2004-06-05 02:05:22
+element:residues	value:AGTTGCTTCACCTCCGCCGTTACTAGTGGACGACTGTCCTCGCGAAAAACACGTGCCACACAGTTGATTCGAGTTCAAAAAGTGCATCCAAACCAGAAAAGTTTACATAGAAAGTGATAGGAGCGTAGAAAAGAATCCGAAACCAAAAATGATATCCAAGCGAGTGTTAGCTCAGACCCGGCAGCTCCTTCCCAGGTCCTCGGTCCGTAGGAGCTCCAGCTCATCGGTGCACTCAAAGGCAGCCCCCGCCATGATAGCACAGATGCAGGGCGAGATGCCCGACTGCAACCACCGCCCGGCGGCCTACGAGGGCTCCACCTACGAGCAGATTCTCAAGACCCGACGCAACCACCTGACACCGAATCTGCTGGCCCACTTCAAAAAGCCACTTGTGATCCACGCTGGCCACATGCAGTGGCTGTACGATCATGAGGGCCGGCGCTACCTGGACATGTTTGGTGGAATCGTTACTGTGTCCGTTGGACATTGTCACCCAAAGGTTAACCAGGCGCTCAGCGAGCAGACTGCCAAACTGTGGCACACGACAAACATCTACATGCACCCCAAGATCCACGAGTATGCCGAGCGATTGGTGGCCAAGTTCCCAGGAGACCTCAAGAGCGTGTGCTTTGTGAACTCCGGTTCGGAGGCCAACGATCTTGCTATGTTAATGGCGCGCCTTTACACAGGCAACCAGGATATCCTTTCCTTGCGCAACTGCTACCACGGAATGTCCCCCTACACCATGGGCCTCACGGCACACTCCACCTGGCGCTTTCCACTGCCCGGGGTGAACAGCGGACTTGTGCACGTGATGAACCCCGATCCGTACCAGGGCATTTGGGGCGGCTCAAACTGCCGGGACTCCCCTGTGCAGACCACCCGCAAATGCCAGTGCACCGTAGGCTGCCAGGCCGGTGACGCCTACTATAATGAGCTGGAGGAGACCTTCAAGTATTCCCTGCCGCGCGGCAAGGTGGCTGCTATGTTTGCAGAGTCAATCCAGGGGGTCGGCGGAACGGTTCAGTTCCCAAAAGGGTACCTCAAGCGGGCAGCAGCTCTGGTCAGAGCTAATGGAGGACTCTTTGTGGCCGACGAGGTTCAGACTGGCTTCGGGCGAACCGGTGAGCACTTCTGGGGCTTCGAGAGCCACGACTATGTCCCCGACATAGTCACCATGGCCAAGGGCATTGGGAACGGCTTCCCACTGGCAGCCGTTGTCACCACGCCAGAGATCGCGGCATCCCTGAGCCAGGCCCTGCATTTTAACACTTACGGGGGGAACCCGATGGCCAGTGCCGTGGGCATTGCCGTGCTGGACGTGATCGAGGAGGAGCAACTGCAGCGCAACTCCCTTGAAGTGGGCACGTACTTCCTCAAAGGTCTGGCTGAATTGCAGCAGCGCTTCGAGATTATTGGCGACGTGCGGGGAAAAGGCCTGATGATCGGCGTCGAGCTGGTGGGCAATCGTGAAAAGCGTACCCCTCTGGCTACGCCCCACGTCCTGGACATCTGGGAGAAGTGCAAGGACCAAGGAGTGCTCCTTGGACGCGGCGGTCTTCATGGAAACGTTCTGCGCATTAAGCCTCCCATGTGCATCACGCTGGCTGATGCCAAGTTCGCCGTGGATGTGCTGGCCCTGGCCATCACGGAGACTCTACCCGAGAATAACTAATGAAGATTGGAGAAGACGAGTACACATACACGGGAGAGCGTTTGTAGGATGGTCTCAGCTGCATTTATTAACTATCTAAGCTATCTAAGCAGATCTCTAAGTAGTTACTCCTAACAAAGACTTATGGACCTCTAAATCGTCAACTGTTCAATATTTAAAAGAATTGGTTTTTATACATTAAATTGTTGAAGATCCCACAAGA
+element:seqlen	value:1877
+element:is_analysis	value:0
+element:is_obsolete	value:0
+element:timelastmodified	value:2004-06-05 02:05:22
+
+table name for this specific record:feature_relationship
+subject_id	3134689
+object_id	3134684
+
+
+
+end_element is feature_relationship table element, and sub element is col of this table
+local_id::	db_id:-95:
+end_element_name:feature
+end_element_name:chado

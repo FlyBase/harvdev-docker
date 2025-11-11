@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chado SYSTEM "/users/zhou/work/API/XORT/Config/XORTTreeDiffConfig.dtd">
+<!-- use this file to customize how to diff two chado xml files, more specifically, exclude which tables/cols from comparing pool -->
+<chado>
+   <exclude_table>
+      <table>feature_synonym</table>
+      <table>feature_cvterm</table>
+   </exclude_table>
+   <exclude_col>
+      <table>
+          <name>feature</name>
+          <col>timelastmodified</col>
+          <col>timeaccessioned</col>
+      </table>
+      <table>
+          <name>feature_synonym</name>
+          <col>is_internal</col>
+      </table>
+      <table>
+          <name>feature_dbxref</name>
+          <col>is_current</col>
+      </table>
+      <table>
+          <name>feature_relationship</name>
+          <col>rank</col>
+      </table>
+   </exclude_col>
+</chado>

@@ -1,0 +1,286 @@
+How to use XORT and related API
+
+for XORT specification (or Chado XML), please see doc/XORTSpecification.doc 
+    or XORTSpecification.pdf
+
+another reference you may want to look at:
+Zhou, P., Emmert, D. and Zhang, P. 2005. Using Chado to Store Genome 
+Annotation Data  in Current Protocols in Bioinformatics  (A. D. Baxevanis, 
+D. B. Davison, R. D. M. Page, G. A. Petsko, L. D. Stein and G. D. Stormo, 
+eds) pp 6.9.1  6.1.27. John Wiley & Sons Inc, Hoboken, NJ.
+
+1. if you are following the XORT/README to install this package, your 
+environment should be set up properly. However, you can always add
+path of this package to your PERLLIB if you install somewhere other
+than the default (since you need administrator permission to install
+in the default location). For example, if you install XORT to
+/export/xort, then you can add it to PERL5LIB with following command:
+
+For example, if you check out from cvs into this directory:
+/home/scott/schema/XMLTools/XML/XORT and then install xort into
+/export/xort (via the command `perl Makefile.PL`, 
+then you pub /export/xort when ask where to install XORT,
+even I just notice in MAC that it will add to perl library directory,
+then you don't need to worry about this ),
+then add the following line to .cshrc file:
+
+  setenv PERL5LIB /export/xort
+
+or for bash-likes:
+
+  export PERL5LIB=/export/xort
+
+
+2. We understand that different projects may work on different version of 
+chado schema. xort come with a utility to get this around. (For FlyBase
+project, XORT already comes with default the ddl.properties
+file, so you can skip this step). To create the ddl.properties file
+( basically this converts the ddl file with which you create database
+into some property file used by XORT modules. For chado, this will be
+the ddl file: conf/chado.ddl)
+
+  bin/ddl_properties_creator.pl `-d <ddl file> [-v <view file> -h]`
+
+It will create property file: conf/ddl.properties
+
+Notice: 
+  If you have some views/functions which are specific to your project,
+and you want the XORT modules to RECOGNIZE them (if you have views,
+but just want to ignore it, then -v is optional). For example, you 
+may also want to dump views into ChadoXML, or want to load some xml
+file with view data inside, or you want to diff two chado xml files
+with and without view data, you need to MAKE one create TABLE statement
+for each view/function in another file (see the sample file
+conf/function_view.sql and function_view.ddl). This is what the
+ddl_properties_creator.pl -v argument is for. 
+
+examples: 
+We have this view for the FlyBase project:
+
+CREATE OR REPLACE VIEW prediction_evidence (
+  prediction_evidence_id, 
+  feature_id, 
+  evidence_id, 
+  analysis_id
+) AS 
+  SELECT anchor.feature_id||':'||evloc.feature_id||':'||af.analysis_id, 
+         anchor.feature_id, 
+         evloc.feature_id, 
+         af.analysis_id
+  FROM featureloc anchor, featureloc evloc, analysisfeature af
+  WHERE anchor.srcfeature_id = evloc.srcfeature_id 
+    AND evloc.feature_id     = af.feature_id 
+    AND ((evloc.fmin>=anchor.fmin AND 
+          evloc.fmax<=anchor.fmax) OR 
+         (evloc.fmin<=anchor.fmin AND 
+          evloc.fmax>=anchor.fmax) OR
+         (evloc.fmin<=anchor.fmax AND 
+          evloc.fmax>=anchor.fmax) OR 
+         (evloc.fmin<=anchor.fmin AND 
+          evloc.fmax>=anchor.fmin));
+
+If we want to dump/load/diff chado xml with prediction_evidence using XORT,
+I will create this view.ddl:
+
+create table prediction_evidence (
+   prediction_evidence_id varchar(50) not null,
+   primary key (prediction_evidence_id), 
+   feature_id int not null,
+   foreign key (feature_id) references feature (feature_id),
+   evidence_id int not null,
+   foreign key (evidence_id) references feature (feature_id),
+   analysis_id int not null,
+   foreign key (analysis_id) references analysis (analysis_id),
+   unique (feature_id, evidence_id, analysis_id)
+);
+
+Then XORT tools will treat this view:prediction_evidence the same as any other table.
+
+We also recognize the needness of multiple DB schema instance, for all executable files under bin, 
+they have option '-y' to pinpoint which version of DB schema to use instead of default schema
+
+3. Besides installing the XORT executables, the installation steps also collect
+ database information which will be written to a very important configuration 
+file called chado.properties (default location: XML-XORT/conf/chado.properties).
+  The chado.properties file contains all the necessary information for XORT to
+ connect to the chado database you are working with.  If at some point you 
+need to connect to a different instance of chado on your postgres server, 
+you can either edit the chado.properties file to indicate the new chado 
+database name, or create a new file, with suffix '.properties' (e.g.
+"my_new_chado.properties").    In order to be used by XORT, any '.properties'
+file needs to be located in the configuration directory (/home/work/XML-XORT/conf/).
+When executing XORT (see below), the -d parameter specifies which 'properties'
+file to use (e.g. "-d my_new_chado").
+
+This file contains all the necessary information for the database 
+connection, e.g my_new_chado.properties contains:
+
+db_type=postgres
+db=chado_gadfly8
+host=gonzalez.flybase.harvard.edu
+port=5432
+user=zhou
+password=*******
+
+and for any script that requires a -d argument, one would supply
+"-d my_new_chado".
+
+4. Now you are ready to give a try:
+
+  bin/xort_dump.pl
+  bin/xort_loader.pl
+  bin/xort_validator.pl
+  bin/XORTDiff.pl
+
+Note that executing these files will give usage information when no
+arguments are given.  Also, note that if the normal installation
+procedure was used, these files will be installed in /usr/local/bin.
+
+More on specific modules:
+5. Loader module
+   it will load chado xml into database. 
+   Norally, before loading, you may want to check whether this xml will cause any 
+   problem for loading or whether this is valid ChadoXML file. run  bin/validator.pl
+   will help you debug corrupt data. It will catch 99% errors. The result will be written to
+   log filetmp/validator_input_loadfile_name.log
+  execute bin/loader.pl  to try this module
+
+6. Dump module,
+      This module will dump objects from database into ChadoXML file. 
+
+ 6.1. The behavor of dumping can be guided by a dumpspec file, eg. we may nest
+    all exons within transcripts, and all transcripts within gene, or we also want 
+    to dump some evidnece to specific gene modelz(see conf/dumpspec_gene_model.xml
+    to see what dumpspec file look like, create one for your own purpose). we already
+    created a lots of template dumpspec for different purpose, all those still to current
+    chado schema. if you use the same schema, most likely you can re-use those template.
+    Especially for apollo-chado round tripping.
+
+ 6.2. sometime, we may prefer use some global ID to refer a object, ig. CG# for a object in 
+    FlyBase project, this is Project specific strategy, then you can edit this property file
+    for your own purpose:   conf/config_accession.xml
+
+ 6.3. If you try to use 'local_id' mechanism to represent an object, the dumper
+   will use this format to represent it: 'table_name'.'_'.'primary_key', it will
+   garantee the uniqueness. However, it is not necessary at all to use this
+   format for loader, as long as its uniqueness, loader can handle it. 
+   execute bin/xort_dump.pl  to try this module
+  
+
+7. XORTTreeDiff module: this module will compare two ChadoXML(essential can
+   work for any XML as long as follow similar rules as ChadoXML) files. 
+  Significant different from other generic tree comparison tools is that, 
+  this is SCHEMA-AWARE comparison, that means, it only compare two objects
+  that have same identity(here means same set of unique key col(s)). 
+  There are three level of comparison: ref/all/custom
+  for custom level, edit conf/XORTTreeDiffConfig.xml 
+  for your project purpose.
+   execute bin/XORTDiff.pl  to try this module
+
+8. whenever you change the DB schema(DDL file change), you need to run 
+  bin/ddl_properties_creator.pl `-d <ddl file> [-v <view file> -h]`
+  to synchronize the ddl property file with database schema. 
+
+9. Specially for the apollo-chado round-trip 
+   there are a few function and views, which are NOT part to generic chado schema,
+     but it is NECESSARY for for apollo-chado round-trip if you want those evidence
+    data to support gene model data. 
+   9.1 add those views function into property file:
+   bin/ddl_properties_creator.pl -d conf/idb-full.ddl
+      -v conf/function_view.ddl
+
+  9.2 create views in the database by run the following file inside database shell:
+  $CodeBase/XML/XORT/conf/function_view.sql
+
+  9.3 dump chado into ChadoXML with this specific dumpspec file and other options
+      perl  bin/xort_dump.pl -f chado_xml_file_name -d database_alias 
+         -g conf/dumpspec_scaffold_for_apollo_NE.xml -f no_local_id -s module  
+
+   for not include 'evidence data' or use following to include 'evidence' data  
+      perl bin/xort_dump.pl -f chado_xml_file_name -d database_alias 
+         -g conf/dumpspec_scaffold_for_apollo.xml -f no_local_id -s module  
+
+
+
+10. Frank Smutniak at FlyBase Harvard developed the converter between 
+GAME XML and chado XML formats, which is included as part of XML-XORT package
+command for GameBridge convertor:(CTG: convert Chado XML into GAME xml, 
+GTC: convert GAME into chado xml)
+the jar file come with this package  XML-XORT/conf/GameChadoConv.jar
+CTG
+        -a
+                //convert all
+        -g
+                //convert genes only
+        -c
+                //convert comp anal only
+GTC
+        -a
+                //convert all
+        -g
+                //convert genes only
+        -c
+                //convert comp anal only
+        -t
+                //convert transactional changes only
+        -p
+                //INCL Transposable Elements
+        -R
+                //SPECIAL HANDLING for rel4
+        -H
+                //SPECIAL HANDLING for Heterochromatin (pick up users provided aa 
+                // instead of calculated aa which is default)
+
+
+
+
+10. Understand content in chado XML format
+     The hierarchical structure of XML documents is idea for
+ mimicking the object relationships inside a relational database
+ schema. Mapping of XML elements to tables/columns truthfully 
+reflects the table/column and primary/foreign key relationships,
+ given the fact that a relational database schema can be 
+represented by a unique DTD. Therefore, XML possesses a great
+ advantage for automatic processing of large-scale biological
+ data, e.g. genome sequence data.
+     Pinglei Zhou and Stan Letovsky at FlyBase Harvard 
+(Zhou et al, 2005) have developed a specification for mapping
+ relational database schema into XML document. Initially started
+ with chado schema, therefore this XML structure has been named
+ as chado XML, even though it can be applied to any schema
+ as long as the schema satisfies certain constraints, which
+ are: all primary keys are serial numbers, and each table 
+has unique key(s). Unique key is the only way to represent
+ a unique record out of database environment since primary 
+key is meaningless if outside of the database context. All table
+ names are XML elements, so are all table's columns which are 
+nested within their own table elements. Primary table and 
+foreign table relationship is translated into outer and inner
+ elements relationship, with foreign table elements nested 
+inside primary table elements and after the primary table'  
+column elements. Softwares for mapping database schema into DTD
+ has been developed, not only achieving the mapping, but also 
+preserving all the database schema information into a property 
+file, which will be used as guide for all other activities. 
+     From data structure's point of view, XML is tree. A chado
+ database becomes a tree when converted into XML, with the root
+ node being chado, the non-leaf node being either table node, 
+which means the label of node is one of table names, or column 
+node, which means the label of node is one of the column names 
+of the corresponding database table. Direct children of root 
+node are table nodes, nodes of a table node could be either 
+column node, or table node if the child table node have foreign
+ key referring to the parent node's primary key. For example,
+ node of feature could be uniquename which is a column of 
+feature, or featureprop because of the fact that featureprop
+ has feature_id column referring to the primary key of 
+feature:feature_id. Child of column node could be either leaf
+ node with no label but only content of the column, or table 
+node whose children node represent the content of this column
+ node if this column node is also foreign key node. 
+
+
+11. Changes since 0.003 version
+a. add DOM structure layer for additional validation, remove
+    children node when reach to root node to avoid out of memory error
+b. Improvement of validation for no-DB model.

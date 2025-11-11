@@ -1,0 +1,132 @@
+#!/usr/local/bin/perl
+
+use strict;
+use lib '/export2/zhou/install_xort'; 
+use XML::XORT::Util::GeneralUtil::Properties;
+
+# ----- chado_dtd_creator.pl ----
+# based on the ddl.properties file, create generic dtd for chado xml
+
+
+my %hash_ddl;
+my $pro=XML::XORT::Util::GeneralUtil::Properties->new('ddl');
+ %hash_ddl=$pro->get_properties_hash();
+
+
+my (%tables, %hash_element_defined, %hash_element_foreign, %hash_foreign_key);
+
+my @temp=split(/\s+/, $hash_ddl{'all_table'});
+foreach my $table (@temp){
+   $tables{$table}=1 if $table =~/\w/;
+}
+
+my @temp=split(/\s+/, $hash_ddl{'table_pseudo'});
+foreach my $table (@temp){
+   delete $tables{$table};
+}
+
+my $element_all_string;
+foreach my $table(sort (keys %tables)){
+  if (defined $element_all_string){
+      $element_all_string=$element_all_string." | ".$table;
+  }
+  else {
+      $element_all_string=$table;
+  }
+}
+
+#here get the top line
+$element_all_string="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<!ELEMENT chado (".$element_all_string.")*>";
+print "\n$element_all_string";
+
+
+
+foreach my $key (sort (keys %tables)){
+   my (%hash_link_table, %hash_cols,%hash_unique,%hash_non_null, %hash_non_null_default, $column_string, $link_table_string);
+   #get all link tables
+   my $table_module=$key."_module";
+   my @temp2=split(/\s+/, $hash_ddl{$table_module});
+   foreach my $value (@temp2){
+      my ($table_link, $junk)=split(/\:/, $value);
+      $hash_link_table{$table_link}=1 if defined $tables {$table_link};
+   }
+   my @cols=split(/\s+/, $hash_ddl{$key});
+
+   #get all unique_key cols
+   my $unique_key_string=$key."_unique";
+   my @temp3=split(/\s+/, $hash_ddl{$unique_key_string});
+   foreach my $value (@temp3){
+      $hash_unique{$value}=1;
+   }
+
+   #get all non_null
+   my $non_null_string=$key."_non_null_cols";
+   my @temp4=split(/\s+/, $hash_ddl{$unique_key_string});
+   foreach my $value (@temp4){
+      $hash_non_null{$value}=1;
+   }
+
+   #get all non_null_default cols
+   my $non_null_default_string=$key."_non_null_default";
+   my @temp5=split(/\s+/, $hash_ddl{$unique_key_string});
+   foreach my $value (@temp5){
+      $hash_non_null_default{$value}=1;
+   }
+
+    #this is for table elements
+   foreach my $col (@cols){
+      my $primary_key_string=$key."_primary_key";
+      my $ref_string=$key.":".$col."_ref_table";
+      next if  ($col eq $hash_ddl{$primary_key_string}); #primary key, which is serial number, will NOT be included
+      if (!(defined $hash_ddl{$ref_string}) && ((defined $hash_unique{$col}) || (defined $hash_non_null{$col} && !(defined $hash_non_null_default{$col})))){
+	if (defined $column_string){
+          $column_string=$column_string.', '.$col;
+        }
+        else {
+          $column_string=$col;
+        }
+      }
+      else {
+	if (defined $column_string){
+          $column_string=$column_string.', '.$col.'?';
+        }
+        else {
+          $column_string=$col.'?';
+        }
+      }
+   }
+
+
+   foreach  my $link_table(sort (keys %hash_link_table)){
+     #     $link_table_string=$link_table || $link_table_string." | ".$link_table if (defined $link_table_string);
+     if (defined $link_table_string){
+          $link_table_string=$link_table_string." | ".$link_table;
+     }
+     else {
+          $link_table_string=$link_table;
+     }
+   }
+   $column_string=$column_string ." , ($link_table_string )*" if defined $link_table_string;
+   print "\n<!ELEMENT $key ( $column_string)>";
+
+   #here for column elements
+   foreach my $col(@cols){
+     my $primary_key_string=$key."_primary_key";
+     if (!(defined $hash_element_defined{$col}) && $col ne $hash_ddl{$primary_key_string}){
+       my $ref_string=$key.":".$col."_ref_table";
+       my $col_element_string="<!ELEMENT ".$col." (#PCDATA";
+       #for foreign key, its children can be either #PCDATA or table element
+       if (defined $hash_ddl{$ref_string}){
+         $col_element_string=$col_element_string." | ".$hash_ddl{$ref_string}.")*>";
+   #      print "\nalready defined  and different:$col:$hash_ddl{$ref_string}:$hash_foreign_key{$col}:" if (defined $hash_ddl{$ref_string} && $hash_ddl{$ref_string} ne $hash_foreign_key{$col} &&  $tables{$hash_ddl{$ref_string}}=~/\w/ && $tables{$hash_foreign_key{$col}}=~/\w/);
+   #      $hash_foreign_key{$col}=$hash_ddl{$ref_string};
+       }
+       else {
+         $col_element_string=$col_element_string.")>";
+       }
+       print "\n$col_element_string";
+     $hash_element_defined{$col}=1;
+     }
+   }
+  print "\n";
+}

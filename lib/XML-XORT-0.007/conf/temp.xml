@@ -1,0 +1,1601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by Pinglei Zhou, Flybase Harvard University -->
+<!--created from Database:fb_2007_01 using dump_spec:dumpspec_aligned.xml at Thu Jun 28 10:22:37 2007 -->
+
+
+<chado  dumpspec="aligned.xml" date="Fri Dec 16 2005">
+	<feature id="feature_8322977">
+		<name>Contig446_Contig3289-1-AE003743.4_19172886_19242976-na_baylorf1_</name>
+		<uniquename>:2314246_tblastxwrap_masked</uniquename>
+		<analysisfeature id="analysisfeature_6916679">
+			<analysis_id>
+				<analysis id="analysis_34">
+					<program>tblastxwrap_masked</program>
+					<programversion>1.0</programversion>
+					<sourcename>na_baylorf1_scfchunk.dpse</sourcename>
+				</analysis>
+			</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_4746894">
+			<subject_id>
+				<feature id="feature_8322978">
+					<uniquename>:6694524</uniquename>
+					<analysisfeature id="analysisfeature_6916680">
+						<analysis_id>analysis_34</analysis_id>
+						<rawscore>109.7</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8957899">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19223205</fmin>
+						<fmax>19223343</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8957898">
+						<srcfeature_id>
+							<feature id="feature_4694161">
+								<type_id>
+									<cvterm id="cvterm_30">
+										<name>so</name>
+									</cvterm>
+								</type_id>
+								<uniquename>Contig446_Contig3289-1</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>54394</fmin>
+						<fmax>54532</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<type_id>
+				<cvterm id="cvterm_26">
+					<cv_id>
+						<cv id="cv_4">
+							<name>relationship type</name>
+						</cv>
+					</cv_id>
+					<name>partof</name>
+					<is_obsolete>0</is_obsolete>
+				</cvterm>
+			</type_id>
+			<rank>0</rank>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_8318216">
+		<name>P97629-AE003742.4-aa_SPTR.rodent-blastx_masked</name>
+		<uniquename>:1998390_blastx_masked</uniquename>
+		<analysisfeature id="analysisfeature_6912591">
+			<analysis_id>
+				<analysis id="analysis_55">
+					<program>blastx_masked</program>
+					<programversion>1.0</programversion>
+					<sourcename>aa_SPTR.rodent</sourcename>
+				</analysis>
+			</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_4744076">
+			<subject_id>
+				<feature id="feature_8318217">
+					<uniquename>:6273871</uniquename>
+					<analysisfeature id="analysisfeature_6912592">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>22.7</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952263">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19059487</fmin>
+						<fmax>19059613</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952262">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>191</fmin>
+						<fmax>233</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_4744077">
+			<subject_id>
+				<feature id="feature_8318218">
+					<uniquename>:6273872</uniquename>
+					<analysisfeature id="analysisfeature_6912593">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>32.5</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952265">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19059233</fmin>
+						<fmax>19059395</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952264">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>229</fmin>
+						<fmax>284</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_4744078">
+			<subject_id>
+				<feature id="feature_8318219">
+					<uniquename>:6273873</uniquename>
+					<analysisfeature id="analysisfeature_6912594">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>47.3</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952267">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19059034</fmin>
+						<fmax>19059157</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952266">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>289</fmin>
+						<fmax>330</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_4744079">
+			<subject_id>
+				<feature id="feature_8318220">
+					<uniquename>:6273874</uniquename>
+					<analysisfeature id="analysisfeature_6912595">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>97.3</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952269">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19057605</fmin>
+						<fmax>19058532</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952268">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>380</fmin>
+						<fmax>707</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_4744080">
+			<subject_id>
+				<feature id="feature_8318221">
+					<uniquename>:6273875</uniquename>
+					<analysisfeature id="analysisfeature_6912596">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>24.4</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952271">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19057380</fmin>
+						<fmax>19057644</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952270">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>649</fmin>
+						<fmax>735</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_4744081">
+			<subject_id>
+				<feature id="feature_8318222">
+					<uniquename>:6273876</uniquename>
+					<analysisfeature id="analysisfeature_6912597">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>44.5</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952273">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19057368</fmin>
+						<fmax>19057497</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952272">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>677</fmin>
+						<fmax>720</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_4744082">
+			<subject_id>
+				<feature id="feature_8318223">
+					<uniquename>:6273877</uniquename>
+					<analysisfeature id="analysisfeature_6912598">
+						<analysis_id>analysis_55</analysis_id>
+						<rawscore>34.3</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8952275">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19057022</fmin>
+						<fmax>19057289</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8952274">
+						<srcfeature_id>
+							<feature id="feature_7316772">
+								<type_id>
+									<cvterm id="cvterm_1179">
+										<name>protein</name>
+									</cvterm>
+								</type_id>
+								<uniquename>P97629</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>725</fmin>
+						<fmax>817</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_8315879">
+		<name>Contig1109_Contig2766-3-AE003742.4_19095047_19172946-na_baylorf1</name>
+		<uniquename>:2314126_tblastxwrap_masked</uniquename>
+		<analysisfeature id="analysisfeature_6910381">
+			<analysis_id>analysis_34</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_4742514">
+			<subject_id>
+				<feature id="feature_8315880">
+					<uniquename>:6694404</uniquename>
+					<analysisfeature id="analysisfeature_6910382">
+						<analysis_id>analysis_34</analysis_id>
+						<rawscore>76.7</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_8949542">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>19103423</fmin>
+						<fmax>19103531</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_8949541">
+						<srcfeature_id>
+							<feature id="feature_4616010">
+								<type_id>
+									<cvterm id="cvterm_30">
+										<name>so</name>
+									</cvterm>
+								</type_id>
+								<uniquename>Contig1109_Contig2766-3</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>21025</fmin>
+						<fmax>21133</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_28102610">
+		<name>BT029289-na_cDNA_ncbi_20070110-splign</name>
+		<uniquename>Splign:0182131</uniquename>
+		<analysisfeature id="analysisfeature_24425728">
+			<analysis_id>
+				<analysis id="analysis_71">
+					<program>splign</program>
+					<programversion>1.0</programversion>
+					<sourcename>na_cDNA_ncbi</sourcename>
+				</analysis>
+			</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_20183155">
+			<subject_id>
+				<feature id="feature_28102611">
+					<uniquename>:ncbi_1336525</uniquename>
+					<analysisfeature id="analysisfeature_24425729">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391131">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>8</fmin>
+						<fmax>16</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391132">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>137859</fmin>
+						<fmax>137867</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>1</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183156">
+			<subject_id>
+				<feature id="feature_28102613">
+					<uniquename>:ncbi_1336526</uniquename>
+					<analysisfeature id="analysisfeature_24425730">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>99.81</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391133">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>16</fmin>
+						<fmax>1105</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391134">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>128029</fmin>
+						<fmax>129118</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>2</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183157">
+			<subject_id>
+				<feature id="feature_28102614">
+					<uniquename>:ncbi_1336527</uniquename>
+					<analysisfeature id="analysisfeature_24425731">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391135">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1105</fmin>
+						<fmax>1175</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391136">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>120032</fmin>
+						<fmax>120102</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>3</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183158">
+			<subject_id>
+				<feature id="feature_28102615">
+					<uniquename>:ncbi_1336528</uniquename>
+					<analysisfeature id="analysisfeature_24425732">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391137">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1175</fmin>
+						<fmax>1342</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391138">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>115462</fmin>
+						<fmax>115629</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>4</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183159">
+			<subject_id>
+				<feature id="feature_28102616">
+					<uniquename>:ncbi_1336529</uniquename>
+					<analysisfeature id="analysisfeature_24425733">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391139">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1342</fmin>
+						<fmax>1531</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391140">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>115052</fmin>
+						<fmax>115241</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>5</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183160">
+			<subject_id>
+				<feature id="feature_28102617">
+					<uniquename>:ncbi_1336530</uniquename>
+					<analysisfeature id="analysisfeature_24425734">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>99.35</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391141">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1531</fmin>
+						<fmax>1685</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391142">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>107642</fmin>
+						<fmax>107797</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>6</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183161">
+			<subject_id>
+				<feature id="feature_28102618">
+					<uniquename>:ncbi_1336531</uniquename>
+					<analysisfeature id="analysisfeature_24425735">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391143">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1685</fmin>
+						<fmax>1765</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391144">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>106479</fmin>
+						<fmax>106559</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>7</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183162">
+			<subject_id>
+				<feature id="feature_28102619">
+					<uniquename>:ncbi_1336532</uniquename>
+					<analysisfeature id="analysisfeature_24425736">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391145">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1765</fmin>
+						<fmax>1853</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391146">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>106338</fmin>
+						<fmax>106426</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>8</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183163">
+			<subject_id>
+				<feature id="feature_28102620">
+					<uniquename>:ncbi_1336533</uniquename>
+					<analysisfeature id="analysisfeature_24425737">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>99.08</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391147">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1853</fmin>
+						<fmax>1962</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391148">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>103264</fmin>
+						<fmax>103373</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>9</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183164">
+			<subject_id>
+				<feature id="feature_28102621">
+					<uniquename>:ncbi_1336534</uniquename>
+					<analysisfeature id="analysisfeature_24425738">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391149">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>1962</fmin>
+						<fmax>2061</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391150">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>95693</fmin>
+						<fmax>95792</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>10</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183165">
+			<subject_id>
+				<feature id="feature_28102622">
+					<uniquename>:ncbi_1336535</uniquename>
+					<analysisfeature id="analysisfeature_24425739">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391151">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>2061</fmin>
+						<fmax>2106</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391152">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>93443</fmin>
+						<fmax>93488</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>11</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_20183166">
+			<subject_id>
+				<feature id="feature_28102623">
+					<uniquename>:ncbi_1336536</uniquename>
+					<analysisfeature id="analysisfeature_24425740">
+						<analysis_id>analysis_71</analysis_id>
+						<rawscore>99.41</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_24391153">
+						<srcfeature_id>
+							<feature id="feature_28102612">
+								<type_id>
+									<cvterm id="cvterm_562">
+										<name>cDNA</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BT029289</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>2106</fmin>
+						<fmax>2278</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_24391154">
+						<srcfeature_id>
+							<feature id="feature_11494724">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>4</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>93046</fmin>
+						<fmax>93221</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>12</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_10054186">
+		<name>RE10545.5prime-AE003757.4-na_dbEST.same.dmel-sim4</name>
+		<uniquename>:4176951_sim4</uniquename>
+		<analysisfeature id="analysisfeature_8329306">
+			<analysis_id>
+				<analysis id="analysis_40">
+					<program>sim4</program>
+					<programversion>1.0</programversion>
+					<sourcename>na_dbEST.same.dmel</sourcename>
+				</analysis>
+			</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_5641562">
+			<subject_id>
+				<feature id="feature_10054187">
+					<uniquename>:10396088</uniquename>
+					<analysisfeature id="analysisfeature_8329307">
+						<analysis_id>analysis_40</analysis_id>
+						<rawscore>99</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10709598">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>22457597</fmin>
+						<fmax>22458167</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10709597">
+						<srcfeature_id>
+							<feature id="feature_10054188">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BI169386</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>0</fmin>
+						<fmax>569</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_9726523">
+		<name>RE24982.5prime-AE003532.4-na_dbEST.same.dmel-sim4</name>
+		<uniquename>:4185872_sim4</uniquename>
+		<analysisfeature id="analysisfeature_8078472">
+			<analysis_id>analysis_40</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_5478039">
+			<subject_id>
+				<feature id="feature_9726524">
+					<uniquename>:10414469</uniquename>
+					<analysisfeature id="analysisfeature_8078473">
+						<analysis_id>analysis_40</analysis_id>
+						<rawscore>96</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10382552">
+						<srcfeature_id>
+							<feature id="feature_11494725">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3L</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>15088257</fmin>
+						<fmax>15088285</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10382551">
+						<srcfeature_id>
+							<feature id="feature_9726525">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BI227759</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>0</fmin>
+						<fmax>28</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_5478040">
+			<subject_id>
+				<feature id="feature_9726526">
+					<uniquename>:10414470</uniquename>
+					<analysisfeature id="analysisfeature_8078474">
+						<analysis_id>analysis_40</analysis_id>
+						<rawscore>99</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10382554">
+						<srcfeature_id>
+							<feature id="feature_11494725">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3L</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>15088373</fmin>
+						<fmax>15088991</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10382553">
+						<srcfeature_id>
+							<feature id="feature_9726525">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BI227759</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>28</fmin>
+						<fmax>646</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_8707981">
+		<name>153443_at_1012-hit:178220</name>
+		<uniquename>153443_at_1012-hit:178220</uniquename>
+		<analysisfeature id="analysisfeature_7291375">
+			<analysis_id>
+				<analysis id="analysis_69">
+					<program>dmel_r3_to_dmel_r4_migration</program>
+					<programversion>1.0</programversion>
+					<sourcename>dmel_r3_affy_oligos</sourcename>
+				</analysis>
+			</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_4945040">
+			<subject_id>
+				<feature id="feature_8707980">
+					<uniquename>153443_at_1012-hsp:178220</uniquename>
+					<analysisfeature id="analysisfeature_7291374">
+						<analysis_id>analysis_69</analysis_id>
+					</analysisfeature>					
+					<featureloc id="featureloc_9343096">
+						<srcfeature_id>
+							<feature id="feature_2246006">
+								<type_id>
+									<cvterm id="cvterm_592">
+										<name>oligonucleotide</name>
+									</cvterm>
+								</type_id>
+								<uniquename>153443_at_1012</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>0</fmin>
+						<fmax>25</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_9343097">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>17851845</fmin>
+						<fmax>17851870</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_9880582">
+		<name>AT17728.5prime-AE003747.4-na_dbEST.diff.dmel-sim4</name>
+		<uniquename>:3988232_sim4</uniquename>
+		<analysisfeature id="analysisfeature_8195871">
+			<analysis_id>
+				<analysis id="analysis_48">
+					<program>sim4</program>
+					<programversion>1.0</programversion>
+					<sourcename>na_dbEST.diff.dmel</sourcename>
+				</analysis>
+			</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_5552565">
+			<subject_id>
+				<feature id="feature_9880583">
+					<uniquename>:10016689</uniquename>
+					<analysisfeature id="analysisfeature_8195872">
+						<analysis_id>analysis_48</analysis_id>
+						<rawscore>99</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10531604">
+						<srcfeature_id>
+							<feature id="feature_11494726">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3R</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>20189025</fmin>
+						<fmax>20189351</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10531603">
+						<srcfeature_id>
+							<feature id="feature_9880584">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BF502097</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>0</fmin>
+						<fmax>326</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_9732251">
+		<name>GH24262:contig1-AE003527.4-na_dbEST.same.dmel-sim4</name>
+		<uniquename>:4190693_sim4</uniquename>
+		<analysisfeature id="analysisfeature_8082815">
+			<analysis_id>analysis_40</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_5480950">
+			<subject_id>
+				<feature id="feature_9732252">
+					<uniquename>:10424471</uniquename>
+					<analysisfeature id="analysisfeature_8082816">
+						<analysis_id>analysis_40</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10388374">
+						<srcfeature_id>
+							<feature id="feature_11494725">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3L</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>16350960</fmin>
+						<fmax>16351619</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10388373">
+						<srcfeature_id>
+							<feature id="feature_9732253">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>GH24262:contig1</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>0</fmin>
+						<fmax>659</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+		<feature_relationship id="feature_relationship_5480951">
+			<subject_id>
+				<feature id="feature_9732254">
+					<uniquename>:10424473</uniquename>
+					<analysisfeature id="analysisfeature_8082817">
+						<analysis_id>analysis_40</analysis_id>
+						<rawscore>98</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10388376">
+						<srcfeature_id>
+							<feature id="feature_11494725">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3L</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>16348129</fmin>
+						<fmax>16348953</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>-1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10388375">
+						<srcfeature_id>
+							<feature id="feature_9732255">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>GH24262:contig2</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>659</fmin>
+						<fmax>1483</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+	<feature id="feature_9677977">
+		<name>RH20126.5prime-AE003561.4-na_dbEST.same.dmel-sim4</name>
+		<uniquename>:4072159_sim4</uniquename>
+		<analysisfeature id="analysisfeature_8041015">
+			<analysis_id>analysis_40</analysis_id>
+		</analysisfeature>		
+		<feature_relationship id="feature_relationship_5452728">
+			<subject_id>
+				<feature id="feature_9677978">
+					<uniquename>:10175122</uniquename>
+					<analysisfeature id="analysisfeature_8041016">
+						<analysis_id>analysis_40</analysis_id>
+						<rawscore>100</rawscore>
+					</analysisfeature>					
+					<featureloc id="featureloc_10331930">
+						<srcfeature_id>
+							<feature id="feature_11494725">
+								<type_id>
+									<cvterm id="cvterm_210">
+										<name>chromosome_arm</name>
+									</cvterm>
+								</type_id>
+								<uniquename>3L</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>6774988</fmin>
+						<fmax>6775522</fmax>
+						<locgroup>0</locgroup>
+						<rank>0</rank>
+						<strand>1</strand>
+					</featureloc>					
+					<featureloc id="featureloc_10331929">
+						<srcfeature_id>
+							<feature id="feature_9152685">
+								<type_id>
+									<cvterm id="cvterm_256">
+										<name>EST</name>
+									</cvterm>
+								</type_id>
+								<uniquename>BI582174</uniquename>
+							</feature>
+						</srcfeature_id>
+						<is_fmin_partial>0</is_fmin_partial>
+						<is_fmax_partial>0</is_fmax_partial>
+						<fmin>0</fmin>
+						<fmax>534</fmax>
+						<locgroup>0</locgroup>
+						<rank>1</rank>
+						<strand>1</strand>
+					</featureloc>					
+				</feature>
+			</subject_id>
+			<rank>0</rank>
+			<type_id>cvterm_26</type_id>
+		</feature_relationship>		
+	</feature>
+</chado>

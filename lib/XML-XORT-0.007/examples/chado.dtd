@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT chado (_appdata | analysis | analysisfeature | analysisprop | author | contact | cv | cvterm | cvterm_dbxref | cvterm_relationship | cvtermpath | cvtermsynonym | db | dbxref | eimage | expression | expression_cvterm | expression_image | expression_pub | feature | feature_cvterm | feature_dbxref | feature_expression | feature_genotype | feature_phenotype | feature_pub | feature_relationship | feature_synonym | featureloc | featuremap | featuremap_pub | featurepos | featureprop | featureprop_pub | featurerange | genotype | interaction | interactionobject | interactionsubject | organism | organism_dbxref | organismprop | phenotype | phenotype_cvterm | pub | pub_author | pub_dbxref | pub_relationship | pubprop | synonym)*>
+<!ATTLIST chado
+          dumpspec  CDATA #IMPLIED
+>
+<!ATTLIST chado
+          date  CDATA #IMPLIED
+>
+<!ELEMENT _appdata (#PCDATA)>
+<!ATTLIST _appdata
+          name  CDATA #REQUIRED
+>
+
+<!ELEMENT analysis ( algorithm?, description?, name?, program, programversion, sourcename, sourceuri?, sourceversion?, timeexecuted? , (analysisfeature | analysisprop )*)>
+<!ELEMENT algorithm (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT program (#PCDATA)>
+<!ELEMENT programversion (#PCDATA)>
+<!ELEMENT sourcename (#PCDATA)>
+<!ELEMENT sourceuri (#PCDATA)>
+<!ELEMENT sourceversion (#PCDATA)>
+<!ELEMENT timeexecuted (#PCDATA)>
+
+<!ELEMENT analysisfeature ( analysis_id?, feature_id?, identity?, normscore?, rawscore?, significance?)>
+<!ELEMENT analysis_id (#PCDATA | analysis)*>
+<!ELEMENT feature_id (#PCDATA | feature)*>
+<!ELEMENT identity (#PCDATA)>
+<!ELEMENT normscore (#PCDATA)>
+<!ELEMENT rawscore (#PCDATA)>
+<!ELEMENT significance (#PCDATA)>
+
+<!ELEMENT analysisprop ( analysis_id?, type_id?, value)>
+<!ELEMENT type_id (#PCDATA | cvterm)*>
+<!ELEMENT value (#PCDATA)>
+
+<!ELEMENT author ( givennames, suffix, surname , (pub_author )*)>
+<!ELEMENT givennames (#PCDATA)>
+<!ELEMENT suffix (#PCDATA)>
+<!ELEMENT surname (#PCDATA)>
+
+<!ELEMENT contact ( description , (db )*)>
+
+<!ELEMENT cv ( definition?, name , (cvterm | cvtermpath )*)>
+<!ELEMENT definition (#PCDATA)>
+
+<!ELEMENT cvterm ( cv_id?, dbxref_id?, definition?, name , (analysisprop | cvterm_dbxref | cvterm_relationship | cvtermpath | cvtermsynonym | expression_cvterm | feature | feature_cvterm | feature_relationship | featureprop | organismprop | phenotype | phenotype_cvterm | pub | pub_relationship | pubprop | synonym )*)>
+<!ELEMENT cv_id (#PCDATA | cv)*>
+<!ELEMENT dbxref_id (#PCDATA | dbxref)*>
+
+<!ELEMENT cvterm_dbxref ( cvterm_id?, dbxref_id?)>
+<!ELEMENT cvterm_id (#PCDATA | cvterm)*>
+
+<!ELEMENT cvterm_relationship ( object_id?, subject_id?, type_id?)>
+<!ELEMENT object_id (#PCDATA | feature)*>
+<!ELEMENT subject_id (#PCDATA | feature)*>
+
+<!ELEMENT cvtermpath ( cv_id?, object_id?, pathdistance?, subject_id?, type_id?)>
+<!ELEMENT pathdistance (#PCDATA)>
+
+<!ELEMENT cvtermsynonym ( cvterm_id?, synonym_desc)>
+<!ELEMENT synonym_desc (#PCDATA)>
+
+<!ELEMENT db ( contact_id?, description?, name, url?, urlprefix? , (dbxref )*)>
+<!ELEMENT contact_id (#PCDATA | contact)*>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT urlprefix (#PCDATA)>
+
+<!ELEMENT dbxref ( accession, db_id?, description?, version? , (cvterm | cvterm_dbxref | feature | feature_dbxref | organism_dbxref | pub_dbxref )*)>
+<!ELEMENT accession (#PCDATA)>
+<!ELEMENT db_id (#PCDATA | db)*>
+<!ELEMENT version (#PCDATA)>
+
+<!ELEMENT eimage ( eimage_data?, eimage_type?, image_uri? , (expression_image )*)>
+<!ELEMENT eimage_data (#PCDATA)>
+<!ELEMENT eimage_type (#PCDATA)>
+<!ELEMENT image_uri (#PCDATA)>
+
+<!ELEMENT expression ( description? , (expression_cvterm | expression_image | expression_pub | feature_expression )*)>
+
+<!ELEMENT expression_cvterm ( cvterm_id?, cvterm_type?, expression_id?, rank?)>
+<!ELEMENT cvterm_type (#PCDATA)>
+<!ELEMENT expression_id (#PCDATA | expression)*>
+<!ELEMENT rank (#PCDATA)>
+
+<!ELEMENT expression_image ( eimage_id?, expression_id?)>
+<!ELEMENT eimage_id (#PCDATA | eimage)*>
+
+<!ELEMENT expression_pub ( expression_id?, pub_id?)>
+<!ELEMENT pub_id (#PCDATA | pub)*>
+
+<!ELEMENT feature ( dbxref_id?, is_analysis?, md5checksum?, name?, organism_id?, residues?, seqlen?, timeaccessioned?, timelastmodified?, type_id?, uniquename , (analysisfeature | feature_cvterm | feature_dbxref | feature_expression | feature_genotype | feature_phenotype | feature_pub | feature_relationship | feature_synonym | featureloc | featurepos | featureprop | featurerange | interactionobject | interactionsubject )*)>
+<!ELEMENT is_analysis (#PCDATA)>
+<!ELEMENT md5checksum (#PCDATA)>
+<!ELEMENT organism_id (#PCDATA | organism)*>
+<!ELEMENT residues (#PCDATA)>
+<!ELEMENT seqlen (#PCDATA)>
+<!ELEMENT timeaccessioned (#PCDATA)>
+<!ELEMENT timelastmodified (#PCDATA)>
+<!ELEMENT uniquename (#PCDATA)>
+
+<!ELEMENT feature_cvterm ( cvterm_id?, feature_id?, pub_id?)>
+
+<!ELEMENT feature_dbxref ( dbxref_id?, feature_id?, is_current?)>
+<!ELEMENT is_current (#PCDATA)>
+
+<!ELEMENT feature_expression ( expression_id?, feature_id?)>
+
+<!ELEMENT feature_genotype ( feature_id?, genotype_id?)>
+<!ELEMENT genotype_id (#PCDATA | genotype)*>
+
+<!ELEMENT feature_phenotype ( feature_id?, phenotype_id?)>
+<!ELEMENT phenotype_id (#PCDATA | phenotype)*>
+
+<!ELEMENT feature_pub ( feature_id?, pub_id?)>
+
+<!ELEMENT feature_relationship ( object_id?, rank?, subject_id?, type_id?)>
+
+<!ELEMENT feature_synonym ( feature_id?, is_current?, is_internal?, pub_id?, synonym_id?)>
+<!ELEMENT is_internal (#PCDATA)>
+<!ELEMENT synonym_id (#PCDATA | synonym)*>
+
+<!ELEMENT featureloc ( feature_id?, fmax?, fmin?, is_fmax_partial?, is_fmin_partial?, locgroup, phase?, rank, residue_info?, srcfeature_id?, strand?)>
+<!ELEMENT fmax (#PCDATA)>
+<!ELEMENT fmin (#PCDATA)>
+<!ELEMENT is_fmax_partial (#PCDATA)>
+<!ELEMENT is_fmin_partial (#PCDATA)>
+<!ELEMENT locgroup (#PCDATA)>
+<!ELEMENT phase (#PCDATA)>
+<!ELEMENT residue_info (#PCDATA)>
+<!ELEMENT srcfeature_id (#PCDATA | feature)*>
+<!ELEMENT strand (#PCDATA)>
+
+<!ELEMENT featuremap ( mapdesc?, mapname, mapunit? , (featuremap_pub | featurepos | featurerange )*)>
+<!ELEMENT mapdesc (#PCDATA)>
+<!ELEMENT mapname (#PCDATA)>
+<!ELEMENT mapunit (#PCDATA)>
+
+<!ELEMENT featuremap_pub ( featuremap_id?, pub_id?)>
+<!ELEMENT featuremap_id (#PCDATA | featuremap)*>
+
+<!ELEMENT featurepos ( feature_id?, featuremap_id?, map_feature_id?, mappos?)>
+<!ELEMENT map_feature_id (#PCDATA | feature)*>
+<!ELEMENT mappos (#PCDATA)>
+
+<!ELEMENT featureprop ( feature_id?, rank, type_id?, value , (featureprop_pub )*)>
+
+<!ELEMENT featureprop_pub ( featureprop_id?, pub_id?)>
+<!ELEMENT featureprop_id (#PCDATA | featureprop)*>
+
+<!ELEMENT featurerange ( feature_id?, featuremap_id?, leftendf_id?, leftstartf_id?, rangestr?, rightendf_id?, rightstartf_id?)>
+<!ELEMENT leftendf_id (#PCDATA | feature)*>
+<!ELEMENT leftstartf_id (#PCDATA | feature)*>
+<!ELEMENT rangestr (#PCDATA)>
+<!ELEMENT rightendf_id (#PCDATA | feature)*>
+<!ELEMENT rightstartf_id (#PCDATA | feature)*>
+
+<!ELEMENT genotype ( description? , (feature_genotype | interaction | phenotype )*)>
+
+<!ELEMENT interaction ( background_genotype_id?, description?, phenotype_id?, pub_id? , (interactionobject | interactionsubject )*)>
+<!ELEMENT background_genotype_id (#PCDATA | genotype)*>
+
+<!ELEMENT interactionobject ( feature_id?, interaction_id?)>
+<!ELEMENT interaction_id (#PCDATA | interaction)*>
+
+<!ELEMENT interactionsubject ( feature_id?, interaction_id?)>
+
+<!ELEMENT organism ( abbreviation?, comment?, common_name?, genus, species , (feature | organism_dbxref | organismprop )*)>
+<!ELEMENT abbreviation (#PCDATA)>
+<!ELEMENT comment (#PCDATA)>
+<!ELEMENT common_name (#PCDATA)>
+<!ELEMENT genus (#PCDATA)>
+<!ELEMENT species (#PCDATA)>
+
+<!ELEMENT organism_dbxref ( dbxref_id?, organism_id?)>
+
+<!ELEMENT organismprop ( organism_id?, rank, type_id?, value)>
+
+<!ELEMENT phenotype ( background_genotype_id?, description?, pub_id?, type_id? , (feature_phenotype | interaction | phenotype_cvterm )*)>
+
+<!ELEMENT phenotype_cvterm ( cvterm_id?, phenotype_id?, rank)>
+
+<!ELEMENT pub ( is_obsolete?, issue?, miniref?, pages?, publisher?, pubplace?, pyear?, series_name?, title?, type_id?, uniquename, volume?, volumetitle? , (expression_pub | feature_cvterm | feature_pub | feature_synonym | featuremap_pub | featureprop_pub | interaction | phenotype | pub_author | pub_dbxref | pub_relationship | pubprop )*)>
+<!ELEMENT is_obsolete (#PCDATA)>
+<!ELEMENT issue (#PCDATA)>
+<!ELEMENT miniref (#PCDATA)>
+<!ELEMENT pages (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT pubplace (#PCDATA)>
+<!ELEMENT pyear (#PCDATA)>
+<!ELEMENT series_name (#PCDATA)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT volume (#PCDATA)>
+<!ELEMENT volumetitle (#PCDATA)>
+
+<!ELEMENT pub_author ( arank?, author_id?, editor?, pub_id?)>
+<!ELEMENT arank (#PCDATA)>
+<!ELEMENT author_id (#PCDATA | author)*>
+<!ELEMENT editor (#PCDATA)>
+
+<!ELEMENT pub_dbxref ( dbxref_id?, pub_id?)>
+
+<!ELEMENT pub_relationship ( obj_pub_id?, subj_pub_id?, type_id?)>
+<!ELEMENT obj_pub_id (#PCDATA | pub)*>
+<!ELEMENT subj_pub_id (#PCDATA | pub)*>
+
+<!ELEMENT pubprop ( pub_id?, rank?, type_id?, value)>
+
+<!ELEMENT synonym ( name, synonym_sgml?, type_id? , (feature_synonym )*)>
+<!ELEMENT synonym_sgml (#PCDATA)>

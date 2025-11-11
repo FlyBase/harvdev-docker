@@ -1,0 +1,10 @@
+<!-- requires: chado-feature -->
+<xortviz schema="chado" id="chado-featureloc">
+  <arc element="feature_relationship" to="subject_id">
+    <opts style='bold' weight='10'/>
+    <label>
+      <copy element="type_id"/>
+      <s>/relationship__//</s>
+    </label>
+  </arc>
+</xortviz>

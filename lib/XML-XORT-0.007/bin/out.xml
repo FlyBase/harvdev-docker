@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by Pinglei Zhou, Flybase Harvard University -->
+<!--created from Database:production_chado using dump_spec:/users/zhou/document/FlyBase/dumpspec/dumpspec_temp.xml at Mon Sep 14 11:09:15 2015 -->
+<!DOCTYPE FBchado [
+<!ENTITY lt "&#38;#60;">
+<!ENTITY gt "&#62;">
+<!ENTITY amp "&#38;#38;">
+<!ENTITY apos "&#39;">
+<!ENTITY quot "&#34;">
+<!ENTITY agrave "&#224;">
+<!ENTITY Agr "&#913;">
+<!ENTITY Bgr "&#914;">
+<!ENTITY Ggr "&#915;">
+<!ENTITY Dgr "&#916;">
+<!ENTITY Egr "&#917;">
+<!ENTITY Zgr "&#918;">
+<!ENTITY EEgr "&#919;">
+<!ENTITY THgr "&#920;">
+<!ENTITY Igr "&#921;">
+<!ENTITY Kgr "&#922;">
+<!ENTITY Lgr "&#923;">
+<!ENTITY Mgr "&#924;">
+<!ENTITY Ngr "&#925;">
+<!ENTITY Xgr "&#926;">
+<!ENTITY Ogr "&#927;">
+<!ENTITY Pgr "&#928;">
+<!ENTITY Rgr "&#929;">
+<!ENTITY Sgr "&#931;">
+<!ENTITY Tgr "&#932;">
+<!ENTITY Ugr "&#933;">
+<!ENTITY PHgr "&#934;">
+<!ENTITY KHgr "&#935;">
+<!ENTITY PSgr "&#936;">
+<!ENTITY OHgr "&#937;">
+<!ENTITY agr "&#945;">
+<!ENTITY bgr "&#946;">
+<!ENTITY ggr "&#947;">
+<!ENTITY dgr "&#948;">
+<!ENTITY egr "&#949;">
+<!ENTITY zgr "&#950;">
+<!ENTITY eegr "&#951;">
+<!ENTITY thgr "&#952;">
+<!ENTITY igr "&#953;">
+<!ENTITY kgr "&#954;">
+<!ENTITY lgr "&#955;">
+<!ENTITY mgr "&#956;">
+<!ENTITY ngr "&#957;">
+<!ENTITY xgr "&#958;">
+<!ENTITY ogr "&#959;">
+<!ENTITY pgr "&#960;">
+<!ENTITY rgr "&#961;">
+<!ENTITY sgr "&#963;">
+<!ENTITY tgr "&#964;">
+<!ENTITY ugr "&#965;">
+<!ENTITY phgr "&#966;">
+<!ENTITY khgr "&#967;">
+<!ENTITY psgr "&#968;">
+<!ENTITY ohgr "&#969;">
+<!ENTITY temp "&lt;t&gt;">
+<!ENTITY anat "&lt;a&gt;">
+<!ENTITY posit "&lt;p&gt;">
+<!ENTITY of "&lt;of&gt;">
+<!ENTITY and "&lt;&amp;&gt;">
+<!ENTITY Agrave  	"&#192;">
+<!ENTITY Aacute 	"&#193;">
+<!ENTITY Acirc 	"&#194;">
+<!ENTITY Atilde 	"&#195;">
+<!ENTITY Auml 	"&#196;">
+<!ENTITY Aring 	"&#197;">
+<!ENTITY AElig 	"&#198;">
+<!ENTITY Ccedil 	"&#199;">
+<!ENTITY Egrave 	"&#200;">
+<!ENTITY Eacute 	"&#201;">
+<!ENTITY Ecirc 	"&#202;">
+<!ENTITY Euml 	"&#203;">
+<!ENTITY Igrave 	"&#204;">
+<!ENTITY Iacute 	"&#205;">
+<!ENTITY Icirc 	"&#206;">
+<!ENTITY Iuml 	"&#207;">
+<!ENTITY ETH 	"&#208;">
+<!ENTITY Ntilde 	"&#209;">
+<!ENTITY Ograve 	"&#210;">
+<!ENTITY Oacute 	"&#211;">
+<!ENTITY Ocirc 	"&#212;">
+<!ENTITY Otilde 	"&#213;">
+<!ENTITY Ouml 	"&#214;">
+<!ENTITY Oslash 	"&#216;">
+<!ENTITY Ugrave 	"&#217;">
+<!ENTITY Uacute 	"&#218;">
+<!ENTITY Ucirc 	"&#219;">
+<!ENTITY Uuml 	"&#220;">
+<!ENTITY Yacute 	"&#221;">
+<!ENTITY THORN 	"&#222;">
+<!ENTITY szlig 	"&#223;">
+<!ENTITY agrave 	"&#224;">
+<!ENTITY aacute 	"&#225;">
+<!ENTITY acirc	"&#226;">
+<!ENTITY atilde 	"&#227;">
+<!ENTITY auml 	"&#228;">
+<!ENTITY aring 	"&#229;">
+<!ENTITY aelig 	"&#230;">
+<!ENTITY ccedil 	"&#231;">
+<!ENTITY egrave 	"&#232;">
+<!ENTITY eacute	"&#233;">
+<!ENTITY ecirc 	"&#234;">
+<!ENTITY euml 	"&#235;">
+<!ENTITY igrave 	"&#236;">
+<!ENTITY iacute 	"&#237;">
+<!ENTITY icirc 	"&#238;">
+<!ENTITY iuml 	"&#239;">
+<!ENTITY eth 	"&#240;">
+<!ENTITY ntilde 	"&#241;">
+<!ENTITY ograve 	"&#242;">
+<!ENTITY oacute 	"&#243;">
+<!ENTITY ocirc 	"&#244;">
+<!ENTITY otilde 	"&#245;">
+<!ENTITY ouml 	"&#246;">
+<!ENTITY oslash 	"&#248;">
+<!ENTITY ugrave 	"&#249;">
+<!ENTITY uacute 	"&#250;">
+<!ENTITY ucirc 	"&#251;">
+<!ENTITY uuml 	"&#252;">
+<!ENTITY yacute 	"&#253;">
+<!ENTITY thorn 	"&#254;">
+<!ENTITY yuml 	"&#255;">
+]>
+
+
+<chado >
+	<synonym id="synonym_1226016">
+		<type_id>
+			<cvterm id="cvterm_60037">
+				<cv_id>
+					<cv id="cv_5">
+						<name>synonym type</name>
+					</cv>
+				</cv_id>
+				<name>fullname</name>
+				<is_obsolete>0</is_obsolete>
+			</cvterm>
+		</type_id>
+		<name>beta-catenin</name>
+		<synonym_sgml>β-catenin</synonym_sgml>
+		<feature_synonym id="feature_synonym_1788159">
+			<feature_id>
+				<feature id="feature_3202962">
+					<organism_id>
+						<organism id="organism_1">
+							<genus>Drosophila</genus>
+							<species>melanogaster</species>
+						</organism>
+					</organism_id>
+					<type_id>
+						<cvterm id="cvterm_219">
+							<cv_id>
+								<cv id="cv_6">
+									<name>SO</name>
+								</cv>
+							</cv_id>
+							<name>gene</name>
+							<is_obsolete>0</is_obsolete>
+						</cvterm>
+					</type_id>
+					<uniquename>FBgn0000117</uniquename>
+				</feature>
+			</feature_id>
+			<pub_id>
+				<pub id="pub_327015">
+					<uniquename>FBrf0182904</uniquename>
+				</pub>
+			</pub_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788160">
+			<pub_id>
+				<pub id="pub_326862">
+					<uniquename>FBrf0182745</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788165">
+			<pub_id>
+				<pub id="pub_317892">
+					<uniquename>FBrf0173058</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788166">
+			<pub_id>
+				<pub id="pub_312385">
+					<uniquename>FBrf0167431</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788167">
+			<pub_id>
+				<pub id="pub_308949">
+					<uniquename>FBrf0161560</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788168">
+			<pub_id>
+				<pub id="pub_308905">
+					<uniquename>FBrf0161512</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788169">
+			<pub_id>
+				<pub id="pub_308300">
+					<uniquename>FBrf0160750</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788171">
+			<pub_id>
+				<pub id="pub_306897">
+					<uniquename>FBrf0159238</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788172">
+			<pub_id>
+				<pub id="pub_304960">
+					<uniquename>FBrf0157202</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788174">
+			<pub_id>
+				<pub id="pub_303541">
+					<uniquename>FBrf0155702</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788178">
+			<pub_id>
+				<pub id="pub_299912">
+					<uniquename>FBrf0151775</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788179">
+			<pub_id>
+				<pub id="pub_299798">
+					<uniquename>FBrf0151636</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788180">
+			<pub_id>
+				<pub id="pub_299797">
+					<uniquename>FBrf0151635</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788182">
+			<pub_id>
+				<pub id="pub_154150">
+					<uniquename>FBrf0151481</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788183">
+			<pub_id>
+				<pub id="pub_152388">
+					<uniquename>FBrf0151270</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788184">
+			<pub_id>
+				<pub id="pub_295412">
+					<uniquename>FBrf0146971</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788185">
+			<pub_id>
+				<pub id="pub_295402">
+					<uniquename>FBrf0146958</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788187">
+			<pub_id>
+				<pub id="pub_293683">
+					<uniquename>FBrf0145175</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788190">
+			<pub_id>
+				<pub id="pub_283688">
+					<uniquename>FBrf0134505</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788191">
+			<pub_id>
+				<pub id="pub_154315">
+					<uniquename>FBrf0131369</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788195">
+			<pub_id>
+				<pub id="pub_152579">
+					<uniquename>FBrf0126029</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788196">
+			<pub_id>
+				<pub id="pub_259784">
+					<uniquename>FBrf0109177</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788197">
+			<pub_id>
+				<pub id="pub_257825">
+					<uniquename>FBrf0106916</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788201">
+			<pub_id>
+				<pub id="pub_323790">
+					<uniquename>FBrf0179484</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788202">
+			<pub_id>
+				<pub id="pub_324032">
+					<uniquename>FBrf0179748</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788203">
+			<pub_id>
+				<pub id="pub_150953">
+					<uniquename>FBrf0179220</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788205">
+			<pub_id>
+				<pub id="pub_303670">
+					<uniquename>FBrf0155864</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1788223">
+			<pub_id>
+				<pub id="pub_332802">
+					<uniquename>FBrf0189187</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_1952924">
+			<feature_id>
+				<feature id="feature_23290616">
+					<organism_id>
+						<organism id="organism_481">
+							<genus>Xenopus</genus>
+							<species>laevis</species>
+						</organism>
+					</organism_id>
+					<uniquename>FBgn0028660</uniquename>
+					<type_id>cvterm_219</type_id>
+				</feature>
+			</feature_id>
+			<pub_id>
+				<pub id="pub_332499">
+					<uniquename>unattributed</uniquename>
+				</pub>
+			</pub_id>
+			<is_current>1</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2189676">
+			<pub_id>
+				<pub id="pub_331247">
+					<uniquename>FBrf0187408</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2197030">
+			<pub_id>
+				<pub id="pub_342536">
+					<uniquename>FBrf0198581</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2199879">
+			<pub_id>
+				<pub id="pub_336574">
+					<uniquename>FBrf0192631</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2205601">
+			<pub_id>
+				<pub id="pub_331253">
+					<uniquename>FBrf0187414</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2205818">
+			<pub_id>
+				<pub id="pub_342704">
+					<uniquename>FBrf0198749</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2206030">
+			<pub_id>
+				<pub id="pub_336422">
+					<uniquename>FBrf0192479</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2214656">
+			<pub_id>
+				<pub id="pub_343053">
+					<uniquename>FBrf0199098</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_2245168">
+			<pub_id>
+				<pub id="pub_344090">
+					<uniquename>FBrf0200132</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4813206">
+			<pub_id>
+				<pub id="pub_339305">
+					<uniquename>FBrf0195362</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4561092">
+			<pub_id>
+				<pub id="pub_331260">
+					<uniquename>FBrf0187421</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5066975">
+			<pub_id>
+				<pub id="pub_331647">
+					<uniquename>FBrf0187821</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6488308">
+			<pub_id>
+				<pub id="pub_349856">
+					<uniquename>FBrf0205707</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5248114">
+			<pub_id>
+				<pub id="pub_353552">
+					<uniquename>FBrf0209070</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4489702">
+			<pub_id>
+				<pub id="pub_347932">
+					<uniquename>FBrf0203828</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4489837">
+			<pub_id>
+				<pub id="pub_347955">
+					<uniquename>FBrf0203851</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4555263">
+			<pub_id>
+				<pub id="pub_323637">
+					<uniquename>FBrf0179302</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4556308">
+			<pub_id>
+				<pub id="pub_331702">
+					<uniquename>FBrf0187877</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4559552">
+			<pub_id>
+				<pub id="pub_335951">
+					<uniquename>FBrf0192008</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4560390">
+			<pub_id>
+				<pub id="pub_346671">
+					<uniquename>FBrf0202585</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5837482">
+			<pub_id>
+				<pub id="pub_361129">
+					<uniquename>FBrf0216253</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6161257">
+			<pub_id>
+				<pub id="pub_362502">
+					<uniquename>FBrf0217502</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4807062">
+			<pub_id>
+				<pub id="pub_334405">
+					<uniquename>FBrf0190152</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4812139">
+			<pub_id>
+				<pub id="pub_346669">
+					<uniquename>FBrf0202583</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4812834">
+			<pub_id>
+				<pub id="pub_336354">
+					<uniquename>FBrf0192411</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4816081">
+			<pub_id>
+				<pub id="pub_344920">
+					<uniquename>FBrf0200870</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4826476">
+			<pub_id>
+				<pub id="pub_350332">
+					<uniquename>FBrf0206177</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4830832">
+			<pub_id>
+				<pub id="pub_336738">
+					<uniquename>FBrf0192795</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4830995">
+			<pub_id>
+				<pub id="pub_351095">
+					<uniquename>FBrf0206912</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4831012">
+			<pub_id>
+				<pub id="pub_351240">
+					<uniquename>FBrf0207057</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4831493">
+			<pub_id>
+				<pub id="pub_346213">
+					<uniquename>FBrf0202163</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4831518">
+			<pub_id>
+				<pub id="pub_346373">
+					<uniquename>FBrf0202323</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4841318">
+			<pub_id>
+				<pub id="pub_349017">
+					<uniquename>FBrf0204898</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_4841320">
+			<pub_id>
+				<pub id="pub_332465">
+					<uniquename>FBrf0188727</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5021920">
+			<pub_id>
+				<pub id="pub_349562">
+					<uniquename>FBrf0205424</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5088041">
+			<pub_id>
+				<pub id="pub_349978">
+					<uniquename>FBrf0205829</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5100620">
+			<pub_id>
+				<pub id="pub_355314">
+					<uniquename>FBrf0210683</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5217686">
+			<pub_id>
+				<pub id="pub_355693">
+					<uniquename>FBrf0211056</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5228060">
+			<pub_id>
+				<pub id="pub_355866">
+					<uniquename>FBrf0211204</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5232697">
+			<pub_id>
+				<pub id="pub_334336">
+					<uniquename>FBrf0190038</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5236727">
+			<pub_id>
+				<pub id="pub_354489">
+					<uniquename>FBrf0209930</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5328803">
+			<pub_id>
+				<pub id="pub_357572">
+					<uniquename>FBrf0212840</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5452163">
+			<pub_id>
+				<pub id="pub_346856">
+					<uniquename>FBrf0202770</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5450982">
+			<pub_id>
+				<pub id="pub_358258">
+					<uniquename>FBrf0213500</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5452490">
+			<pub_id>
+				<pub id="pub_354736">
+					<uniquename>FBrf0210158</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5452696">
+			<pub_id>
+				<pub id="pub_356486">
+					<uniquename>FBrf0211783</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5473112">
+			<pub_id>
+				<pub id="pub_358580">
+					<uniquename>FBrf0213805</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_5891909">
+			<pub_id>
+				<pub id="pub_362018">
+					<uniquename>FBrf0217033</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6369967">
+			<pub_id>
+				<pub id="pub_360177">
+					<uniquename>FBrf0215319</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6684843">
+			<pub_id>
+				<pub id="pub_367241">
+					<uniquename>FBrf0222029</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6647670">
+			<pub_id>
+				<pub id="pub_366850">
+					<uniquename>FBrf0221648</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6744401">
+			<pub_id>
+				<pub id="pub_366966">
+					<uniquename>FBrf0221760</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6822756">
+			<pub_id>
+				<pub id="pub_362329">
+					<uniquename>FBrf0217336</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6167862">
+			<pub_id>
+				<pub id="pub_363138">
+					<uniquename>FBrf0218056</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6250401">
+			<pub_id>
+				<pub id="pub_363656">
+					<uniquename>FBrf0218557</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6900197">
+			<pub_id>
+				<pub id="pub_369123">
+					<uniquename>FBrf0223804</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6568589">
+			<pub_id>
+				<pub id="pub_351257">
+					<uniquename>FBrf0207074</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6570638">
+			<pub_id>
+				<pub id="pub_353901">
+					<uniquename>FBrf0209417</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6571510">
+			<pub_id>
+				<pub id="pub_366091">
+					<uniquename>FBrf0220907</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6571860">
+			<pub_id>
+				<pub id="pub_366543">
+					<uniquename>FBrf0221349</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6748451">
+			<pub_id>
+				<pub id="pub_368425">
+					<uniquename>FBrf0223167</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6748530">
+			<pub_id>
+				<pub id="pub_368132">
+					<uniquename>FBrf0222884</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_6961615">
+			<pub_id>
+				<pub id="pub_369185">
+					<uniquename>FBrf0223866</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+		<feature_synonym id="feature_synonym_7100799">
+			<pub_id>
+				<pub id="pub_363775">
+					<uniquename>FBrf0218674</uniquename>
+				</pub>
+			</pub_id>
+			<feature_id>feature_3202962</feature_id>
+			<is_current>0</is_current>
+			<is_internal>0</is_internal>
+		</feature_synonym>		
+	</synonym>
+</chado>

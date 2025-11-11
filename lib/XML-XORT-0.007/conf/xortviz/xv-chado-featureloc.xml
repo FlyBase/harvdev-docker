@@ -1,0 +1,12 @@
+<!-- requires: chado-feature -->
+<xortviz schema="chado" id="chado-featureloc">
+  <arc element="featureloc" to="srcfeature_id">
+    <opts style='dashed' arrowhead='dot' 
+      decorateP='1' fontcolor='#0000FF' color='#0000FF'/>
+    <label>
+      <copy element="fmin"/>
+      <text>..</text>
+      <copy element="fmax"/>
+    </label>
+  </arc>
+</xortviz>

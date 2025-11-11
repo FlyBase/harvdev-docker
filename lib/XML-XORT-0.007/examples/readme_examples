@@ -1,0 +1,20 @@
+This directory contains some examples to help user understand the XORT package.
+
+1. chado_dtd_creator.pl
+   this will convert the DB schema into generic DTD. 
+
+2. chado_xml_ann.xml
+   game_xml_ann.xml
+   chado_xml_ann_comp.xml
+   game_xml_ann_comp.xml
+
+Those are specific files for CHADO-Apollo project.
+chado_xml_ann.xml   chado XML with ONE annotation
+game_xml_ann.xml GAME xml corresponding to chado_xml_ann.xml
+
+chado_xml_ann_comp.xml  chado XML with multiple annotationa and computational records
+game_xml_ann_comp.xml  GAME xml corresponding to chado_xml_ann_comp.xml
+
+The DTD for those two chado XML can be found in ../doc/chado.dtd
+
+3. most of those files in this directory has been used for FlyBase project. Many can be re-used with minimal modification.

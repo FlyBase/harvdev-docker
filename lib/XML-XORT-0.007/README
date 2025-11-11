@@ -1,0 +1,79 @@
+XORT version 0.01
+=================
+
+The README is used to introduce the module and provide instructions on
+how to install the module, any machine dependencies it may have (for
+example C compilers and installed libraries) and any other information
+that should be provided before the module is installed.
+
+A README file is required for CPAN modules since CPAN extracts the
+README file from a module distribution so that people browsing the
+archive can use it get an idea of the modules uses. It is usually a
+good idea to provide version information here so that people can
+decide whether fixes for the module are worth downloading.
+
+INSTALLATION
+
+To install this module type the following:
+  type perl Makefile.PL for how to configure the parameter for Makefile.PL
+
+   perl Makefile.PL 
+   make
+   make install
+   make clean
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  XML::DOM
+  XML::Parsers::PerlSAX
+
+For more detail instruction, please refere to doc/readme_xort
+
+changes since version 0.006
+1.Dumper: filter out all columns which have white spaces ONLY
+2.DumperSpec: improve the way to parse <or></or> elements, so only pickup once
+
+changes since version 0.005
+1. use placeholder for some repeated DBI calls
+2. change the structure to printout XML right after its retrival from database for each individual object, instead of waiting for finishing of complete object. This should use less memory
+3. filter out unless column before try to retrieve it from database, for instance, featureprop.feature_id if featureprop is nested within feature.
+4. add attribute 'limit', which limit the rows to be selected.
+5. make _sql iligitimate element at any place
+
+changes since version 0.004
+1. use entity declaration for some FlyBase specific Greek characters. 
+   Dump out data in UTF-8, with three option -e for non-ASCII stored in database
+   0(default): exactly same format as in database, say raw data->raw data, entity name->entity name
+   1: converted all FlyBase defined non-ANSCII into entity names (with entity dec in UTF-8)
+   2: converted all FlyBase defined non-ANSCII into PLAIN TEXT
+
+2. debug 99% of -w warning message
+
+3. deal with "distinct on", "group by", "ordered by" in _sql query
+
+4. fix 'loss of space' bug in loader
+
+5. add -y for loader/dumper so it can use user-defined ddl (default in conf/ddl.properties)
+
+6. <name null="true"/> to represent EXPLICIT null value( for loader)
+
+7. fix bug for some regular expression
+     <name test="ns">\-(P[A-Z]|XP)$</name>
+
+8 adopt Josh code for xort_dump.pl (Getopt::Long instead of Getopt:Std)
+
+
+
+
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2004 by Pinglei Zhou
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.1 or,
+at your option, any later version of Perl 5 you may have available.
+
+

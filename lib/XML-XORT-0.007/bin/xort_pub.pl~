@@ -1,0 +1,2127 @@
+
+=head1 NAME
+
+XML::XORT::Dumper::DumpPub - This is use to aggregate all pubs(except those ONLY associated with HT) for FBgns (could be any topest level features specify in the dumpspec)
+
+=head1 SYNOPSIS
+
+    my $dump_obj=XML::XORT::Dumper::DumperPub->new('chado');
+         $dump_obj->Generate_XML( -format_type=>'no_local_id',
+                                 -op_type=>'' ,
+                                 -struct_type=>'module',
+                                 -dump_spec=>$dump_spec,
+                                 -app_data=>$a);
+
+=head1 DESCRIPTION
+
+        This is the basic module which dump any DB into XORT format XML file
+
+=cut
+
+=head1 CONTACT
+
+        Pinglei Zhou, FlyBase fellow at Harvard University (zhou@morgan.harvard.edu)
+
+=cut
+
+=head1 METHODS
+
+=cut
+
+
+ package XML::XORT::Dumper::DumperPub;
+ use XML::XORT::Util::DbUtil::DB;
+ use XML::XORT::Util::GeneralUtil::Properties;
+ use XML::XORT::Dumper::DumperSpec;
+ use XML::XORT::Util::GeneralUtil::Constants;
+ use XML::DOM;
+ use Encode;
+ use encoding 'utf8';#very important, need this to decode utf8, it will NOT work for raw data without this
+ use strict;
+ #use Cache::FileCache;
+ #use Cache::MemoryCache;
+
+my $unit_indent="\t";
+my %hash_ddl;
+# this hash contact all pairs of local_id/local_id
+my %hash_id;
+#this hash contact all cache object, first key: table, second key: primary id, value: XML string
+my %hash_cache;
+# this hash using for checking the avail of refer objectect, any object first time define, it will has all the field, after that, only unique
+my %hash_object_id;
+#here for pseudo table, e.g view, function and _appdata, _sql
+my $TABLES_PSEUDO='table_pseudo';
+my %hash_tables_pseudo;
+
+my $DEBUG=0;
+my $LOCAL_ID="local_id";
+my $NO_LOCAL_ID='xml';
+my $MODULE="module";
+my $SINGLE="single";
+my $dumpspec_obj;
+my $dumpspec_obj_cache;
+my $ENTITY_DECLARATION=0;
+
+$|=1;
+#global variable, attribute of test or dump
+my $DUMP_ALL='all';
+my $DUMP_COL='cols';
+my $DUMP_SELECT='select';
+my $DUMP_REF='ref';
+my $DUMP_NO='no_dump';
+my $DUMP_YES='yes_dump';
+
+my $TEST_YES='yes';
+my $TEST_NO='no';
+my $TEST_ANY='any';
+my $TEST_NONE='none';
+my $TEST_GREATER_THAN='gt';
+my $TEST_GREATER_EQUAL='ge';
+my $TEST_LESS_THAN='lt';
+my $TEST_LESS_EQUAL='le';
+my $DDL_FILE='ddl';
+my $TYPE_DUMP='dump';
+my $TYPE_TEST='test';
+my $ROOT_NODE='chado';
+
+#retrive some constants
+my $constant_obj=XML::XORT::Util::GeneralUtil::Constants->new();
+my $conf= $constant_obj->get_constant('CONF');
+my $tmp= $constant_obj->get_constant('TMP');
+
+# switch to set how to dump referenced object: unique_keys or cols
+my $REF_OBJ_UNIQUE='0';
+my $REF_OBJ_ALL='1';
+
+#XORT DB dbh for DumperSpec, why need to use separate dbh for dumpspec from main DB for dumping data ? here it different from original DBI.dbh
+my $dbh_xort;
+#a hash to store all nested_node, first key:node, second:path, third:type
+my %hash_nested_node_dump;
+#my $cache_node_type=Cache::FileCache->new({namespace=>'XORT',default_expired_in=>'10 minutes',auto_purge_interval=>'30 minutes'});
+#my $cache_join_foreign_key=Cache::FileCache->new({namespace=>'XORT',default_expired_in=>'10 minutes',auto_purge_interval=>'30 minutes'});
+#my $cache_format_sql=Cache::FileCache->new({namespace=>'XORT',default_expired_in=>'10 minutes',auto_purge_interval=>'30 minutes'});
+#my $cache_format_sql_id=Cache::FileCache->new({namespace=>'XORT',default_expired_in=>'10 minutes',auto_purge_interval=>'30 minutes'});
+my %cache_node_type;
+my %cache_join_foreign_key;
+my %cache_format_sql;
+my %cache_format_sql_id;
+my %cache_node_attribute;
+
+#here to store all the pubs which we want to link to particular gene
+my %pubs;
+
+my $FILEH;
+
+ sub new (){
+  my $type=shift;
+  my $self={};
+  #$self->{'dbname'}=shift;
+  $self->{'host'}=shift;
+  $self->{'db'}=shift;
+  $self->{'user'}=shift;
+  $self->{'password'}=shift;
+  $DEBUG=shift;
+  undef %hash_id;
+  undef %hash_object_id;
+  bless $self, $type;
+  return $self;
+ }
+
+
+=head2 Generate_XML
+
+  Arg [1]    : varchar tabel_name 
+  Arg [2]    : varchar output file name
+  Arg [3]    : (optional) module/single(default)
+  Arg [4]    : (optional) varchar op_type insert/delete/update/look_up/force(default)
+  Arg [5]    : (optional) format_type local_id/no_local_id(default)
+  Arg [6]    : (optional) dumpspec 
+  Arg [7]    : (optional) loadable/non_loadable(default)
+  Arg [8]    : (optional) application data
+  Example    : 
+  Description: Public method to dump db into XORT format xml file
+  Returntype : none
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+
+sub Generate_XML {
+
+   my $self=shift;
+   my $result='';
+
+   my ( $table, $struct_type, $op_type, $format_type, $dump_spec, $ref_obj, $dumpspec_data,$ddl_file, $cache_conf, $entity_dec ) =
+   XML::XORT::Util::GeneralUtil::Structure::rearrange(['tables',  'struct_type', 'op_type', 'format_type', 'dump_spec', 'loadable', 'app_data','ddl_property','cache_conf','entity_declaration' ], @_);
+   my $stm;
+   if (defined $ddl_file && $ddl_file =~/\w+/ && $ddl_file ne $DDL_FILE && !(-e $ddl_file)){
+      warn "\nthe ddl file you provide does not exist:\n$ddl_file" and die ();
+   }
+   elsif (defined $ddl_file && $ddl_file =~/\w+/ && ($ddl_file eq $DDL_FILE || -e  $ddl_file)){
+      $DDL_FILE=$ddl_file ;
+   }
+   $ENTITY_DECLARATION=$entity_dec if (defined $entity_dec && ($entity_dec ==1 || $entity_dec ==0 || $entity_dec ==2));
+   #my $string_primary_key=$table."_primary_key";
+   #my $table_id=$hash_ddl{$string_primary_key};
+
+   #if file exist, delete first, then open filehandle for writting
+ 
+
+     if (defined  $cache_conf && $cache_conf =~/\w+/ && !(-e $cache_conf)){
+         warn "\nsorry, the cache config file you provide:$cache_conf doesn't exist, please try again" and exit(1);
+     }
+
+
+ #load the propertity information and open the connection with database
+   #my  $property_file=$self->{'dbname'};
+#   my $dbh_pro=XML::XORT::Util::GeneralUtil::Properties->new($self->{'dbname'});
+#   my    %dbh_hash=$dbh_pro->get_dbh_hash();
+
+my %dbh_hash=();
+   $dbh_hash{'db_type'}="postgres";
+  $dbh_hash{'port'}="5432";
+  $dbh_hash{'db'}=$self->{'db'};
+  $dbh_hash{'host'}=$self->{'host'};
+  $dbh_hash{'user'}=$self->{'user'};
+  $dbh_hash{'password'}=$self->{'password'};
+
+   $dbh_hash{'ddl_property'}=$DDL_FILE;
+    $dbh_xort=XML::XORT::Util::DbUtil::DB->_new(\%dbh_hash)  ;
+   $dbh_xort->open();
+
+   my ($data_source, $user, $password, $db_type, $dbh, $database, $host, $port);
+   $database=$dbh_hash{db};
+   chomp($database);
+   $host=$dbh_hash{host};
+   chomp($host);
+   $port=$dbh_hash{port};
+   chomp $host;
+   $db_type=$dbh_hash{db_type};
+   chomp $db_type;
+   $user=$dbh_hash{'user'};
+   chomp $user;
+   $password=$dbh_hash{'password'};
+   chomp $password;
+     if ($db_type eq 'mysql'){
+       $data_source="DBI:$db_type:$database:$host:$port";
+      }
+     elsif ($db_type eq 'postgres'){
+       $data_source="dbi:Pg:dbname=$database;host=$host;port=$port";
+     }
+    # my $data_source="DBI:mysql:test:localhost:3306";
+
+
+      $dbh=DBI->connect($data_source, $user, $password) or die ":can't connect to $data_source:$dbh->errstr\n";
+      $dbh->{RaiseError}=0;
+
+
+   my $ddl_pro=XML::XORT::Util::GeneralUtil::Properties->new($DDL_FILE);
+   %hash_ddl=$ddl_pro->get_properties_hash();
+ 
+
+   my $app_data=sprintf("\n<$ROOT_NODE>");
+
+   #load the dump spec and get the dumpspec object to manipulate the object
+   my $parser = new XML::DOM::Parser;
+   my $doc;
+
+
+   if (defined $dump_spec && -e $dump_spec) {
+     #my @array_arg=("1", "14473012", "14476172", "AE002603");
+     $doc = $parser->parsefile ($dump_spec);
+     if (defined $dumpspec_data && $dumpspec_data=~/\w+/){
+       my @array_arg=split(/\s+/, $dumpspec_data);
+       &_replace_dumpspec($doc->getDocumentElement(), \@array_arg);
+     }
+     $dumpspec_obj=XML::XORT::Dumper::DumperSpec->new(-dbh=>$dbh_xort,-hash_ddl=>\%hash_ddl, -node=>$doc);
+   }
+
+  #prepare sth for pub and feature_pub
+ my $sth_p=$dbh->prepare("select pub_id from pub where uniquename =?");
+ my $sth_fp_s=$dbh->prepare("select feature_pub_id from feature_pub where feature_id=? and pub_id=?");
+ my $sth_fp_i=$dbh->prepare("insert into feature_pub (feature_id, pub_id) values (?, ?)");
+
+
+   my $root;
+   # load the elements which need to be filtered out
+   my @array_pseudo=split(/\s+/, $hash_ddl{$TABLES_PSEUDO});
+   foreach my $value(@array_pseudo){
+     $hash_tables_pseudo{$value}=1;
+   }
+
+   # if there is dumpspec to guide the dumper, then use it
+   if (defined $dumpspec_obj){
+      $root=$doc->getDocumentElement();
+      # here to get all app data 
+      $app_data=$dumpspec_obj->get_app_data($root);
+      #print  "\n$app_data";
+      #here to cache some high frequently use object
+      if (defined  $cache_conf && (-e $cache_conf)){
+         &_cache($cache_conf, $self->{'dbname'}, $table, $op_type, $format_type, $struct_type, $dbh, $ref_obj);
+      }
+
+
+      my $nodes=$root->getChildNodes();
+      for my $i(1..$nodes->getLength()){
+         my $node=$nodes->item($i-1);
+         my $node_type=$node->getNodeType();
+         my $node_name=$node->getNodeName();
+         #print "\nnode_type:$node_type:node_name:$node_name" if ($DEBUG==1);
+         if ($node_type eq ELEMENT_NODE && defined $hash_ddl{$node_name} && !(defined $hash_tables_pseudo{$node_name})){
+               #print "\nnode name ", $node->getNodeName() if ($DEBUG==1);
+               #the result from get_id($node) is id string separated by '|'
+               #my $query=$dumpspec_obj->format_sql_id($node);
+               #my $query_all=$dumpspec_obj->format_sql($node);
+               my $query=$cache_format_sql_id{$node};
+               if (not defined $query){
+                        $query=$dumpspec_obj->format_sql_id ($node);
+                        $cache_format_sql_id{$node}= $query if (defined $query);
+	       }
+
+               my $query_all=$cache_format_sql{$node};
+               if (not defined $query_all){
+                        $query_all=$dumpspec_obj->format_sql ($node);
+                        $cache_format_sql{$node}=$query_all if (defined $query_all);
+	       }
+               #$query_all="\L$query_all";#dangerous here, it will low all (FBgn0000001 into fbgn0000001)
+               warn "\nquery_all:$query_all" if ($DEBUG==1);  
+               #if it contain group by , order by, then use query_all, otherwide, retrieve id first, then join it.
+               #warning, here it may cause problem if use _sql and not following certain rules.
+               if (defined $query_all && (($query_all =~/ group / && $query_all=~/by/) || ($query_all =~/ order / && $query_all=~/by/)) ){
+                   my $primary_key_string=$node_name.'_primary_key';
+                   my $table_id=$hash_ddl{$primary_key_string};
+                   print "\n$query_all;" if ($DEBUG==2);
+                   my $sth=$dbh->prepare($query_all);
+                      $sth->execute or die "Unable to execute query: $dbh->errstr:$query_all\n";
+                   my $ref_all_array=$sth->fetchall_arrayref;
+                   my @cols;
+                   for my $o (0..$sth->{NUM_OF_FIELDS}-1){
+                       push @cols, $sth->{NAME}->[$o];
+                   }
+                   for my $n2 (0..$#{$ref_all_array}){
+                        my $ref_array=$ref_all_array->[$n2];
+                        #my $xml=&_table2xml($ref_array, "\t", $node_name, $op_type, $format_type, $MODULE,  $dbh, $ref_obj, $node,\@cols);
+                        my $s1=&_table2xml($ref_array, "\t", $node_name, $op_type, $format_type, $MODULE,  $dbh, $ref_obj, $node,\@cols);
+                        #if ($s1 =~/FBrf/) {
+                           $result=$result.",".$s1;  
+			#}
+                        #print encode('utf-8', $xml) if ($DEBUG!=2);
+                        #undef $xml;
+
+                   }
+                   $sth->finish();
+	       }
+               # here we first retrieve id and necessary (for instance distict on(....)) cols.
+	       elsif (defined $query_all){
+                  my ($selected, undef)=split (/ from /, $query_all);
+                  my $rest=substr($query_all, index ( $query_all, "from")+4);#maybe more than 1 'from', pick up the first one
+                  my @temp=split (/\s*\,\s*/, $selected);
+                  my $stm;
+                  my $table_id;
+                  my $primary_key_string=$node_name.'_primary_key';
+                  $table_id=$hash_ddl{$primary_key_string};
+
+                  for my $s(@temp){
+		    if ($s=~/\.$table_id/ || $s=~/distinct/){
+		      if (defined $stm){
+                         $stm.=",".$s;
+                      }
+                      else {
+                         $stm=$s;
+                      }
+		    }
+                  }
+                  if ($stm=~/selec/ ){
+                     $stm=$stm." from ".$rest;
+		   }
+                  else {
+                     $stm="select ". $stm. " from ".$rest ;
+                  }
+                  warn "\nstm:$stm" if ($DEBUG==1);
+                  print "\n$stm;" if ($DEBUG==2);
+                  my $sth=$dbh->prepare($stm);
+                      $sth->execute or die "Unable to execute query: $dbh->errstr:$stm\n";
+                  my $ref_all_array=$sth->fetchall_arrayref;
+                  my $no_table_id;
+                  for my $o (0..$sth->{NUM_OF_FIELDS}-1){
+                       $no_table_id=$o and last if ( $sth->{NAME}->[$o] eq $table_id);
+                  }
+                  warn "\nyou forget to select primary key:$table_id in stm:\n$query_all" and exit(1) if (!(defined $no_table_id));
+                  my @cols;
+                  #here to figure out the index of feature_id in the query, ONLY need to do it ONCE
+                  my $index_fid;
+
+                  #here to retrieve all cols by specifying join key
+                  my $query_join_placeholder=&_join_sql_placeholder($query_all, $node_name); 
+                  my $sth1=$dbh->prepare($query_join_placeholder);
+                  for my $n2 (0..$#{$ref_all_array}){
+                      my $join_key=$ref_all_array->[$n2][$no_table_id];
+                      my $query_join=&_join_sql($query_all, $node_name, $join_key);
+                      warn "\nquery_join_placeholder:$query_join_placeholder" if ($DEBUG==1);
+                      warn "\nquery_join:$query_join" if ($DEBUG==1);
+                      print "\n$query_join;" if ($DEBUG==2); 
+                      #print "\nquery_join:$query_join \njoin_key:$join_key";
+                      my $feature_id;
+                      #my $sth1=$dbh->prepare($query_join);
+                      #$sth1->execute or die "Unable to execute query: $dbh->errstr:$query_join\n";
+                      $sth1->execute($join_key) or die "Unable to execute query: $dbh->errstr:$query_join";
+                      my $ref_join_array=$sth1->fetchall_arrayref;
+		      if (!( @cols)){
+                        for my $o (0..$sth1->{NUM_OF_FIELDS}-1){
+                          push @cols, $sth1->{NAME}->[$o];  
+                          if ($sth1->{NAME}->[$o] eq 'feature_id') {
+                              $index_fid=$o;
+                          }
+                        }
+		      }
+                       #print "\nindex_fid:$index_fid value:".  $ref_join_array->[0][0]. " ". $ref_join_array->[0][1];
+                       $feature_id=$ref_join_array->[0][$index_fid]; 
+                      #$sth1->finish();
+                      #my $xml=&_table2xml($ref_join_array->[0], "\t", $node_name, $op_type, $format_type, $MODULE,  $dbh, $ref_obj, $node,\@cols);
+                      #print encode('utf-8', $xml) if ($DEBUG !=2);
+                      #undef $xml;
+                      my $s1=&_table2xml($ref_join_array->[0], "\t", $node_name, $op_type, $format_type, $MODULE,  $dbh, $ref_obj, $node,\@cols);
+                      # if ($s1 =~/FBrf/) {
+                           $result=$result.",".$s1;  
+		      #	}
+                      foreach my $pub(keys %pubs){
+			#print "\n$pub";
+                        #first parameter is index of ?, starting from 1
+                        $sth_p->bind_param( 1, $pub);
+                        $sth_p->execute or die "Unable to execute query p: $dbh->errstr:\n";
+                        while (my @data = $sth_p->fetchrow_array()) {
+                            my $pub_id = $data[0];  
+                            $sth_fp_s->bind_param( 1, $feature_id);
+                            $sth_fp_s->bind_param( 2, $pub_id);
+                             $sth_fp_s->execute or die "Unable to execute query fp_s: $dbh->errstr:\n";
+                             my $ref_fp_s=$sth_fp_s->fetchrow_arrayref;
+			    if (!defined ($ref_fp_s)) {
+                                 $sth_fp_i->bind_param( 1, $feature_id);
+                                 $sth_fp_i->bind_param( 2, $pub_id);
+                                 $sth_fp_i->execute or die "Unable to execute query fp_i: $dbh->errstr:\n";
+			    }
+                        }
+                      }
+                      #emptyt the pubs for current FBgn
+                      %pubs=();
+                      undef $feature_id;
+                  }
+                  $sth1->finish();
+                  $sth->finish();
+               }
+         }
+      }
+   }
+   
+  #print  "\n</$ROOT_NODE>";
+  # close ;
+   undef $doc;
+   undef $dumpspec_obj;
+   $sth_p->finish;
+   $sth_fp_i->finish;
+   $sth_fp_s->finish;
+   $dbh->disconnect();
+   return $result;
+
+}
+
+
+=head2 _table2xml
+
+  Arg [1]    : varchar indent
+  Arg [2]    : varchar table name
+  Arg [3]    : varchar op_type insert/delete/update/look_up/force(default)
+  Arg [4]    : format_type local_id/no_local_id(default)
+  Arg [5]    : struct_type  module/single(default)
+  Arg [6]    : dbh object
+  Arg [7]    : loadable/non_loadable(default)
+  Arg [8]    : dumpspec node
+  Example    : 
+  Description: private  method, which do major fetch work from db into memory using recursive call itself 
+  Returntype : data from DB
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+
+#not put $dbh will time ?
+sub _table2xml(){
+ my $array_ref=shift;
+ my $indent=shift;
+ my $table=shift;
+ my $op_type=shift;
+ my $format_type=shift;
+ my $struct_type=shift;
+ my $dbh=shift;
+ my $ref_obj=shift;
+ my $node=shift;
+ my $cols_ref=shift;
+ my $cols_ref_remove=shift;
+
+ my $attribute;
+ my $node_name;
+
+ my $xml_sub='';
+ 
+
+ if (defined $node){
+   $attribute=$cache_node_attribute{$node};
+   if (!(defined $attribute)){
+       $attribute= $dumpspec_obj->get_attribute_value($node);
+       $cache_node_attribute{$node}=$attribute;
+   }
+     #print "\nentrance of _table2xml, node name:", $node->getNodeName() if ($DEBUG==1);
+   $node_name=$node->getNodeName();
+ }
+
+ my $string_primary_key=$table.'_primary_key';
+ my $table_id=$hash_ddl{$string_primary_key};
+
+ # here the primary id will become foreign_key value for link table
+ my $foreign_id;
+ my $id;
+ for my $n2(0..$#{$cols_ref}){
+   if ($cols_ref->[$n2] eq $table_id){
+      $foreign_id=$array_ref->[$n2] ;
+      $id=$table."_".$foreign_id;
+      last;
+    }
+ }
+
+ #combination of table_name with primary key will unique identify any object
+
+
+ # we always save all the defined objects, whether using local_id or not
+   $hash_object_id{$id}=$id  if  (defined $id);
+
+ # here to store the local_id if will use local_id mechanism
+  $hash_id{$id}=$id if (($format_type eq $LOCAL_ID) && (defined $id));
+
+
+
+
+
+  #why no long need to remove the table_id ? already save in cols_remove
+  foreach my $i (0..$#{$array_ref}){
+       my $data=$array_ref->[$i];
+       if (defined $data){
+            
+         $array_ref->[$i]=$data;
+       }
+  }
+
+ #save all cols need to be remove, such as table_id, link table_id
+
+ my $xml="";
+ my @array_table_cols=split(/\s+/, $hash_ddl{$table});
+
+  
+
+ #for columns
+ for my $i(0..$#{$array_ref}){
+   my $foreign_table_ref=$table.":".$cols_ref->[$i].'_ref_table';
+   my $string_foreign_table_primary_key;
+   my $foreign_table_id;
+   next if ($cols_ref->[$i] eq $table_id || !(defined $array_ref->[$i]));
+   if (defined $hash_ddl{$foreign_table_ref}){
+      $string_foreign_table_primary_key=$hash_ddl{$foreign_table_ref}.'_primary_key';
+      $foreign_table_id=$hash_ddl{$string_foreign_table_primary_key};
+
+      my $key_local_id=$hash_ddl{$foreign_table_ref}."_".$array_ref->[$i];
+      # here to substitute with local_id, if ALLOWED
+        # here overwrite the default, if there is dumpspec to guide the dump
+      my $nest_node1;
+     if (defined $node){
+           my $path=$table.":".$cols_ref->[$i].":".$hash_ddl{$foreign_table_ref};
+            if (defined $node){
+              $nest_node1=$hash_nested_node_dump{$node}{$path};
+	      if (!(defined $nest_node1)){
+                $nest_node1=$dumpspec_obj->get_nested_node($node, $path, $TYPE_DUMP);
+                $hash_nested_node_dump{$node}{$path}=$nest_node1;
+	      }
+            }
+     }
+
+     if (defined $hash_id{$key_local_id} && !(defined $nest_node1)){
+          #$hash_ref->{$key}=$hash_id{$key_local_id};
+          #here need to work out for macro
+           $array_ref->[$i]=$hash_id{$key_local_id};
+     }
+     elsif (defined $hash_cache{$hash_ddl{$foreign_table_ref}}{$key_local_id} && !(defined $nest_node1)){
+           #$hash_ref->{$key}=$hash_cache{$hash_ddl{$foreign_table_ref}}{$key_local_id};
+          #here need more work for caching object
+           $array_ref->[$i]=$hash_cache{$hash_ddl{$foreign_table_ref}}{$key_local_id};
+     }
+     # here to output foreign id by defining a object
+     else {
+         next if ($cols_ref->[$i] eq $table_id || defined $cols_ref_remove->{$cols_ref->[$i]});
+         my $new_indent=$indent.$unit_indent.$unit_indent;
+         my $stm_foreign_object;
+         my $local_id_foreign_object=$hash_ddl{$foreign_table_ref}."_".$array_ref->[$i];
+         # the object not output before, then need to output everything
+         #if (!(defined $hash_object_id{$local_id_foreign_object})){
+         #    $stm=sprintf("select * from $hash_ddl{$foreign_table_ref} where $foreign_table_id=$hash_ref->{$key}");
+	 #}
+         # the object already exist in file, then only need unique key(s) to represent the object
+        # else {
+
+          my $attribute_dump;
+          my @array_table_obj_cols;
+          my $nest_node;
+          #there is $node, then dump this table according to the dumpspec of this node
+	 if (defined $node){
+            my $path=$table.":".$cols_ref->[$i].":".$hash_ddl{$foreign_table_ref};
+
+            if (defined $node){
+               #print "\nstart to retrieve the nest node of node:$node_name:.....path:$path" if ($DEBUG==1);
+              # $nest_node=$dumpspec_obj->get_nested_node($node, $path, $TYPE_DUMP);
+              $nest_node=$hash_nested_node_dump{$node}{$path};
+	      if (!(defined $nest_node)){
+                $nest_node=$dumpspec_obj->get_nested_node($node, $path, $TYPE_DUMP);
+                $hash_nested_node_dump{$node}{$path}=$nest_node;
+	      }
+            }
+            if (defined $nest_node){
+               $attribute_dump=$nest_node->getAttribute('dump');
+               my $nest_node_name=$nest_node->getNodeName();
+
+               if (!(defined $attribute_dump) || $attribute_dump eq ''){
+                     $attribute_dump=$DUMP_ALL;
+	       }
+
+               if ($attribute_dump eq $DUMP_ALL || $attribute_dump eq $DUMP_COL){
+                 @array_table_obj_cols=split(/\s+/, $hash_ddl{$nest_node_name});
+               }
+               elsif ($attribute_dump eq $DUMP_REF){
+                 my $table_unique=$nest_node_name.'_unique';
+                 @array_table_obj_cols=split(/\s+/, $hash_ddl{$table_unique});
+               }
+               elsif ($attribute_dump eq $DUMP_SELECT){
+                 my $nodes=$nest_node->getChildNodes();
+                 my @temp_cols=split(/\s+/, $hash_ddl{$nest_node_name});
+                 my %hash_cols;
+                 foreach my $col (@temp_cols){
+                      $hash_cols{$col}=1;
+                      #print "\nin col dump table:$node_name:col:$col";
+                 }
+                 for my $i (1..$nodes->getLength()){
+                   my $child_node=$nodes->item($i-1);
+                   my $child_node_name=$child_node->getNodeName();
+                        #print "\ndump select for table: $node_name:$child_node_name:$child_node->getNodeType()";
+                   if ($child_node->getNodeType() eq ELEMENT_NODE && defined $hash_cols{$child_node_name}){
+                      #my $attribute_dump=$dumpspec_obj->get_attribute_value($child_node);
+                       my $attribute_dump=$cache_node_attribute{$child_node};
+                       if (!(defined $attribute_dump)){
+                          $attribute_dump=$dumpspec_obj->get_attribute_value($child_node);
+                          $cache_node_attribute{$child_node}=$attribute_dump;
+                       }
+                        #print "\ndump select for table: $nest_node_name:$child_node_name:$attribute_dump";
+                      if ($attribute_dump eq $DUMP_SELECT){
+                        push @array_table_obj_cols, $child_node_name;
+                        #print "\ndump select for table: $nest_node_name:$child_node_name";
+		      }
+         	   }
+                 }
+               }
+	    } # end of defined nest_node
+
+	  } # end of defined node
+
+          # if no dump guide this ref_obj, then either dump unique_keys or cols
+          #print "\nlocal_id_foreign_object:$local_id_foreign_object\nref_obj:$ref_obj";
+	  if (@array_table_obj_cols==0){
+            # if this object NOT dumped before, and want to dump it so that it can be re-load without losing any data
+            if (!(defined $hash_object_id{$local_id_foreign_object}) && (defined $ref_obj && $ref_obj eq $REF_OBJ_ALL)){
+               @array_table_obj_cols=split(/\s+/, $hash_ddl{$hash_ddl{$foreign_table_ref}});
+               #print "\nforeign_table_ref:$foreign_table_ref:@array_table_obj_cols";
+            }
+            else {
+              my $unique_key=$hash_ddl{$foreign_table_ref}.'_unique';
+              #print "\nunique_key:$unique_key";
+              # my $unique_key=$hash_ddl{$foreign_table_ref}."_non_null_cols";
+              @array_table_obj_cols=split(/\s+/, $hash_ddl{$unique_key});
+            }
+          }
+
+         my $data_list;
+         $data_list=join(" , ", @array_table_obj_cols);
+
+         #also need to add the table_id col, since the link table need it.
+         $data_list=$data_list." , ".$foreign_table_id;
+         #  print "\n\nunique_key:$unique_key\tdata_list:$data_list";
+         my $stm=sprintf("select $data_list from $hash_ddl{$foreign_table_ref} where $foreign_table_id=$array_ref->[$i]");
+
+         print "\n$stm;" if ($DEBUG==2);
+         my $sth_sub=$dbh->prepare($stm);
+            $sth_sub->execute() or die "Unable to execute query: $dbh->errstr:$stm\n";
+         my $array_ref_sub=$sth_sub->fetchrow_arrayref();
+
+         my @cols_sub;
+         for my $j(0..$sth_sub->{NUM_OF_FIELDS}-1){
+            push @cols_sub, $sth_sub->{NAME}->[$j];
+         }
+
+         my $object_ref_module;
+         if (defined $nest_node && ($attribute_dump eq $DUMP_ALL ||  $attribute_dump eq $DUMP_SELECT || $attribute_dump eq $DUMP_COL || $attribute_dump eq $DUMP_REF) ){
+           $object_ref_module=$MODULE;
+	 }
+         else {
+           $object_ref_module=$SINGLE;
+         }
+         #print "\nmodel:$object_ref_module"; 
+         #print encode('utf-8',"\n$indent$unit_indent<".$cols_ref->[$i].">") if ($DEBUG!=2); 
+         my $data_sub=&_table2xml($array_ref_sub, $new_indent, $hash_ddl{$foreign_table_ref}, $op_type, $format_type, $object_ref_module,  $dbh, $ref_obj, $nest_node, \@cols_sub);
+         $array_ref->[$i]=$data_sub;
+         #$array_ref->[$i]=undef;
+         #undef $data_sub;
+         #if ((defined $hash_ddl{$foreign_table_ref} && defined $array_ref->[$i] && defined $hash_id{$array_ref->[$i]}) || !(defined  $hash_ddl{$foreign_table_ref})){
+         #  print encode('utf-8',"</".$cols_ref->[$i].">") if ($DEBUG!=2);
+         #}
+         #else {
+         #  print encode('utf-8',"\n$indent$unit_indent"."</".$cols_ref->[$i].">") if ($DEBUG!=2);
+         #}
+         $sth_sub->finish();
+     } # end of here to output foreign id by defining a object, which is no local_id
+
+   }
+   # ignore the null value
+   #elsif (!(defined $hash_ref->{$key}) || $key eq $table_id) {
+   #   delete  $hash_ref->{$key};
+   #}
+  }
+
+ # here start to output the data into xml format for cols
+ # need to change for delete/update/lookup ?
+ 
+
+
+  #do we really need to sort ?
+# foreach my $key (sort (keys %$hash_ref)){
+  for my $n1(0..$#{$array_ref}){
+    my $data=$array_ref->[$n1];
+    my $column=$cols_ref->[$n1];
+    my $foreign_table_ref;
+       $foreign_table_ref=$table.":".$cols_ref->[$n1].'_ref_table' if (defined $cols_ref->[$n1]);
+    my $foreign_table_id;
+    my $key_local_id;
+    warn "\ntable:$table\ttable_id:$table_id\tcolumn:$column\tvalue:$data" if ( $DEBUG==1) ;
+    if ($DEBUG==1){
+      foreach my $key(keys %$cols_ref_remove){
+        warn "\nremoved:$key\t$cols_ref_remove->{$key}";
+      }
+    }
+    next if ($cols_ref->[$n1] eq $table_id || !(defined $data) || defined $cols_ref_remove->{$column} || $data=~/^\s*$/);
+
+    if (defined $foreign_table_ref && defined $hash_ddl{$foreign_table_ref}){
+       $foreign_table_id=$hash_ddl{$foreign_table_ref}."_id";
+       $key_local_id=$hash_ddl{$foreign_table_ref}."_".$array_ref->[$n1];
+    }
+
+   # if ((defined $hash_ddl{$foreign_table_ref} && defined $hash_id{$array_ref->[$n1]}) || !(defined  $hash_ddl{$foreign_table_ref}) ){
+   #    print encode('utf-8',"\n$indent$unit_indent<".$column.">".$data."</".$column.">") if ($DEBUG!=2);
+   # }
+   # else {
+   #    print encode('utf-8',"\n$indent$unit_indent<".$column.">".$data."\n$indent$unit_indent"."</".$column.">") if ($DEBUG!=2);
+   # }
+     if ($data =~/^FBrf[0-9]+$/){
+      $xml=$data;
+      #print "\ndata:$data";
+       $pubs{$data}=$data;
+     }
+ }
+
+
+  # here try to get all the subtable which has foreign key ref to the primary
+  if (defined $struct_type && $struct_type eq $MODULE){
+     my $table_module=$table.'_module';
+
+     #  this contains all link tables, will update while dumping link tables
+     my %hash_tables_link;
+     #this contains a copy of all link tables. keep same records
+     my %hash_tables_link_copy;
+     if (defined $hash_ddl{$table_module}){
+       my @temp=split(/\s+/, $hash_ddl{$table_module});
+       foreach my $table_link_temp (@temp){
+        my ($table_link, $foreign_key)=split(/\:/, $table_link_temp);
+        $hash_tables_link{$table_link}=1;
+        $hash_tables_link_copy{$table_link}=1;
+       }
+     }
+
+     if (defined $node){
+         my $child_nodes=$node->getChildNodes();
+         for my $i(1..$child_nodes->getLength()){
+              my $link_node=$child_nodes->item($i-1);
+              my $link_node_name=$link_node->getNodeName();
+              if ($link_node->getNodeType()==ELEMENT_NODE && defined $hash_tables_link_copy{$link_node_name}){
+                 #my $attribute_type=$dumpspec_obj->get_node_type($link_node);
+                 my $attribute_type=$cache_node_type{$link_node};
+                 if (not defined $attribute_type){
+                    $attribute_type=$dumpspec_obj->get_node_type($link_node);
+                    $cache_node_type{$link_node}=$attribute_type;
+		 }
+                 else {
+                   #warn "\nalready store type for node:$link_node_name\t$attribute_type\n";
+                  }
+                 #my $attribute_link=$dumpspec_obj->get_attribute_value($link_node);
+                 my $attribute_link=$cache_node_attribute{$link_node};
+                 if (not defined $attribute_link){
+                     $attribute_link=$dumpspec_obj->get_attribute_value($link_node);
+                     $cache_node_attribute{$link_node}=$attribute_link;
+		 }
+                 warn "\nattribute_link:$attribute_link, attribute_type:$attribute_type for link_node:$link_node_name\n" if ($DEBUG==1);
+                 if ($attribute_type eq $TYPE_DUMP && $attribute_link ne $DUMP_NO ){
+                     delete $hash_tables_link{$link_node_name};
+                     #my $stm_link_table=$dumpspec_obj->format_sql($link_node);
+                     my $stm_link_table=$cache_format_sql{$link_node};
+                     if (not defined $stm_link_table){
+                        $stm_link_table=$dumpspec_obj->format_sql ($link_node);
+                        $cache_format_sql{$link_node}=$stm_link_table if (defined $stm_link_table);
+	             }
+                     #warn "\nstm_link_table:$stm_link_table for nested node:$link_node_name" if ($DEBUG==1);
+                     # here assume that name alias no start with '0', check DumperSpec.format_sql
+                     my $alias_table_link=$link_node_name."_0";
+                     # in case there are more than one join key, it will concat via ':'
+                     #my $join_key_string=$dumpspec_obj->get_join_foreign_key ($link_node);
+                     my $join_key_string=$cache_join_foreign_key{$link_node};
+                     if (not defined $join_key_string){
+                        $join_key_string=$dumpspec_obj->get_join_foreign_key ($link_node);
+                        $cache_join_foreign_key{$link_node}= $join_key_string if (defined $join_key_string);
+		      }
+                     #on Aug 30, 2006, add attribute 'limit'
+                     my $loc=rindex($stm_link_table, 'limit');
+                     my $limit;
+                     if ($loc !=-1){
+                            $limit=substr($stm_link_table, $loc);
+                            $stm_link_table=~s/$limit//;
+		     }
+                     warn "\njoin_key_string:$join_key_string: for table:$link_node_name\n" if ($DEBUG==1);
+                     my @array_join_key=split(/\:/, $join_key_string);
+                     for my $j(0..$#array_join_key){
+
+                         my $join_key=$array_join_key[$j];
+                         if ($stm_link_table =~/ where /){
+                              $stm_link_table=$stm_link_table. " and $alias_table_link.$join_key=$foreign_id";
+                         }
+                         else {
+                              $stm_link_table=$stm_link_table. " where $alias_table_link.$join_key=$foreign_id";
+                         }
+                         if ($loc !=-1){
+                              $stm_link_table=$stm_link_table." $limit";
+			 }
+                         warn "\nstm_link_table:$stm_link_table" if ($DEBUG==1);
+                        # my $hash_ref_subtable=$dbh->get_all_hashref($stm_link_table);
+                        print "\n$stm_link_table;" if ($DEBUG==2);
+                        my $sth_subtable=$dbh->prepare($stm_link_table);
+                           $sth_subtable->execute() or die "Unable to execute query: $dbh->errstr:$stm_link_table\n";
+                        my $array_ref_subtable=$sth_subtable->fetchall_arrayref();
+                        my @cols_subtable;
+                        for my $j(0..$sth_subtable->{NUM_OF_FIELDS}-1){
+                            push @cols_subtable, $sth_subtable->{NAME}->[$j];
+                        }
+
+
+                         # here remove the join_foreign_key which will be implicit retrieved by context
+                         if (defined $array_ref_subtable){
+                            foreach my $k (0..$#{$array_ref_subtable}){
+                               my $array_ref_temp=$array_ref_subtable->[$k];
+                               #delete $hash_ref_temp->{$join_key};
+                               my %cols_remove; #should define here, otherwise, the loop of @array_join_key will add all foreign key into it, and dumpout nothing.
+                               $cols_remove{$join_key}=$link_node_name;#warn "\ntable:$link_node_name\tcol:$join_key";
+                               my $indent_sub=$indent.$unit_indent;
+                              #why ???
+                              # if ($key ne $foreign_key){
+                                   #here should be dumped as 'MODULE' or 'SINGLE' ????
+                                   #$xml_sub=$xml_sub."$indent_sub".&_table2xml($array_ref_temp, $indent_sub, $link_node_name, $op_type, $format_type,$MODULE, $dbh, $ref_obj, $link_node, \@cols_subtable,\%cols_remove);
+                                   #&_table2xml($array_ref_temp, $indent_sub, $link_node_name, $op_type, $format_type,$MODULE, $dbh, $ref_obj, $link_node, \@cols_subtable,\%cols_remove);
+                                   #print encode('utf-8', $indent_sub) if ($DEBUG!=2);
+                                   my $s=&_table2xml($array_ref_temp, $indent_sub, $link_node_name, $op_type, $format_type,$MODULE, $dbh, $ref_obj, $link_node, \@cols_subtable,\%cols_remove);
+			          # if ($s=~/FBrf/){
+                                     $xml_sub=$s;
+			          # }
+                              #  }
+	                    }
+	                 } # end of 
+                        $sth_subtable->finish();
+		     }
+		   } # end of test whether this link table is for 'dump' or 'test'
+                   elsif ($attribute_link eq $DUMP_NO) { #do nothing for this link table, also get ride of defaut behavior
+                     delete $hash_tables_link{$link_node_name};
+                   }
+	      } # end of test whether it is ELEMENT_NODE and is link table
+	 } # end of for my $i
+
+         # for the node, if try to dump all, then it also need to dump all others that do not explicitly state in dumpspec
+         if ($attribute eq $DUMP_ALL){
+                foreach my $table_sub(sort (keys %hash_tables_link)){
+                             # dump link table if there is any foreign key refer to parent table, i.e feature_relationship have both objfeature_id and subjfeature_id refer to feature
+                        my %hash_join;
+                        my @array_cols=split(/\s+/,$hash_ddl{$table_sub});
+         	       for my $j(0..$#array_cols){
+                           my $temp_key=$table_sub.":".$array_cols[$j].'_ref_table';
+                           if (defined $hash_ddl{$temp_key} && $hash_ddl{$temp_key} eq $table){
+                               $hash_join{$array_cols[$j]}=1;
+         	          }
+         	       }
+                        foreach my $join_key (keys %hash_join){
+                             my $stm_sub=sprintf("select * from $table_sub where $join_key=$foreign_id");
+                              #print "\nstm_sub not in dumpspec:$stm_sub" if ($DEBUG==1);
+                             #my $hash_ref_subtable=$dbh->get_all_hashref($stm_sub);
+                             print "\n$stm_sub;" if ($DEBUG==2);
+                             my $sth_subtable01=$dbh->prepare($stm_sub);
+                                $sth_subtable01->execute() or die "Unable to execute query: $dbh->errstr:$stm_sub\n";
+                             my $array_ref_subtable01=$sth_subtable01->fetchall_arrayref();
+                             my @cols_subtable01;
+                             for my $l(0..$sth_subtable01->{NUM_OF_FIELDS}-1){
+                                 push @cols_subtable01, $sth_subtable01->{NAME}->[$l];
+                             }
+
+                             # here remove the join_foreign_key which will be implicit retrieved by context
+                             if (defined $array_ref_subtable01){
+                                foreach my $n (0..$#{$array_ref_subtable01}){
+                                   my $array_ref_temp=$array_ref_subtable01->[$n];
+                                   #delete $hash_ref_temp->{$join_key};
+                                   my %cols_remove; #should define here, otherwise, the loop of @array_join_key will add all foreign key into it, and dumpout nothing.
+                                   $cols_remove{$join_key}=$table_sub;#warn "\ntable:$table_sub\tcol:$join_key";
+                                   my $indent_sub=$indent.$unit_indent;
+                                  # why ?????
+                                   #here should be dumped as 'MODULE' or 'SINGLE' ????
+                                  # if ($key ne $foreign_key){
+                                       #$xml_sub=$xml_sub."$indent_sub".&_table2xml($array_ref_temp, $indent_sub, $table_sub, $op_type, $format_type,$MODULE, $dbh,$ref_obj,undef, \@cols_subtable01,\%cols_remove);
+                                       # &_table2xml($array_ref_temp, $indent_sub, $table_sub, $op_type, $format_type,$MODULE, $dbh,$ref_obj,undef, \@cols_subtable01,\%cols_remove);
+                                       #print encode('utf-8', $indent_sub) if ($DEBUG!=2);
+                                       my $s=&_table2xml($array_ref_temp, $indent_sub, $table_sub, $op_type, $format_type,$MODULE, $dbh,$ref_obj,undef, \@cols_subtable01,\%cols_remove);
+			              # if ($s=~/FBrf/){
+                                         $xml_sub=$s;
+			             #  }
+                                  #  }
+         	               }
+         	            }
+                            $sth_subtable01->finish();
+         	      }
+         	  }
+              } #end of $attribute eq $DUMP_ALL for $node
+
+     }  # end of defined $node
+
+     # no node, but struct_type is 'module'
+     elsif ((defined $attribute && $attribute eq $DUMP_ALL) || !(defined $attribute)){
+       #need to remove those pseudo table, i.e feature_evidence
+       if (defined $hash_ddl{'tables_pseudo'}){
+         my @temp=split(/\s+/, $hash_ddl{'tables_pseudo'});
+         foreach my $value(@temp){
+             delete $hash_tables_link{$value};
+         }
+       }
+
+       foreach my $table_sub(sort (keys %hash_tables_link)){
+                    # dump link table if there is any foreign key refer to parent table, i.e feature_relationship have both objfeature_id and subjfeature_id refer to feature
+               my %hash_join;
+               my @array_cols=split(/\s+/,$hash_ddl{$table_sub});
+	       for my $j(0..$#array_cols){
+                  my $temp_key=$table_sub.":".$array_cols[$j].'_ref_table';
+                  if (defined $hash_ddl{$temp_key} && $hash_ddl{$temp_key} eq $table){
+                      $hash_join{$array_cols[$j]}=1;
+	          }
+	       }
+               foreach my $join_key (keys %hash_join){
+                    my $stm_sub=sprintf("select * from $table_sub where $join_key=$foreign_id");
+                       print "\n$stm_sub;" if ($DEBUG==2);
+                    my $sth_subtable02=$dbh->prepare($stm_sub);
+                       $sth_subtable02->execute() or die "Unable to execute query: $dbh->errstr:$stm_sub\n";
+                    my $array_ref_subtable02=$sth_subtable02->fetchall_arrayref();
+                    my @cols_subtable02;
+                    for my $l(0..$sth_subtable02->{NUM_OF_FIELDS}-1){
+                        push @cols_subtable02, $sth_subtable02->{NAME}->[$l];
+                    }
+
+                    #print "\nstm_sub:$stm_sub" if ($DEBUG==1);
+                    #my $hash_ref_subtable=$dbh->get_all_hashref($stm_sub);
+                    # here remove the join_foreign_key which will be implicit retrieved by context
+                    if (defined $array_ref_subtable02){
+                       for my $m(0..$#{$array_ref_subtable02}){
+                          my $array_ref_temp02=$array_ref_subtable02->[$m];
+                          #delete $array_ref_temp02->{$join_key};
+                          my %cols_remove; #should define here, otherwise, the loop of @array_join_key will add all foreign key into it, and dumpout nothing.
+                          $cols_remove{$join_key}=$table_sub;#warn "\ntable:$table_sub\tcol:$join_key";
+                          my $indent_sub=$indent.$unit_indent;
+                        #  if ($key ne $foreign_key){
+                              #$xml_sub=$xml_sub."$indent_sub".&_table2xml($array_ref_temp02, $indent_sub, $table_sub, $op_type, $format_type,$SINGLE, $dbh, $ref_obj,undef, \@cols_subtable02, \%cols_remove);
+                              #&_table2xml($array_ref_temp02, $indent_sub, $table_sub, $op_type, $format_type,$SINGLE, $dbh, $ref_obj,undef, \@cols_subtable02, \%cols_remove);
+                              #print encode('utf-8', $indent_sub) if ($DEBUG!=2);
+                                   my $s=&_table2xml($array_ref_temp02, $indent_sub, $table_sub, $op_type, $format_type,$SINGLE, $dbh, $ref_obj,undef, \@cols_subtable02, \%cols_remove);
+			           #if ($s=~/FBrf/){
+                                     $xml_sub=$s;
+			           #}
+                        #   }
+	               }
+	            }
+                    $sth_subtable02->finish();
+	      }
+	  }
+     } #end of $attribute eq $DUMP_ALL
+
+
+  } #end of ($struct_type eq $MODULE){
+
+
+
+
+
+
+ # here start to output the data into xml format
+ # need to change for delete/update/lookup ?
+=head
+  
+  #do we really need to sort ?
+# foreach my $key (sort (keys %$hash_ref)){
+  for my $n1(0..$#{$array_ref}){
+    my $data=$array_ref->[$n1];
+    my $column=$cols_ref->[$n1];
+    my $foreign_table_ref;
+       $foreign_table_ref=$table.":".$cols_ref->[$n1].'_ref_table' if (defined $cols_ref->[$n1]);
+    my $foreign_table_id;
+    my $key_local_id;
+    warn "\ntable:$table\ttable_id:$table_id\tcolumn:$column\tvalue:$data" if ( $DEBUG==1) ;
+    if ($DEBUG==1){
+      foreach my $key(keys %$cols_ref_remove){
+        warn "\nremoved:$key\t$cols_ref_remove->{$key}";
+      }
+    }
+    next if ($cols_ref->[$n1] eq $table_id || !(defined $data) || defined $cols_ref_remove->{$column});
+
+    if (defined $foreign_table_ref && defined $hash_ddl{$foreign_table_ref}){
+       $foreign_table_id=$hash_ddl{$foreign_table_ref}."_id";
+       $key_local_id=$hash_ddl{$foreign_table_ref}."_".$array_ref->[$n1];
+    }
+
+    if ((defined $hash_ddl{$foreign_table_ref} && defined $hash_id{$array_ref->[$n1]}) || !(defined  $hash_ddl{$foreign_table_ref}) ){
+       $xml=$xml."\n$indent$unit_indent<".$column.">".$data."</".$column.">";
+    }
+    else {
+       $xml=$xml."\n$indent$unit_indent<".$column.">".$data."\n$indent$unit_indent"."</".$column.">";
+    }
+ }
+=cut
+ if ($struct_type eq $MODULE && $xml_sub ne ""){
+     $xml=$xml.",".$xml_sub;
+     #print encode('utf-8', $xml_sub) if ($DEBUG !=2);
+     #undef $xml_sub;
+ }
+
+ #$xml=$xml."\n$indent</$table>";
+ #print encode('utf-8', "\n$indent</$table>") if ($DEBUG !=2);
+ #undef $xml;
+ # print "\nxml:$xml";
+ return $xml;
+}
+
+
+=head2 _replace_dumpspec
+
+  Arg [1]    : varchar file name
+  Arg [2]    : varchar array reference object
+  Example    :
+  Description: private  method, which will substitute all of args, and create a temp dumpspec file in tmp directory
+               Given an ordered array of values (eg @vals below) corresponding to 
+               similarly ordered fields (designated like "$1,$2,$3,...") in a 
+               preformatted form, substitute the values into the form fields.
+               here $1 replaced by $vals[0], $2 replaced by $vals[1]...
+  Returntype : none
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+
+sub _replace_dumpspec {
+    my($node)=shift;
+    my $array_ref=shift;
+    #print "\nno:", $#{$array_ref};
+    if ($node->getNodeType == ELEMENT_NODE) {
+
+       foreach my $child ($node->getChildNodes()) {
+        _replace_dumpspec($child, $array_ref);
+      }
+    } elsif ($node->getNodeType() == TEXT_NODE) {
+      my $value= $node->substringData (0, 100000);
+
+      if ($value =~/\w+/){
+      #warn "\nbefore:$value";
+      for my $i(1..$#{$array_ref}+1){
+          $value=~  s/\$$i/$array_ref->[$i-1]/g if $array_ref->[$i-1]=~/\w+/;
+      }
+      #warn "\nafter:$value";
+      $node->setData($value);
+    }
+    }
+  }
+
+
+
+=head2 _join_sql
+
+  Arg [1]    : varchar sql statement
+  Arg [2]    : varchar table name
+  Arg [3]    : varchar table_id_value
+  Example    :
+  Description: private  method, method using to join a query with primary_key value, 
+               i.e. "select * from feature" into "select * from feature where feature_id=13"
+               because of difference source, it need to figure out the alias if there is any
+               here we assume that the query already been validated in dumpspec, how about _sql  ?????
+  Returntype : none
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+=head OLD ONE
+sub _join_sql(){
+  my $sql=shift;
+  my $table=shift;
+  my $table_id_value=shift;
+
+
+  my $sql_low="\L$sql";
+  my $primary_key_string=$table."_primary_key";
+  my $table_id=$hash_ddl{$primary_key_string};
+  my ($alias, $what, $from, $join_string, $junk,$group_cols, $result);
+  my @array_select=split(/\s*select\s*/, $sql);
+  my @array_from=split(/\s*from\s*/, $array_select[1]);
+  $what=$array_from[0];
+  $from=$array_from[1];
+  if ($what eq '*' || $what !~ /\./){
+     $join_string=$table_id."=".$table_id_value;
+  }
+  elsif($what =~/\./) {
+     my @temp=split(/\s*\,\s*/, $what);
+     for my $i(0..$#temp){
+        ($alias, undef)=split(/\./, $temp[$i]);
+     }
+     $join_string=$alias.".".$table_id."=".$table_id_value;
+  }
+
+  if ($sql =~/ group / ) {
+     my ($sql_temp, undef)=split(/ group /, $sql);
+     $sql=$sql_temp;
+     #in postgres, grouped cols must match with what in selected cols
+     if ($what eq '*'){
+         #still not implement here, since it will be hard to figure out the alias ?????
+     }
+     else {
+         $group_cols=" group by ".$what;
+     }
+  }
+
+
+  if ($sql =~/where/){
+    $result=$sql." and ".$join_string.$group_cols;
+  }
+  elsif ($sql !~/where/){
+    $result=$sql." where ".$join_string.$group_cols;
+  }
+
+
+  return $result;
+}
+=cut
+# here since sql already execute and return result, NO need to re-execute this complicated query with lots of constraints
+sub _join_sql(){
+  my $sql=shift;
+  my $table=shift;
+  my $table_id_value=shift;
+
+
+  my $sql_low="\L$sql";
+  my $primary_key_string=$table."_primary_key";
+  my $table_id=$hash_ddl{$primary_key_string};
+  my ($alias, $what, $from, $join_string, $junk, $result);
+  my $group_cols="";
+  my @array_select=split(/\s*select\s*/, $sql_low);
+  my @array_from=split(/\s*from\s*/, $array_select[1]);
+  $what=$array_from[0];
+  $from=$array_from[1];
+  if ($what eq '*' || $what !~ /\./){
+     $join_string=$table_id."=".$table_id_value;
+  }
+  elsif($what =~/\./) {
+     my @temp=split(/\s*\,\s*/, $what);
+     for my $i(0..$#temp){
+        ($alias, undef)=split(/\./, $temp[$i]);
+     }
+     $join_string=$alias.".".$table_id."=".$table_id_value;
+  }
+
+  if ($sql_low =~/ group / ) {
+     my ($sql_temp, undef)=split(/ group/, $sql_low);
+     $sql_low=$sql_temp;
+     #in postgres, grouped cols must match with what in selected cols
+     if ($what eq '*'){
+         #still not implement here, since it will be hard to figure out the alias ?????
+     }
+     else {
+         $group_cols=" group by ".$what;
+     }
+  }
+
+  my ($str_s, undef)=split(/\s*from\s*/, $sql_low);
+
+  if ($what eq '*' || $what !~ /\./){
+    $result=$str_s." from $table where ".$join_string.$group_cols;
+  }
+  elsif($what =~/\./) {
+     my @temp=split(/\s*\,\s*/, $what);
+     for my $i(0..$#temp){
+        ($alias, undef)=split(/\./, $temp[$i]);
+     }
+     $result=$str_s." from $table $alias  where ".$join_string.$group_cols;
+  }
+
+  return $result;
+}
+
+
+=head2 _join_sql_placeholder
+
+  Arg [1]    : varchar sql statement
+  Arg [2]    : varchar table name
+  Example    :
+  Description: private  method, method using to join a query with primary_key value, here we use placeholder
+               i.e. "select * from feature" into "select * from feature where feature_id=?"
+               because of difference source, it need to figure out the alias if there is any
+               here we assume that the query already been validated in dumpspec, how about _sql  ?????
+  Returntype : none
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+sub _join_sql_placeholder(){
+  my $sql=shift;
+  my $table=shift;
+
+  my $sql_low="\L$sql";
+  my $primary_key_string=$table."_primary_key";
+  my $table_id=$hash_ddl{$primary_key_string};
+  my ($alias, $what, $from, $join_string, $junk, $result);
+  my $group_cols="";
+  my @array_select=split(/\s*select\s*/, $sql_low);
+  my @array_from=split(/\s*from\s*/, $array_select[1]);
+  $what=$array_from[0];
+  $from=$array_from[1];
+  if ($what eq '*' || $what !~ /\./){
+     $join_string=$table_id."=?";
+  }
+  elsif($what =~/\./) {
+     my @temp=split(/\s*\,\s*/, $what);
+     for my $i(0..$#temp){
+        ($alias, undef)=split(/\./, $temp[$i]);
+     }
+     $join_string=$alias.".".$table_id."=?";
+  }
+
+  if ($sql_low =~/ group / ) {
+     my ($sql_temp, undef)=split(/ group/, $sql_low);
+     $sql_low=$sql_temp;
+     #in postgres, grouped cols must match with what in selected cols
+     if ($what eq '*'){
+         #still not implement here, since it will be hard to figure out the alias ?????
+     }
+     else {
+         $group_cols=" group by ".$what;
+     }
+  }
+
+  my ($str_s, undef)=split(/\s+from\s+/, $sql_low);
+
+  if ($what eq '*' || $what !~ /\./){
+    $result=$str_s." from $table where ".$join_string.$group_cols;
+  }
+  elsif($what =~/\./) {
+     my @temp=split(/\s*\,\s*/, $what);
+     for my $i(0..$#temp){
+        ($alias, undef)=split(/\./, $temp[$i]);
+     }
+     $result=$str_s." from $table $alias  where ".$join_string.$group_cols;
+  }
+
+  return $result;
+}
+
+=head2 _decon
+
+  Arg [1]    : varchar SGML-formatted symbol
+  Example    :
+  Description: private  method to convert SGML-formatted symbols to 'symbol_plain' format (modified from conv_greeks)
+  Returntype : 'symbol_plain' format symbol
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+
+sub _decon {
+
+    my ($string) = shift;
+    return ($string) if ($string !~/&/);
+    $string =~ s/&agrave\;/accentagrave/g;
+    $string =~ s/&agr\;/alpha/g;
+    $string =~ s/&Agr\;/Alpha/g;
+    $string =~ s/&bgr\;/beta/g;
+    $string =~ s/&Bgr\;/Beta/g;
+    $string =~ s/&ggr\;/gamma/g;
+    $string =~ s/&Ggr\;/Gamma/g;
+    $string =~ s/&dgr\;/delta/g;
+    $string =~ s/&Dgr\;/Delta/g;
+    $string =~ s/&egr\;/epsilon/g;
+    $string =~ s/&Egr\;/Epsilon/g;
+    $string =~ s/&zgr\;/zeta/g;
+    $string =~ s/&Zgr\;/Zeta/g;
+    $string =~ s/&eegr\;/eta/g;
+    $string =~ s/&EEgr\;/Eta/g;
+    $string =~ s/&thgr\;/theta/g;
+    $string =~ s/&THgr\;/Theta/g;
+    $string =~ s/&igr\;/iota/g;
+    $string =~ s/&Igr\;/Iota/g;
+    $string =~ s/&kgr\;/kappa/g;
+    $string =~ s/&Kgr\;/Kappa/g;
+    $string =~ s/&lgr\;/lambda/g;
+    $string =~ s/&Lgr\;/Lambda/g;
+    $string =~ s/&mgr\;/mu/g;
+    $string =~ s/&Mgr\;/Mu/g;
+    $string =~ s/&ngr\;/nu/g;
+    $string =~ s/&Ngr\;/Nu/g;
+    $string =~ s/&xgr\;/xi/g;
+    $string =~ s/&Xgr\;/Xi/g;
+    $string =~ s/&ogr\;/omicron/g;
+    $string =~ s/&Ogr\;/Omicron/g;
+    $string =~ s/&pgr\;/pi/g;
+    $string =~ s/&Pgr\;/Pi/g;
+    $string =~ s/&rgr\;/rho/g;
+    $string =~ s/&Rgr\;/Rho/g;
+    $string =~ s/&sgr\;/sigma/g;
+    $string =~ s/&Sgr\;/Sigma/g;
+    $string =~ s/&tgr\;/tau/g;
+    $string =~ s/&Tgr\;/Tau/g;
+    $string =~ s/&ugr\;/upsilon/g;
+    $string =~ s/&Ugr\;/Upsilon/g;
+    $string =~ s/&phgr\;/phi/g;
+    $string =~ s/&PHgr\;/Phi/g;
+    $string =~ s/&khgr\;/chi/g;
+    $string =~ s/&KHgr\;/Chi/g;
+    $string =~ s/&psgr\;/psi/g;
+    $string =~ s/&PSgr\;/Psi/g;
+    $string =~ s/&ohgr\;/omega/g;
+    $string =~ s/&OHgr\;/Omega/g;
+    $string =~ s/\<\/down\>/\]\]/g;
+    $string =~ s/\<down\>/\[\[/g;
+    $string =~ s/\<up\>/\[/g;
+    $string =~ s/\<\/up\>/\]/g;
+    $string =~ s/&ouml\;/ouml/g;
+    return($string);
+}
+
+=head2 _decon
+
+  Arg [1]    : varchar symbol_plain symbols
+  Example    : dpp[1] (symbol_plain) to dpp<up>1</up> (symbol, or feature.name)
+  Description: private  method to convert  to SGML format (modified from conv_greeks)
+  Returntype : SGML-formatted symbol
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut	
+
+sub _recon {
+    my ($string) = shift;
+    $string =~ s/accentagrave/&agrave\;/g;
+    $string =~ s/alpha/&agr\;/g;
+    $string =~ s/Alpha/&Agr\;/g;
+    $string =~ s/beta/&bgr\;/g;
+    $string =~ s/Beta/&Bgr\;/g;
+    $string =~ s/gamma/&ggr\;/g;
+    $string =~ s/Gamma/&Ggr\;/g;
+    $string =~ s/delta/&dgr\;/g;
+    $string =~ s/Delta/&Dgr\;/g;
+    $string =~ s/epsilon/&egr\;/g;
+    $string =~ s/Epsilon/&Egr\;/g;
+    $string =~ s/zeta/&zgr\;/g;
+    $string =~ s/Zeta/&Zgr\;/g;
+    $string =~ s/eta/&eegr\;/g;
+    $string =~ s/Eta/&EEgr\;/g;
+    $string =~ s/theta/&thgr\;/g;
+    $string =~ s/Theta/&THgr\;/g;
+    $string =~ s/iota/&igr\;/g;
+    $string =~ s/Iota/&Igr\;/g;
+    $string =~ s/kappa/&kgr\;/g;
+    $string =~ s/Kappa/&Kgr\;/g;
+    $string =~ s/lambda/&lgr\;/g;
+    $string =~ s/Lambda/&Lgr\;/g;
+    $string =~ s/mu/&mgr\;/g;
+    $string =~ s/Mu/&Mgr\;/g;
+    $string =~ s/nu/&ngr\;/g;
+    $string =~ s/Nu/&Ngr\;/g;
+    $string =~ s/xi/&xgr\;/g;
+    $string =~ s/Xi/&Xgr\;/g;
+    $string =~ s/omicron/&ogr\;/g;
+    $string =~ s/Omicron/&Ogr\;/g;
+    $string =~ s/pi/&pgr\;/g;
+    $string =~ s/Pi/&Pgr\;/g;
+    $string =~ s/rho/&rgr\;/g;
+    $string =~ s/Rho/&Rgr\;/g;
+    $string =~ s/sigma/&sgr\;/g;
+    $string =~ s/Sigma/&Sgr\;/g;
+    $string =~ s/tau/&tgr\;/g;
+    $string =~ s/Tau/&Tgr\;/g;
+    $string =~ s/upsilon/&ugr\;/g;
+    $string =~ s/Upsilon/&Ugr\;/g;
+    $string =~ s/phi/&phgr\;/g;
+    $string =~ s/Phi/&PHgr\;/g;
+    $string =~ s/chi/&khgr\;/g;
+    $string =~ s/Chi/&KHgr\;/g;
+    $string =~ s/psi/&psgr\;/g;
+    $string =~ s/Psi/&PSgr\;/g;
+    $string =~ s/omega/&ohgr\;/g;
+    $string =~ s/Omega/&OHgr\;/g;
+    $string =~ s/\]\]/\<\/down\>/g;
+    $string =~ s/\[\[/\<down\>/g;
+    $string =~ s/\[/\<up\>/g;
+    $string =~ s/\]/\<\/up\>/g;
+    $string =~ s/ouml/&ouml\;/g;
+    return($string);
+}
+
+sub _cache {
+ my $cache_config=shift;
+ my $dbname=shift;
+ my $table=shift;
+ my $op_type=shift;
+ my $format_type=shift;
+ my $struct_type=shift;
+ my $dbh=shift;#here is DBI.dbh, not XORT::DB.dbh
+ my $ref_obj=shift;
+
+
+   my $self=shift;
+
+#   my ( $table, $file,  $struct_type, $op_type, $format_type, $dump_spec, $ref_obj, $dumpspec_data,$ddl_file) =
+#   XML::XORT::Util::GeneralUtil::Structure::rearrange(['tables', 'file', 'struct_type', 'op_type', 'format_type', 'dump_spec', 'loadable', 'app_data','ddl_property'], @_);
+
+   my $string_primary_key=$table."_primary_key";
+   my $table_id=$hash_ddl{$string_primary_key};
+
+   #my $cache_config="/users/zhou/junk/XORT-0.001/conf/config_cache.xml";
+
+   #load the dump spec and get the dumpspec object to manipulate the object
+   my $parser = new XML::DOM::Parser;
+   my $doc;
+     $doc = $parser->parsefile ($cache_config);
+   #my   $cache_obj=XML::XORT::Dumper::DumperSpec->new(-dbname=>$dbname,-ddl_property=>$DDL_FILE);
+   $dumpspec_obj_cache=XML::XORT::Dumper::DumperSpec->new(-dbh=>$dbh_xort,-hash_ddl=>\%hash_ddl, -node=>$doc);
+   my $root;
+   # load the elements which need to be filtered out
+   my @array_pseudo=split(/\s+/, $hash_ddl{$TABLES_PSEUDO});
+   foreach my $value(@array_pseudo){
+     $hash_tables_pseudo{$value}=1;
+   }
+
+
+   # if there is dumpspec to guide the dumper, then use it
+
+      $root=$doc->getDocumentElement();
+      my $nodes=$root->getChildNodes();
+      for my $i(1..$nodes->getLength()){
+         my $node=$nodes->item($i-1);
+         my $node_type=$node->getNodeType();
+         my $node_name=$node->getNodeName();
+         #print "\nnode_type:$node_type:node_name:$node_name" if ($DEBUG==1);
+         if ($node_type eq ELEMENT_NODE && defined $hash_ddl{$node_name} && !(defined $hash_tables_pseudo{$node_name})){
+               #print "\nnode name ", $node->getNodeName() if ($DEBUG==1);
+               #the result from get_id($node) is id string separated by '|'
+               my $query=$dumpspec_obj_cache->format_sql_id($node);
+               my $query_all=$dumpspec_obj_cache->format_sql($node);
+               if (defined $query){
+                   my $primary_key_string=$node_name."_primary_key";
+                   my $table_id=$hash_ddl{$primary_key_string};
+                   my $hash_cache_key_s;
+                   #print "\nquery_all:$query_all\nquery:$query\n" if ($DEBUG==1);
+                   my $hash_ref= $dbh_xort->get_all_hashref($query_all);
+                    foreach my $key(keys %$hash_ref){
+                        my $hash_ref_sub=$hash_ref->{$key};
+                        $hash_cache_key_s=$node_name."_".$hash_ref_sub->{$table_id};
+                            #my $xml=&_table2xml($hash_ref_sub, '     ', $node_name, $op_type, $format_type, $MODULE,  $dbh, $ref_obj, $node);
+                             my $xml=&_cache_object($hash_ref_sub, "\t", $node_name, $op_type, $format_type, $MODULE,  $dbh, $ref_obj, $node);
+                             $hash_cache{$node_name}{$hash_cache_key_s}=$xml;
+                    }
+	       }
+         }
+      }
+   return 1;
+}
+
+
+=head2 _cache_object
+
+  Arg [1]    : varchar indent
+  Arg [2]    : varchar table name
+  Arg [3]    : varchar op_type insert/delete/update/look_up/force(default)
+  Arg [4]    : format_type local_id/no_local_id(default)
+  Arg [5]    : struct_type  module/single(default)
+  Arg [6]    : dbh object
+  Arg [7]    : loadable/non_loadable(default)
+  Arg [8]    : dumpspec node
+  Example    : 
+  Description: private  method, which do major fetch work from db into memory using recursive call itself 
+  Returntype : data from DB
+  Exceptions : Thrown is invalid arguments are provided
+
+=cut
+
+
+sub _cache_object(){
+ my $hash_ref=shift;
+ my $indent=shift;
+ my $table=shift;
+ my $op_type=shift;
+ my $format_type=shift;
+ my $struct_type=shift;
+ my $dbh=shift;#here dbh is DBI.dbh, dbh_xort is XORT::DB.dbh
+ my $ref_obj=shift;
+ my $node=shift;
+
+ my $attribute;
+ my $node_name;
+
+ my $xml_sub="";
+ if (defined $node){
+   $attribute= $dumpspec_obj_cache->get_attribute_value($node);
+     #print "\nentrance of _table2xml, node name:", $node->getNodeName() if ($DEBUG==1);
+   $node_name=$node->getNodeName();
+ }
+
+ my $string_primary_key=$table."_primary_key";
+ my $table_id=$hash_ddl{$string_primary_key};
+
+ #combination of table_name with primary key will unique identify any object
+ my $id=$table."_".$hash_ref->{$table_id};
+
+# if ($format_type eq $LOCAL_ID){
+#    $hash_id{$id}=$id;
+#  }
+
+ # here the primary id will become foreign_key value for link table
+ my $foreign_id=$hash_ref->{$table_id};
+
+ # clean the orinal data, eg. remove the serial id column
+ #print "\n\ndata in main table....:$table" if ($DEBUG==1);
+ foreach my $key (keys %$hash_ref){
+    #print "\nkey:$key\tvalue:$hash_ref->{$key}";
+    if (!(defined $hash_ref->{$key}) || $hash_ref->{$key} eq '' || $key eq $table_id){
+      # print "\ndelete key:$key\t$hash_ref->{$key}";
+       delete $hash_ref->{$key};
+    }
+    else {
+       my $data=$hash_ref->{$key};
+              #$data=&_decon($data);
+              #$data =~ s/\&/\&amp;/g;
+              #$data =~ s/</\&lt;/g;
+              #$data =~ s/>/\&gt;/g;
+              #$data =~ s/\"/\&quot;/g;
+              #$data =~ s/\'/\&apos;/g;
+              $hash_ref->{$key}=$data;
+    }
+ }
+
+
+ my $xml;
+ my @array_table_cols=split(/\s+/, $hash_ddl{$table});
+
+ #for columns
+ foreach my $key (keys %$hash_ref){
+   my $foreign_table_ref=$table.":".$key."_ref_table";
+   my $string_foreign_table_primary_key;
+   my $foreign_table_id;
+      $string_foreign_table_primary_key=$hash_ddl{$foreign_table_ref}."_primary_key" if (defined $hash_ddl{$foreign_table_ref});
+      $foreign_table_id=$hash_ddl{$string_foreign_table_primary_key} if (defined $string_foreign_table_primary_key);
+
+   if (defined $hash_ddl{$foreign_table_ref} && $key ne $table_id){
+      my $key_local_id=$hash_ddl{$foreign_table_ref}."_".$hash_ref->{$key};
+      # here to substitute with local_id, if ALLOWED
+        # here overwrite the default, if there is dumpspec to guide the dump
+      my $nest_node1;
+     if (defined $node){
+           my $path=$table.":".$key.":".$hash_ddl{$foreign_table_ref};
+            if (defined $node){
+               $nest_node1=$dumpspec_obj_cache->get_nested_node($node, $path, $TYPE_DUMP);
+            }
+     }
+
+     #if use local_id, then first to retrieve here
+     if (defined $hash_id{$key_local_id} && !(defined $nest_node1)){
+          $hash_ref->{$key}=$hash_id{$key_local_id};
+     }
+     elsif (defined $hash_cache{$hash_ddl{$foreign_table_ref}}{$key_local_id}  && !(defined $nest_node1)){
+           $hash_ref->{$key}=$hash_cache{$hash_ddl{$foreign_table_ref}}{$key_local_id};
+     }
+     # here to output foreign id by defining a object
+     else {
+         my $new_indent=$indent.$unit_indent.$unit_indent;
+         my $stm_foreign_object;
+         my $local_id_foreign_object=$hash_ddl{$foreign_table_ref}."_".$hash_ref->{$key};
+
+
+          my $attribute_dump;
+          my @array_table_obj_cols;
+          my $nest_node;
+
+
+          # if no dump guide this ref_obj, then either dump unique_keys or cols
+          #print "\nlocal_id_foreign_object:$local_id_foreign_object\nref_obj:$ref_obj";
+	  if (@array_table_obj_cols==0){
+            # if this object NOT dumped before, and want to dump it so that it can be re-load without losing any data
+            if (!(defined $hash_object_id{$local_id_foreign_object}) && $ref_obj eq $REF_OBJ_ALL){
+               @array_table_obj_cols=split(/\s+/, $hash_ddl{$hash_ddl{$foreign_table_ref}});
+               #print "\nforeign_table_ref:$foreign_table_ref:@array_table_obj_cols";
+            }
+            else {
+              my $unique_key=$hash_ddl{$foreign_table_ref}."_unique";
+              #print "\nunique_key:$unique_key";
+              # my $unique_key=$hash_ddl{$foreign_table_ref}."_non_null_cols";
+              @array_table_obj_cols=split(/\s+/, $hash_ddl{$unique_key});
+            }
+          }
+
+         my $data_list;
+         for (@array_table_obj_cols){
+             if ($data_list){
+                 $data_list=$data_list." , ".$_;
+  	     }
+             else {
+                 $data_list=$_;
+             }
+	 }
+         #also need to add the table_id col, since the link table need it.
+         $data_list=$data_list." , ".$foreign_table_id;
+         #  print "\n\nunique_key:$unique_key\tdata_list:$data_list";
+         my $stm=sprintf("select $data_list from $hash_ddl{$foreign_table_ref} where $foreign_table_id=$hash_ref->{$key}");
+
+         #print "\nstm:$stm";
+         my $hash_ref_sub=$dbh_xort->get_row_hashref($stm);
+
+         my $object_ref_module;
+         if (defined $nest_node && ($attribute_dump eq $DUMP_ALL ||  $attribute_dump eq $DUMP_SELECT || $attribute_dump eq $DUMP_COL || $attribute_dump eq $DUMP_REF) ){
+           $object_ref_module=$MODULE;
+	 }
+         else {
+           $object_ref_module=$SINGLE;
+         }
+         #print "\nmodel:$object_ref_module";
+         my $data_sub=&_cache_object($hash_ref_sub, $new_indent, $hash_ddl{$foreign_table_ref}, $op_type, $format_type, $object_ref_module,  $dbh, $ref_obj, $nest_node);
+         $hash_ref->{$key}=$data_sub;
+     } # end of here to output foreign id by defining a object, which is no local_id
+
+   }
+   # ignore the null value
+   elsif (!(defined $hash_ref->{$key}) || $key eq $table_id) {
+      delete  $hash_ref->{$key};
+   }
+  }
+
+
+ # here start to output the data into xml format
+ # need to change for delete/update/lookup ?
+
+ if ($format_type eq $LOCAL_ID){
+    if ($op_type ne ''){
+        $xml="<".$table." id=\"".$id."\" op=\"".$op_type."\">";
+    }
+    else {
+        $xml="<".$table." id=\"".$id."\">";
+    }
+ }
+ else {
+    if ($op_type ne ''){
+        $xml="<".$table." op=\"".$op_type."\">";
+    }
+    else {
+        $xml="<".$table.">";
+    }
+ }
+
+
+ foreach my $key (sort (keys %$hash_ref)){
+   my $data=$hash_ref->{$key};
+
+    my $foreign_table_ref=$table.":".$key."_ref_table";
+    my $foreign_table_id;
+    my $key_local_id;
+       $foreign_table_id=$hash_ddl{$foreign_table_ref}."_id" if (defined $hash_ddl{$foreign_table_ref});
+       $key_local_id=$hash_ddl{$foreign_table_ref}."_".$hash_ref->{$key} if (defined $hash_ddl{$foreign_table_ref} && defined $hash_ref->{$key}) ;
+
+    if ((defined $hash_ddl{$foreign_table_ref} && defined $hash_id{$hash_ref->{$key}}) || !(defined  $hash_ddl{$foreign_table_ref}) ){
+       $xml=$xml."<".$key.">".$data."</".$key.">";
+    }
+    else {
+       $xml=$xml."<".$key.">".$data."</".$key.">";
+    }
+
+
+ }
+
+ if ($struct_type eq $MODULE){
+    $xml=$xml.$xml_sub;
+ }
+
+ $xml=$xml."</$table>";
+
+ return $xml;
+}
+
+
+=head2 _de_encoding
+
+  Arg [1]    : string to be replaced
+  Example    : 
+  Description: private  method, varchar need to replace isolated '&' 
+               (not associated with any other entity declaration) with '&amp;'
+               '<' with '&lt;', '>' with '&gt;', '\'' with  '&apos;', '"' with '&quot;'
+  Returntype : replaced string
+  Exceptions : Thrown is invalid arguments are provided
+=cut
+
+sub _de_encoding(){
+  my $data=shift;
+ if ($data =~/\&/){
+my %hash_c=(
+#add this 5 cases here, so &lt; &gt; &apos; &quot; will keep same when dumpout, OCt 5, 2006
+"&lt;"=> "#38;#60;",
+"&gt;"=>"#62;",
+"&amp;"=>"#38;#38;",
+"&apos;"=>"#39;",
+"&quot;"=>"#34;",
+
+"&agrave;"=>"#224;",
+"&Agr;"=>"#913;",
+"&Bgr;"=>"#914;",
+"&Ggr;"=>"#915;",
+"&Dgr;"=>"#916;",
+"&Egr;"=>"#917;",
+"&Zgr;"=>"#918;",
+"&EEgr;"=>"#919;",
+"&THgr;"=>"#920;",
+"&Igr;"=>"#921;",
+"&Kgr;"=>"#922;",
+"&Lgr;"=>"#923;",
+"&Mgr;"=>"#924;",
+"&Ngr;"=>"#925;",
+"&Xgr;"=>"#926;",
+"&Ogr;"=>"#927;",
+"&Pgr;"=>"#928;",
+"&Rgr;"=>"#929;",
+"&Sgr;"=>"#931;",
+"&Tgr;"=>"#932;",
+"&Ugr;"=>"#933;",
+"&PHgr;"=>"#934;",
+"&KHgr;"=>"#935;",
+"&PSgr;"=>"#936;",
+"&OHgr;"=>"#937;",
+"&agr;"=>"#945;",
+"&bgr;"=>"#946;",
+"&ggr;"=>"#947;",
+"&dgr;"=>"#948;",
+"&egr;"=>"#949;",
+"&zgr;"=>"#950;",
+"&eegr;"=>"#951;",
+"&thgr;"=>"#952;",
+"&igr;"=>"#953;",
+"&kgr;"=>"#954;",
+"&lgr;"=>"#955;",
+"&mgr;"=>"#956;",
+"&ngr;"=>"#957;",
+"&xgr;"=>"#958;",
+"&ogr;"=>"#959;",
+"&pgr;"=>"#960;",
+"&rgr;"=>"#961;",
+"&sgr;"=>"#963;",
+"&tgr;"=>"#964;",
+"&ugr;"=>"#965;",
+"&phgr;"=>"#966;",
+"&khgr;"=>"#967;",
+"&psgr;"=>"#968;",
+"&ohgr;"=>"#969;",
+
+"&temp;"=>"#970",
+"&anat;"=>"#971;",
+"&posit;"=>"#972;",
+"&of;"=>"#973;",
+"&and;"=>"#974;",
+#"&temp;"=>"&lt;t&gt;",
+#"&anat;"=>"&lt;a&gt;",
+#"&posit;"=>"&lt;p&gt;",
+#"&of;"=>"&lt;of&gt;",
+#"&and"=>"&lt;&amp;&gt;",
+"&Agrave;"=>"#192;",
+"&Aacute;"=>"#193;",
+"&Acirc;"=>"#194;",
+"&Atilde;"=>"#195;",
+"&Auml;"=>"#196;",
+"&Aring;"=>"#197;",
+"&AElig;"=>"#198;",
+"&Ccedil;"=>"#199;",
+"&Egrave;"=>"#200;",
+"&Eacute;"=>"#201;",
+"&Ecirc;"=>"#202;",
+"&Euml;"=>"#203;",
+"&Igrave;"=>"#204;",
+"&Iacute;"=>"#205;",
+"&Icirc;"=>"#206;",
+"&Iuml;"=>"#207;",
+"&ETH;"=>"#208;",
+"&Ntilde;"=>"#209;",
+"&Ograve;"=>"#210;",
+"&Oacute;"=>"#211;",
+"&Ocirc;"=>"#212;",
+"&Otilde;"=>"#213;",
+"&Ouml;"=>"#214;",
+"&Oslash;"=>"#216;",
+"&Ugrave;"=>"#217;",
+"&Uacute;"=>"#218;",
+"&Ucirc;"=>"#219;",
+"&Uuml;"=>"#220;",
+"&Yacute;"=>"#221;",
+"&THORN;"=>"#222;",
+"&szlig;"=>"#223;",
+"&agrave;"=>"#224;",
+"&aacute;"=>"#225;",
+"&acirc;"=>"#226;",
+"&atilde;"=>"#227;",
+"&auml;"=>"#228;",
+"&aring;"=>"#229;",
+"&aelig;"=>"#230;",
+"&ccedil;"=>"#231;",
+"&egrave;"=>"#232;",
+"&eacute;"=>"#233;",
+"&ecirc;"=>"#234;",
+"&euml;"=>"#235;",
+"&igrave;"=>"#236;",
+"&iacute;"=>"#237;",
+"&icirc;"=>"#238;",
+"&iuml;"=>"#239;",
+"&eth;"=>"#240;",
+"&ntilde;"=>"#241;",
+"&ograve;"=>"#242;",
+"&oacute;"=>"#243;",
+"&ocirc;"=>"#244;",
+"&otilde;"=>"#245;",
+"&ouml;"=>"#246;",
+"&oslash;"=>"#248;",
+"&ugrave;"=>"#249;",
+"&uacute;"=>"#250;",
+"&ucirc;"=>"#251;",
+"&uuml;"=>"#252;",
+"&yacute;"=>"#253;",
+"&thorn;"=>"#254;",
+"&yuml;"=>"#255;",
+);
+
+
+  foreach my $key (keys %hash_c){
+    $data=~s/$key/$hash_c{$key}/g;
+  }
+   $data=~s/\&/\&amp;/g;
+   $data=~s/\>/\&gt;/g;
+   $data=~s/\</\&lt;/g;
+   $data=~s/\'/\&apos;/g;
+   $data=~s/\"/\&quot;/g;
+
+  foreach my $key (keys %hash_c){
+    $data=~s/$hash_c{$key}/$key/g;
+  }
+}
+elsif ($data=~/\>|\<|\"|\'/){#no long need for '&', done in last step
+   $data=~s/\>/\&gt;/g;
+   $data=~s/\</\&lt;/g;
+   $data=~s/\'/\&apos;/g;
+   $data=~s/\"/\&quot;/g;
+}
+ return $data;
+}
+
+
+=head2 from paul, not not test yet
+
+You may find it useful to put something like it into your proforma-
+processing script.  However, it may also interact badly with your
+safeguards which guarantee valid UTF-8 output in the chXML so it may not
+be a simple drop-in.  If the problem is that an existing 16-bit UTF-8
+character has already been misinterpreted as two 8-bit Latin-1
+characters and those then converted to two UTF-8 chars the code above
+won't do the job directly but it may provide a guide as to the bit-
+twiddling required to restore the correct representation.
+
+my @latin1_to_utf8;
+for (my $i=0x80; $i<0x100; $i++)
+ {
+     my ($hi, $lo) = (($i & 0xe0)>>6, $i & 0x3f);
+     $latin1_to_utf8[$i] = chr(0xc0|$hi) . chr (0x80|$lo);
+ }
+
+=cut
+sub check_non_utf8 ()
+{
+    my ($file, $code, $data) = @_;
+    $data =~ /[\x80-\xff]/ or return;				# Cheap test for usual case.
+    my @words = split /\s+/, $data;
+    my @latin1_to_utf8;
+    foreach my $word (@words)
+    {
+	my $badchars = $word;
+	$badchars =~ s/(?:[\x00-\x7f] |
+                    [\xc0-\xdf][\x80-\xbf] |
+                    [\xe0-\xef][\x80-\xbf]{2}|
+                    [\xf0-\xf7][\x80-\xbf]{3})+//gx;
+
+	foreach (split '', $badchars) 
+	{
+	    report ($file, "%s: Bad UTF-8 character '%s' (%d decimal, %x hex) in '%s'\nUse %s instead.",
+		    $code, $_, ord($_), ord($_), $word, $latin1_to_utf8[ord($_)]);
+	}
+    }
+}
+
+=head2 _raw_to_entity
+
+  Arg [1]    : string to be replaced
+  Example    : 
+  Description: private  method, convert all raw data which encoding as UTF-8 into declated entity name, for instance Greek alpha into '&agr;'
+  Returntype : replaced string
+  Exceptions : Thrown is invalid arguments are provided
+=cut
+
+sub _raw_to_entity (){
+    my $sgml=shift;
+#warn "\n$sgml";#warn "\nequal here:$sgml:chr(246):" and exit(1) if ($sgml eq chr(246));
+  	$sgml=&decode_utf8($sgml,Encode::FB_CROAK); ###decode first, where is this method ? from Encode ?
+ 
+my $agrave=chr(224);
+my $Agr=chr(913);
+my $Bgr=chr(914);
+my $Ggr=chr(915);
+my $Dgr=chr(916);
+my $Egr=chr(917);
+my $Zgr=chr(918);
+my $EEgr=chr(919);
+my $THgr=chr(920);
+my $Igr=chr(921);
+my $Kgr=chr(922);
+my $Lgr=chr(923);
+my $Mgr=chr(924);
+my $Ngr=chr(925);
+my $Xgr=chr(926);
+my $Ogr=chr(927);
+my $Pgr=chr(928);
+my $Rgr=chr(929);
+my $Sgr=chr(931);
+my $Tgr=chr(932);
+my $Ugr=chr(933);
+my $PHgr=chr(934);
+my $KHgr=chr(935);
+my $PSgr=chr(936);
+my $OHgr=chr(937);
+my $agr=chr(945);
+my $bgr=chr(946);
+my $ggr=chr(947);
+my $dgr=chr(948);
+my $egr=chr(949);
+my $zgr=chr(950);
+my $eegr=chr(951);
+my $thgr=chr(952);
+my $igr=chr(953);
+my $kgr=chr(954);
+my $lgr=chr(955);
+my $mgr=chr(956);
+my $ngr=chr(957);
+my $xgr=chr(958);
+my $ogr=chr(959);
+my $pgr=chr(960);
+my $rgr=chr(961);
+my $sgr=chr(963);
+my $tgr=chr(964);
+my $ugr=chr(965);
+my $phgr=chr(966);
+my $khgr=chr(967);
+my $psgr=chr(968);
+my $ohgr=chr(969);
+my $Agrave=chr(192);
+my $Aacute=chr(193);
+my $Acirc=chr(194);
+my $Atilde=chr(195);
+my $Auml=chr(196);
+my $Aring=chr(197);
+my $AElig=chr(198);
+my $Ccedil=chr(199);
+my $Egrave=chr(200);
+my $Eacute=chr(201);
+my $Ecirc=chr(202);
+my $Euml=chr(203);
+my $Igrave=chr(204);
+my $Iacute=chr(205);
+my $Icirc=chr(206);
+my $Iuml=chr(207);
+my $ETH=chr(208);
+my $Ntilde=chr(209);
+my $Ograve=chr(210);
+my $Oacute=chr(211);
+my $Ocirc=chr(212);
+my $Otilde=chr(213);
+my $Ouml=chr(214);
+my $Oslash=chr(216);
+my $Ugrave=chr(217);
+my $Uacute=chr(218);
+my $Uuml=chr(220);
+my $Yacute=chr(221);
+my $THORN=chr(222);
+my $szlig=chr(223);
+my $agrave=chr(224);
+my $aacute=chr(225);
+my $acirc=chr(226);
+my $atilde=chr(227);
+my $auml=chr(228);
+my $aring=chr(229);
+my $aelig=chr(230);
+my $ccedil=chr(231);
+my $egrave=chr(232);
+my $eacute=chr(233);
+my $ecirc=chr(234);
+my $euml=chr(235);
+my $igrave=chr(236);
+my $iacute=chr(237);
+my $icirc=chr(238);
+my $iuml=chr(239);
+my $eth=chr(240);
+my $ntilde=chr(241);
+my $ograve=chr(242);
+my $oacute=chr(243);
+my $ocirc=chr(244);
+my $otilde=chr(245);
+my $ouml=chr(246);
+my $oslash=chr(248);
+my $ugrave=chr(249);
+my $uacute=chr(250);
+my $ucirc=chr(251);
+my $uuml=chr(252);
+my $yacute=chr(253);
+my $thorn=chr(254);
+my $yuml=chr(255);
+
+
+$sgml=~s/$agrave/&agrave\;/g;
+$sgml=~s/$Agr/&Agr\;/g;
+$sgml=~s/$Bgr/&Bgr\;/g;
+$sgml=~s/$Ggr/&Ggr\;/g;
+$sgml=~s/$Dgr/&Dgr\;/g;
+$sgml=~s/$Egr/&Egr\;/g;
+$sgml=~s/$Zgr/&Zgr\;/g;
+$sgml=~s/$EEgr/&EEgr\;/g;
+$sgml=~s/$THgr/&THgr\;/g;
+$sgml=~s/$Igr/&Igr\;/g;
+$sgml=~s/$Kgr/&Kgr\;/g;
+$sgml=~s/$Lgr/&Lgr\;/g;
+$sgml=~s/$Mgr/&Mgr\;/g;
+$sgml=~s/$Ngr/&Ngr\;/g;
+$sgml=~s/$Xgr/&Xgr\;/g;
+$sgml=~s/$Ogr/&Ogr\;/g;
+$sgml=~s/$Pgr/&Pgr\;/g;
+$sgml=~s/$Rgr/&Rgr\;/g;
+$sgml=~s/$Sgr/&Sgr\;/g;
+$sgml=~s/$Tgr/&Tgr\;/g;
+$sgml=~s/$Ugr/&Ugr\;/g;
+$sgml=~s/$PHgr/&PHgr\;/g;
+$sgml=~s/$KHgr/&KHgr\;/g;
+$sgml=~s/$PSgr/&PSgr\;/g;
+$sgml=~s/$OHgr/&OHgr\;/g;
+$sgml=~s/$agr/&agr\;/g;
+$sgml=~s/$bgr/&bgr\;/g;
+$sgml=~s/$ggr/&ggr\;/g;
+$sgml=~s/$dgr/&dgr\;/g;
+$sgml=~s/$egr/&egr\;/g;
+$sgml=~s/$zgr/&zgr\;/g;
+$sgml=~s/$eegr/&eegr\;/g;
+$sgml=~s/$thgr/&thgr\;/g;
+$sgml=~s/$igr/&igr\;/g;
+$sgml=~s/$kgr/&kgr\;/g;
+$sgml=~s/$lgr/&lgr\;/g;
+$sgml=~s/$mgr/&mgr\;/g;
+$sgml=~s/$ngr/&ngr\;/g;
+$sgml=~s/$xgr/&xgr\;/g;
+$sgml=~s/$ogr/&ogr\;/g;
+$sgml=~s/$pgr/&pgr\;/g;
+$sgml=~s/$rgr/&rgr\;/g;
+$sgml=~s/$sgr/&sgr\;/g;
+$sgml=~s/$tgr/&tgr\;/g;
+$sgml=~s/$ugr/&ugr\;/g;
+$sgml=~s/$phgr/&phgr\;/g;
+$sgml=~s/$khgr/&khgr\;/g;
+$sgml=~s/$psgr/&psgr\;/g;
+$sgml=~s/$ohgr/&ohgr\;/g;
+
+
+$sgml=~s/[$Agrave]/&Agrave\;/g;
+$sgml=~s/[$Aacute]/&Aacute\;/g;
+$sgml=~s/[$Acirc]/&Acirc\;/g;
+$sgml=~s/[$Atilde]/&Atilde\;/g;
+$sgml=~s/[$Auml]/&Auml\;/g;
+$sgml=~s/[$Aring]/&Aring\;/g;
+$sgml=~s/[$AElig]/&AElig\;/g;
+$sgml=~s/[$Ccedil]/&Ccedil\;/g;
+$sgml=~s/[$Egrave]/&Egrave\;/g;
+$sgml=~s/[$Eacute]/&Eacute\;/g;
+$sgml=~s/[$Ecirc]/&Ecirc\;/g;
+$sgml=~s/[$Euml]/&Euml\;/g;
+$sgml=~s/[$Igrave]/&Igrave\;/g;
+$sgml=~s/[$Iacute]/&Iacute\;/g;
+$sgml=~s/[$Icirc]/&Icirc\;/g;
+$sgml=~s/[$Iuml]/&Iuml\;/g;
+$sgml=~s/[$ETH]/&ETH\;/g;
+$sgml=~s/[$Ntilde]/&Ntilde\;/g;
+$sgml=~s/[$Ograve]/&Ograve\;/g;
+$sgml=~s/[$Oacute]/&Oacute\;/g;
+$sgml=~s/[$Ocirc]/&Ocirc\;/g;
+$sgml=~s/[$Otilde]/&Otild\;/g;
+$sgml=~s/[$Ouml]/&Ouml\;/g;
+$sgml=~s/[$Oslash]/&Oslash\;/g;
+$sgml=~s/[$Ugrave]/&Ugrave\;/g;
+$sgml=~s/[$Uacute]/&Uacute\;/g;
+$sgml=~s/[$Uuml]/&Uuml\;/g;
+$sgml=~s/[$Yacute]/&Yacute\;/g;
+$sgml=~s/[$THORN]/&THORN\;/g;
+$sgml=~s/[$szlig]/&szlig\;/g;
+$sgml=~s/[$agrave]/&agrave\;/g;
+$sgml=~s/[$aacute]/&aacute\;/g;
+$sgml=~s/[$acirc]/&acirc\;/g;
+$sgml=~s/[$atilde]/&atilde\;/g;
+$sgml=~s/[$auml]/&auml\;/g;
+$sgml=~s/[$aring]/&aring\;/g;
+$sgml=~s/[$aelig]/&aelig\;/g;
+$sgml=~s/[$ccedil]/&ccedil\;/g;
+$sgml=~s/[$egrave]/&egrave\;/g;
+$sgml=~s/[$eacute]/&eacute\;/g;
+$sgml=~s/[$ecirc]/&ecirc\;/g;
+$sgml=~s/[$euml]/&euml\;/g;
+$sgml=~s/[$igrave]/&igrave\;/g;
+$sgml=~s/[$iacute]/&iacute\;/g;
+$sgml=~s/[$icirc]/&icirc\;/g;
+$sgml=~s/[$iuml]/&iuml\;/g;
+$sgml=~s/[$eth]/&eth\;/g;
+$sgml=~s/[$ntilde]/&ntilde\;/g;
+$sgml=~s/[$ograve]/&ograve\;/g;
+$sgml=~s/[$oacute]/&oacute\;/g;
+$sgml=~s/[$ocirc]/&ocirc\;/g;
+$sgml=~s/[$otilde]/&otilde\;/g;
+$sgml=~s/[$ouml]/&ouml\;/g;
+$sgml=~s/[$oslash]/&oslash\;/g;
+$sgml=~s/[$ugrave]/&ugrave\;/g;
+$sgml=~s/[$uacute]/&uacute\;/g;
+$sgml=~s/[$ucirc]/&ucirc\;/g;
+$sgml=~s/[$uuml]/&uuml\;/g;
+$sgml=~s/[$yacute]/&yacute\;/g;
+$sgml=~s/[$thorn]/&thorn\;/g;
+$sgml=~s/[$yuml]/&yuml\;/g;
+
+  return $sgml;
+}
+
+
+ 1;
+
+
+

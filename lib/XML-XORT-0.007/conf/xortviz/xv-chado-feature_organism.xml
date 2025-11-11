@@ -1,0 +1,24 @@
+<xortviz schema="chado" id="chado-feature-organism">
+  <node element="organism" pk=".">
+    <opts shape='hexagon' style='filled' fillcolor='#88FF88' fontsize='10'
+      fontname='arial'/>
+    <label>
+      <copy element="genus"/>
+      <text>-</text>
+      <copy element="species"/>
+      <text>[</text>
+      <copy element="organism_dbxref/dbxref_id/dbxref/accession"/>
+      <text>]</text>
+    </label>
+  </node>
+  <arc element="organism_id" to=".">
+    <opts style='line' arrowtail='dot' arrowhead='none'
+      decorateP='1' fontcolor='#00FF00' color='#00FF00'/>
+  </arc>
+  <table id="organism">
+    <unique>
+      <col name="genus"/>
+      <col name="species"/>
+    </unique>
+  </table>
+</xortviz>

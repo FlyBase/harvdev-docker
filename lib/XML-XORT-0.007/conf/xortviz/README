@@ -1,0 +1,15 @@
+See
+
+  xortviz.pl -h
+
+for details
+
+These conf files are designed to be mixed and matched; to use all of
+them together, try:
+
+  xortviz.pl conf/xortviz/vx-*.xml my.chado | display
+
+this may result in a fairly large diagram!!
+
+--
+Chris Mungall

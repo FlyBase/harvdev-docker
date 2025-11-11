@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE chado SYSTEM "/users/zhou/work/flybase/xml/chado_stan.dtd">
+<!-- This primary for for Peili, which will include ARGS data for Apollo Chado adaptor, and dump ARGS features as separated flat feature -->
+
+<chado dumpspec="dumpspec_apollo.xml" date="Wes Sept 24 12:45:36 EDT 2003">
+   <_appdata name="title">$4</_appdata>
+   <_appdata name="arm">$5</_appdata>
+   <_appdata name="fmin">$2</_appdata>
+   <_appdata name="fmax">$3</_appdata>
+   <_appdata name="residues"><_sql>select substr(residues, $2+1, $3-$2) from feature where feature_id=$1</_sql></_appdata>
+
+  <!-- dump gene central dogma, including mRNA, pseudogene, ncRNA, snRNA, snoRNA, tRNA,rRNA,miRNA  -->
+  <feature dump="all">
+
+    <_sql>select feature_0.feature_id, feature_0.uniquename,feature_0.name,feature_0.type_id,feature_0.organism_id, feature_0.residues,feature_0.is_analysis,feature_0.seqlen,feature_0.md5checksum,feature_0.timeaccessioned ,feature_0.timelastmodified,feature_0.dbxref_id from cvterm cvterm_0 , feature feature_0 , featureloc featureloc_0 where featureloc_0.fmin&gt;=$2 and  featureloc_0.fmax&lt;=$3 and feature_0.feature_id=featureloc_0.feature_id and featureloc_0.srcfeature_id=$1 and  cvterm_0.name='gene' and feature_0.is_analysis='f' and feature_0.type_id=cvterm_0.cvterm_id</_sql>
+
+
+     <feature_synonym dump="cols">
+       <synonym_id>
+             <synonym dump="cols"/>
+       </synonym_id>
+     </feature_synonym>
+
+     <!-- get all mRNA of those gene -->
+     <feature_relationship dump="all">
+       <subject_id test="yes">
+          <feature>
+              <type_id>
+                 <cvterm>
+                     <name><or>mRNA</or><or>pseudogene</or><or>ncRNA</or><or>snRNA</or><or>snoRNA</or><or>tRNA</or><or>rRNA</or><or>miRNA</or></name>
+                 </cvterm>
+              </type_id>
+          </feature>
+       </subject_id>
+       <subject_id>
+          <feature dump="all">  
+              <!-- get all exon of those mRNA --> 
+              <feature_relationship dump="all">
+                 <subject_id test="yes">
+                     <feature>
+                        <type_id>
+                           <cvterm>
+                               <name>exon</name>
+                           </cvterm>                     
+                        </type_id>
+                     </feature>
+                 </subject_id>
+                 <subject_id>
+                     <feature dump="all">
+                       <!-- DO NOT dump evidence for exon -->
+                       <prediction_evidence dump="no_dump"/>
+                       <alignment_evidence dump="no_dump"/>
+                       <scaffold_feature dump="no_dump" />
+                       <feature_relationship dump="no_dump" />
+                       <featureslice dump="no_dump" />
+                        <!-- for srcfeature of exon/protein/gene will be ARM, it will NOT dump residues -->
+                       <featureloc dump="cols">
+                            <srcfeature_id>
+                               <feature dump="select">
+                                  <uniquename/>
+                                  <organism_id/>
+                                  <type_id>
+                                     <cvterm dump="cols"/>
+                                  </type_id>
+                               </feature>
+                            </srcfeature_id>
+                       </featureloc>
+
+                       <feature_synonym dump="cols">
+                           <synonym_id>
+                                <synonym dump="cols"/>
+                           </synonym_id>
+                       </feature_synonym>
+
+                       <!-- also dump GO for exon -->
+                       <feature_cvterm dump="cols">
+                          <cvterm_id>
+                             <cvterm dump="cols"/>
+                          </cvterm_id>
+                       </feature_cvterm>
+                    </feature>
+                 </subject_id>
+             </feature_relationship>
+
+             <!-- also dump GO for mRNA -->
+             <feature_cvterm dump="cols">
+                <cvterm_id>
+                   <cvterm dump="cols"/>
+                </cvterm_id>
+                <feature_cvtermprop/>
+             </feature_cvterm>
+
+             <!-- also all column for synonym -->
+             <feature_synonym dump="cols">
+                <synonym_id>
+                   <synonym dump="cols"/>
+                </synonym_id>
+             </feature_synonym>
+
+             <!-- get all protein of those mRNA --> 
+              <feature_relationship dump="all">
+                 <subject_id test="yes">
+                     <feature>
+                        <type_id>
+                           <cvterm>
+                               <name>protein</name>
+                           </cvterm>                     
+                        </type_id>
+                     </feature>
+                 </subject_id>
+                 <subject_id>
+                     <feature dump="all">
+
+                        <!-- DO NOT dump prediction_evidence for protein -->
+                        <prediction_evidence dump="no_dump"/> 
+                        <scaffold_feature dump="no_dump" />  
+                        <alignment_evidence dump="no_dump"/>
+                        <featureslice dump="no_dump" />
+                        <feature_relationship dump="no_dump"/>
+                        <!-- also all column for synonym -->
+                        <feature_synonym dump="cols">
+                            <synonym_id>
+                                <synonym dump="cols"/>
+                            </synonym_id>
+                        </feature_synonym>
+
+
+
+
+                        <!-- for srcfeature of exon/protein/gene will be ARM, it will NOT dump residues -->
+                        <featureloc dump="cols">
+                            <srcfeature_id>
+                               <feature dump="select">
+                                  <uniquename/>
+                                  <organism_id/>
+                                  <type_id>
+                                     <cvterm dump="cols"/>
+                                  </type_id>
+                               </feature>
+                            </srcfeature_id>
+                        </featureloc>
+
+                        <!-- also dump GO for protein -->
+                        <feature_cvterm dump="cols">
+                           <cvterm_id>
+                              <cvterm dump="cols"/>
+                           </cvterm_id>
+                        </feature_cvterm>
+                     </feature>
+                 </subject_id>
+             </feature_relationship>
+              <!-- dump all NO exon/protein of transcript  -->
+              <feature_relationship dump="all">
+                 <subject_id test="yes">
+                     <feature>
+                        <type_id>
+                           <cvterm>
+                               <name test="no"><or>protein</or><or>exon</or></name>
+                           </cvterm>                     
+                        </type_id>
+                     </feature>
+                 </subject_id>
+                 <subject_id>
+                     <feature dump="all">
+                      <!-- DO NOT dump prediction_evidence for  any feature, except gene -->
+                      <prediction_evidence dump="no_dump"/>
+                       <scaffold_feature dump="no_dump" />  
+                       <alignment_evidence dump="no_dump"/>  
+                       <featureslice dump="no_dump" />
+                        <feature_relationship dump="no_dump"/>
+                     </feature>
+                 </subject_id>
+             </feature_relationship>
+              <!-- NO prediction_evidence for mRNA  -->
+             <prediction_evidence dump="no_dump"/>
+             <alignment_evidence dump="no_dump"/>
+             <scaffold_feature dump="no_dump" />
+             <featureslice dump="no_dump" />
+
+             <!-- for srcfeature of exon/protein/gene will be ARM, it will NOT dump residues -->
+             <featureloc dump="cols">
+                            <srcfeature_id>
+                               <feature dump="select">
+                                  <uniquename/>
+                                  <organism_id/>
+                                  <type_id>
+                                     <cvterm dump="cols"/>
+                                  </type_id>
+                               </feature>
+                            </srcfeature_id>
+             </featureloc>
+          </feature>
+       </subject_id>                  
+     </feature_relationship>
+     <!-- NO prediction_evidence for gene  -->
+
+     <featureprop dump="cols">                          
+                               <featureprop_pub dump="cols">
+                               </featureprop_pub>
+
+     </featureprop>
+
+     <!-- also dump GO for gene -->
+     <feature_cvterm dump="cols">
+         <cvterm_id>
+              <cvterm dump="cols"/>
+              </cvterm_id>
+         <feature_cvtermprop/>
+     </feature_cvterm>
+
+     <prediction_evidence dump="no_dump"/>
+     <alignment_evidence dump="no_dump"/>
+     <scaffold_feature dump="no_dump" />
+     <featureslice dump="no_dump" />
+  </feature>
+
+
+ <!-- dump all other non_analysis feature, e.g EST, transposable_element, and all ARGS feature what exact type ???? -->
+    <feature dump="all">
+     <_sql>select feature_0.feature_id, feature_0.uniquename,feature_0.name,feature_0.type_id,feature_0.organism_id, feature_0.residues,feature_0.is_analysis,feature_0.seqlen,feature_0.md5checksum,feature_0.timeaccessioned ,feature_0.timelastmodified,feature_0.dbxref_id from cvterm cvterm_0 , feature feature_0 , featureslice($2, $3) featureloc_0 where  feature_0.feature_id=featureloc_0.feature_id and featureloc_0.srcfeature_id=$1 and (cvterm_0.name='transposable_element'  or cvterm_0.name='insertion_site' or cvterm_0.name='insertion' or cvterm_0.name='transposable_element_insertion_site' or  cvterm_0.name='signal_peptide' or  cvterm_0.name='mature_peptide' or  cvterm_0.name='aberration_junction'  or  cvterm_0.name='regulatory_region'  or  cvterm_0.name='sequence_variant'  or  cvterm_0.name='DNA_motif'  or  cvterm_0.name='enhancer'  or  cvterm_0.name='insertion_site'  or  cvterm_0.name='point_mutation'  or  cvterm_0.name='protein_binding_site'   or  cvterm_0.name='region'  or  cvterm_0.name='repeat_region'  or  cvterm_0.name='rescue_fragment') and feature_0.is_analysis='f' and feature_0.type_id=cvterm_0.cvterm_id</_sql>
+  <prediction_evidence dump="no_dump"/>          
+  <alignment_evidence dump="no_dump"/>
+  <scaffold_feature dump="no_dump" />
+  <featureslice dump="no_dump" />
+  <!-- avoid get back to parent, especial for ARGS feature which typically attach to other feature -->
+  <feature_relationship dump="no_dump"/>
+</feature>
+
+
+
+         
+
+ <!-- dump prediction_evidnce (analysis feature:mRNA/exon)-->
+    <feature dump="all">
+     <_sql>select feature_0.feature_id, feature_0.uniquename,feature_0.name,feature_0.type_id,feature_0.organism_id, feature_0.residues,feature_0.is_analysis,feature_0.seqlen,feature_0.md5checksum,feature_0.timeaccessioned ,feature_0.timelastmodified,feature_0.dbxref_id from cvterm cvterm_0 , feature feature_0 , featureslice($2, $3) featureloc_0 where  feature_0.feature_id=featureloc_0.feature_id and featureloc_0.srcfeature_id=$1 and ( cvterm_0.name='mRNA' )  and feature_0.is_analysis='t' and feature_0.type_id=cvterm_0.cvterm_id</_sql>
+              <!-- get all exon of those mRNA --> 
+              <feature_relationship dump="all">
+                 <subject_id test="yes">
+                     <feature>
+                        <type_id>
+                           <cvterm>
+                               <name>exon</name>
+                           </cvterm>                     
+                        </type_id>
+                     </feature>
+                 </subject_id>
+                 <subject_id>
+                     <feature dump="all">
+                       <!-- DO NOT dump evidence for exon -->
+                       <prediction_evidence dump="no_dump"/>
+                       <alignment_evidence dump="no_dump"/>
+                       <scaffold_feature dump="no_dump" />
+                       <feature_relationship dump="no_dump" />
+                       <featureslice dump="no_dump" />
+                        <!-- for srcfeature of exon/protein/gene will be ARM, it will NOT dump residues -->
+                       <featureloc dump="cols">
+                            <srcfeature_id>
+                               <feature dump="select">
+                                  <uniquename/>
+                                  <organism_id/>
+                                  <type_id>
+                                     <cvterm dump="cols"/>
+                                  </type_id>
+                               </feature>
+                            </srcfeature_id>
+                       </featureloc>
+                       <!-- also dump GO for exon -->
+                       <feature_cvterm dump="cols">
+                          <cvterm_id>
+                             <cvterm dump="cols"/>
+                          </cvterm_id>
+                       </feature_cvterm>
+                    </feature>
+                 </subject_id>
+             </feature_relationship>
+  <prediction_evidence dump="no_dump"/>          
+  <alignment_evidence dump="no_dump"/>
+  <scaffold_feature dump="no_dump" />
+  <featureslice dump="no_dump" />
+</feature>
+
+
+
+ <!-- dump prediction_evidence(analysis feature :transcript_start_site and transposable_element), with featuresplice to get all overlap feature, actually nothing from here-->
+    <feature dump="all">
+<_sql>select feature_0.feature_id, feature_0.uniquename,feature_0.name,feature_0.type_id,feature_0.organism_id, feature_0.residues,feature_0.is_analysis,feature_0.seqlen,feature_0.md5checksum,feature_0.timeaccessioned ,feature_0.timelastmodified,feature_0.dbxref_id from cvterm cvterm_0 , feature feature_0 , featureslice($2, $3) featureloc_0 where  feature_0.feature_id=featureloc_0.feature_id and featureloc_0.srcfeature_id=$1 and  (cvterm_0.name='transcription_start_site' or cvterm_0.name='transposable_element') and feature_0.is_analysis='t' and feature_0.type_id=cvterm_0.cvterm_id</_sql>
+
+  <prediction_evidence dump="no_dump"/>          
+  <alignment_evidence dump="no_dump"/>
+  <scaffold_feature dump="no_dump" />
+   <featureslice dump="no_dump" />
+  <analysisfeature dump="cols">
+     <analysis_id>
+        <analysis dump="cols"/>
+     </analysis_id>
+  </analysisfeature>
+</feature>
+
+
+
+
+<!--                          (query seq,e.g. EST)  ________________            -->
+<!--                                                      ^                      -->
+<!--                                                      | HSP2HIT (rank=1)     -->
+<!--                                                    __|______________ HITS   -->
+<!--                                                      |      ^               -->
+<!--             Evidence   no_match _______  HSP(match)__|______|____ ___       -->
+<!--                                   |                  |                      -->
+<!--                                   |                  |                      -->
+<!--             Anchor (A) ________________  ____________|___________ 		 -->
+<!--                         | A2G     | E2G    or        | E2G   (rank=0)       -->
+<!--                         V         V                  V                      -->
+<!-- Genome (G) __________________________________________________________       -->
+<!--               prediction_evidence               alignment_evidence          -->
+
+
+
+ <!-- dump all alignment_evidence, with function featuresplice , here also get all those overlap with scaffold, e.g BAC clone -->
+ <!-- here we filter out residues for certain feature with huge sequence -->
+ <feature dump="cols">
+   <_sql>select feature_0.feature_id, feature_0.uniquename,feature_0.name,feature_0.type_id,feature_0.organism_id, feature_0.residues,feature_0.is_analysis,feature_0.seqlen,feature_0.md5checksum,feature_0.timeaccessioned ,feature_0.timelastmodified,feature_0.dbxref_id from feature feature_0, featureslice($2, $3) featureloc_0, feature_relationship feature_relationship_0, cvterm cvterm_0, analysisfeature analysisfeature_0, analysis analysis_0 where feature_0.type_id=cvterm_0.cvterm_id and cvterm_0.name='match' and feature_0.feature_id=analysisfeature_0.feature_id and analysisfeature_0.analysis_id=analysis_0.analysis_id and (analysis_0.sourcename &lt;&gt;'na_baylorf1_scfchunk.dpse' and analysis_0.sourcename&lt;&gt;'na_scf_chunk_agambiae.fa' ) and feature_0.feature_id=feature_relationship_0.object_id and feature_relationship_0.subject_id=featureloc_0.feature_id and featureloc_0.srcfeature_id=$1   group by feature_0.feature_id</_sql>
+
+   <analysisfeature dump="cols">
+       <analysis_id>
+          <analysis dump="cols"/>
+       </analysis_id>
+   </analysisfeature>
+   <feature_relationship dump="all">
+       <subject_id>
+           <feature dump="select">
+              <analysisfeature dump="cols">
+                    <analysis_id>
+                       <analysis dump="cols"/>
+                   </analysis_id>
+              </analysisfeature>
+              <featureloc dump="cols">
+                 <rank test="yes">1</rank>
+                 <srcfeature_id>
+                     <feature dump="cols">                       
+                       	  <feature_dbxref dump="cols">
+	                      <dbxref_id >
+                                 <dbxref dump="cols"/>
+                              </dbxref_id>
+	                  </feature_dbxref>
+                          <featureprop dump="cols"/>
+                     </feature>
+                 </srcfeature_id>
+              </featureloc>
+              <featureloc dump="cols">
+                 <rank test="yes">0</rank>
+                 <srcfeature_id>
+                     <feature dump="select">
+                          <uniquename/>
+                          <dbxref_id/>
+                          <organism_id/>
+                          <type_id/>
+                       	  <feature_dbxref dump="cols">
+	                      <dbxref_id >
+                                 <dbxref dump="cols"/>
+                              </dbxref_id>
+	                  </feature_dbxref>
+                     </feature>
+                 </srcfeature_id>
+              </featureloc>
+               <!--why this extra featureloc here, seems it return nothing because ambiguity of link-key -->
+              <featureloc dump="cols">
+                <rank test="yes">0</rank>
+              </featureloc>
+           </feature>
+       </subject_id>
+   </feature_relationship>
+ </feature>
+
+ <feature dump="cols">
+<_sql>select feature_0.feature_id, feature_0.uniquename,feature_0.name,feature_0.type_id,feature_0.organism_id, feature_0.residues,feature_0.is_analysis,feature_0.seqlen,feature_0.md5checksum,feature_0.timeaccessioned ,feature_0.timelastmodified,feature_0.dbxref_id from feature feature_0, featureslice($2, $3) featureloc_0, feature_relationship feature_relationship_0, cvterm cvterm_0, analysisfeature analysisfeature_0, analysis analysis_0 where feature_0.type_id=cvterm_0.cvterm_id and cvterm_0.name='match' and feature_0.feature_id=analysisfeature_0.feature_id and analysisfeature_0.analysis_id=analysis_0.analysis_id and (analysis_0.sourcename ='na_baylorf1_scfchunk.dpse' or  analysis_0.sourcename='na_scf_chunk_agambiae.fa' ) and feature_0.feature_id=feature_relationship_0.object_id and feature_relationship_0.subject_id=featureloc_0.feature_id and featureloc_0.srcfeature_id=$1   group by feature_0.feature_id</_sql>
+
+   <analysisfeature dump="cols">
+       <analysis_id>
+          <analysis dump="cols"/>
+       </analysis_id>
+   </analysisfeature>
+   <feature_relationship dump="all">
+       <subject_id>
+           <feature dump="select">
+              <analysisfeature dump="cols">
+                    <analysis_id>
+                       <analysis dump="cols"/>
+                   </analysis_id>
+              </analysisfeature>
+              <featureloc dump="cols">
+                 <rank test="yes">1</rank>
+                 <srcfeature_id>
+                     <feature dump="select">  
+                          <uniquename/>
+                          <dbxref_id/>
+                          <organism_id/>
+                          <name/>
+                          <type_id_id/>
+                          <seqlen/>                     
+                       	  <feature_dbxref dump="cols">
+	                      <dbxref_id >
+                                 <dbxref dump="cols"/>
+                              </dbxref_id>
+	                  </feature_dbxref>
+                          <featureprop dump="cols"/>
+                     </feature>
+                 </srcfeature_id>
+              </featureloc>
+              <featureloc dump="cols">
+                 <rank test="yes">0</rank>
+                 <srcfeature_id>
+                     <feature dump="select">
+                          <uniquename/>
+                          <dbxref_id/>
+                          <organism_id/>
+                          <type_id/>
+                       	  <feature_dbxref dump="cols">
+	                      <dbxref_id >
+                                 <dbxref dump="cols"/>
+                              </dbxref_id>
+	                  </feature_dbxref>
+                     </feature>
+                 </srcfeature_id>
+              </featureloc>
+           </feature>
+       </subject_id>
+   </feature_relationship>
+ </feature>
+
+
+</chado>

@@ -1,0 +1,69 @@
+1. Make a script that users can install as a cron job to clean out TMP.
+
+2. Longer term: rework XML::XORT::Util::GeneralUtil::Constants to use ENV directly,
+   eliminating the need for a conf file.
+
+3. add extenal object referencing functionality
+
+4. Auto-generate more specific XML Schema based on the input dumpspec
+
+5. Ability to deal with multiple unique key value(s)
+
+6. Option for user to specify which ddl.properties to use, so can switch on different schema version, Done: Aug 18,2005
+
+7. add a flag to set permission for batch deletion (specify only partial of unique key): Done Aug 18,2005
+
+8. add 'replace' which is combination of 'delete' + 'insert'
+
+9. have a option to output report to screen instead of file. without -p , it will to STDOUT Done on Oct 12, 2005
+
+10. improve the -i for loader so it can escape previous records.
+
+11. point out detail line for each data error: Done on Oct 12, 2005
+
+12. add a learning process, in dumper, for those with dump="all",  ony try to do joining for those have data
+
+13. make a more standard release package:
+      INSTALL
+      README
+      LICENSE
+      Makefile.PL
+      Sample data
+      Test suite
+      Source code
+      Bundle::Package
+
+13. re-visit non-anscii character, \, ', `, loss space etc.
+
+14. dumpspec parse need more work, especially for _sql
+
+15. verify that 1-1 relationship of object definition.
+
+16. select last_value from seq in DB.pm. which potentially cause problem: a. intervene inserting b. long name of certain table, e.g feature_relationshipprop_pub
+
+17. use placeholder to speed up, and eliminate the ',\ escape problem
+
+18. <name null="true"/> to represent null value. Done on Feb 2, 2006
+
+19. scenario: tend to update a unique key column, but NOT sure if this record exist or NOT. 
+
+20. to avoid unncessary INSERTION while specify delete operation(e.g delete feature_relationship will result in some unnecessary feature insert). One way to avoid: specify those foreign key column as 'lookup'. 
+
+21. add additional validation: use same local id for different record (Done 04/18/2006, to Validator, not Parser)
+
+22. in Dumpspec, split out text. 
+<uniquename test="eq">14-3-3&egr;&lt;up&gt;&Dgr;24&lt;/up&gt;/14-3-3&egr;&lt;up&gt;unspecified&lt;/up&gt;</uniquename>
+will split this text into several small value
+
+23. upgrade dumpspec so it can elimiate those feature WITHOUT featureloc
+
+24. add species flag to apollo_chado.pl
+
+25. clean up -w warn message
+
+26. work out encoding and entity declaration
+   -e option:0 (default): raw data from database 1: entity declartiaon 2: all defined Greek character to FlyBase-specified plain text
+
+27. long table name +trigger
+
+28. column name is same with table name, cvtermsynonym.synonym

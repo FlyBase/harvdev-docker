@@ -1,0 +1,78 @@
+
+warning: since Apollo now can deal with chado xml directly, this become obsolete.
+ we highly recommand chadoDB->chadoxml->apollo->chadoxml->chadoDB, 
+(see below step #2 and #3)
+
+instead of obsolete path: chadoDB->gamexml->chadoxml->apollo->gamexml->chadoxml->chadoDB
+(see below step #1-4)
+
+for XORT specification (or Chado XML), please see doc/XORTSpecification.doc 
+    or XORTSpecification.pdf
+
+another reference you may want to look at:
+Zhou, P., Emmert, D. and Zhang, P. 2005. Using Chado to Store Genome 
+Annotation Data  in Current Protocols in Bioinformatics  (A. D. Baxevanis, 
+D. B. Davison, R. D. M. Page, G. A. Petsko, L. D. Stein and G. D. Stormo, 
+eds) pp 6.9.1  6.1.27. John Wiley & Sons Inc, Hoboken, NJ.
+
+
+Frank Smutniak at FlyBase Harvard developed the converter between 
+GAME XML and chado XML formats, which is included as part of XML-XORT package in XML-XORT/conf/
+command for GameBridge convertor:(CTG: convert Chado XML into GAME xml, 
+GTC: convert GAME into chado xml)
+
+1. java classpath $path_to_GameChadoConv.jar GTC GTC game_file chado_file
+
+2. then you can load it into chadoDB with
+perl XML-XORT/bin/xort_loader.pl ...
+
+3. to dump out data from chadoDB into chadoxml, 
+  perl XML-XORT/bin/xort_dump.pl ....
+  we use the dumpspec XML-XORT/examples/dumpspec_apollo.xml
+  see XML-XORT/examples/apollo_chado.pl for how to use it.
+
+in XML-XORT/conf, there are a few dumpspec using for FlyBase, you can edit to adopt your need
+
+4. to convert from chadoXML to gameXML:
+  java classpath $path_to_GameChadoConv.jar CTG chado_file game_file
+
+
+the jar file come with this package  XML-XORT/conf/GameChadoConv.jar
+CTG
+        -a
+                //convert all
+        -g
+                //convert genes only
+        -c
+                //convert comp anal only
+GTC
+        -a
+                //convert all
+        -g
+                //convert genes only
+        -c
+                //convert comp anal only
+        -t
+                //convert transactional changes only
+        -p
+                //INCL Transposable Elements
+        -R
+                //SPECIAL HANDLING for rel4
+        -H
+                //SPECIAL HANDLING for Heterochromatin (pick up users provided aa 
+                // instead of calculated aa which is default)
+
+
+
+
+Notice:
+a. first following the direction of XML-XORT/Doc/readme_xort to 
+   make sure you setup XORT correctly. 
+
+b. current version not evidence data will not be included when convert 
+   from chadoXML to game, we are working on those now.
+
+c. The currently apollo-chado round trip stick to chado schema version 1.0.1. 
+    Once there are new schema version, we will update code or setup to 
+     synchronize it with database schema.
+

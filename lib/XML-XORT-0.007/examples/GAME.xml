@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<game>
+  <seq id="CG10834" length="294" focus="true">
+    <name>CG10834</name>
+    <residues>
+        TTAGGTGCCTGGATTTTGCACTACAATAATGATGTAGTTCTCGGAGGGCA
+        GCACAATCACCTCGTGAACCTTGGTGCGCAGACGTATTGTCACCAGCTCA
+        TTGCTGGCATCCAAATTGGTAATCATTTTGGCCGCCTTATAAGTTAAGGT
+        GCTGATCAAGGCCGCGTAATGCACGGTCAAGGTGTACTCCATGGTGGTCT
+        TGATTGGTATAGCGAACGGGTCCAAAATAATTATGCCAGAAACATTGGGG
+        TAGTTTTGATAGCGTTTCAGCAAATCCTCGATTTCCGCGGACAT</residues>
+  </seq>
+  <map_position type="tile" seq="CG10834">
+    <arm>2L</arm>
+    <span>
+      <start>22094544</start>
+      <end>22094837</end>
+    </span>
+  </map_position>
+  <annotation id="CG10834">
+    <name>CG10834</name>
+    <type>gene</type>
+    <date timestamp="1070338635000">Mon Dec 01 23:17:15 EST 2003</date>
+    <synonym>CG10834</synonym>
+    <property>
+      <type>cyto_range</type>
+      <value>40E3-40E3</value>
+    </property>
+    <property>
+      <type>gbunit</type>
+      <value>AE003782</value>
+    </property>
+    <property>
+      <type>symbol</type>
+      <value>CG10834</value>
+    </property>
+    <property>
+      <type>sp_status</type>
+      <value>Not in SwissProt real (computational)</value>
+    </property>
+    <gene id="CG10834" association="IS">
+      <name>CG10834</name>
+    </gene>
+    <dbxref>
+      <xref_db>Gadfly</xref_db>
+      <db_xref_id>CG10834</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>FlyBase</xref_db>
+      <db_xref_id>FBgn0032972</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>FlyBase</xref_db>
+      <db_xref_id>FBan0010834</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>FlyBase</xref_db>
+      <db_xref_id>FBtr0085943</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>Gadfly</xref_db>
+      <db_xref_id>CG10834-RA</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>GB_protein</xref_db>
+      <db_xref_id>AAF57245.1</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>Gadfly</xref_db>
+      <db_xref_id>CG10834-PA</db_xref_id>
+    </dbxref>
+    <dbxref>
+      <xref_db>FlyBase</xref_db>
+      <db_xref_id>FBpp0085297</db_xref_id>
+    </dbxref>
+    <feature_set id="CG10834-RA" produces_seq="CG10834-RA">
+      <name>CG10834-RA</name>
+      <type>transcript</type>
+      <date timestamp="1010524655000">Tue Jan 08 16:17:35 EST 2002</date>
+      <synonym>CG10834-RA</synonym>
+      <author>bmatthew</author>
+      <property>
+        <type>protein_id</type>
+        <value>AAF57245</value>
+      </property>
+      <property>
+        <type>sp_comment</type>
+        <value>Perfect match to HYPO SP record with corresponding FBgn</value>
+      </property>
+      <feature_span id="CG10834-RA">
+        <name>CG10834-RA</name>
+        <type>start_codon</type>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>292</end>
+          </span>
+        </seq_relationship>
+      </feature_span>
+      <feature_span id="CG10834:1">
+        <name>CG10834:1</name>
+        <type>exon</type>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>1</end>
+          </span>
+        </seq_relationship>
+      </feature_span>
+      <seq id="CG10834-RA" length="294" type="cdna" md5checksum="f8cb9242c7d8ef22caec05bc97aaf16e">
+        <name>CG10834-RA</name>
+        <residues>
+        ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAA
+        TGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCA
+        CCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTA
+        ACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCT
+        GGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCT
+        CCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</residues>
+      </seq>
+      <seq id="CG10834-PA" length="97" type="aa" md5checksum="804635b8597bb25528bffc47f28157b3">
+        <name>CG10834-PA</name>
+        <residues>
+        MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTL
+        TYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNPGT</residues>
+      </seq>
+    </feature_set>
+  </annotation>
+  <seq id="Contig6773_Contig6970-2">
+    <name>Contig6773_Contig6970-2</name>
+    <description>Contig6773_Contig6970-2 organism:"Drosophila pseudoobscura"</description>
+  </seq>
+  <seq id="Contig1006_Contig943-10">
+    <name>Contig1006_Contig943-10</name>
+    <description>Contig1006_Contig943-10 organism:"Drosophila pseudoobscura"</description>
+  </seq>
+  <seq id="146608_at_155" length="25" md5checksum="23705a442a6376a03ab31c2f4f783eda">
+    <name>146608_at_155</name>
+    <description>146608_at_155 X=441 Y=269</description>
+    <residues>
+        GCACCTTAACTTATAAGGCGGCCAA</residues>
+  </seq>
+  <seq id="CG10834-RA.31">
+    <name>CG10834-RA.31</name>
+    <description>CG10834-RA transcript from_gene[CG10834 CG10834 FBgn0032972] seq_release:3 mRNA_length:294 transcript_boundaries:(2L:21,940,027..21,940,320[-]) cyto:40E3-40E3 gene_info:[CG10834 gene symbol:CG10834 FBgn0032972 (GO:0005875 "microtubule associated protein")</description>
+    <residues>
+        ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAA
+        TGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCA
+        CCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTA
+        ACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCT
+        GGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCT
+        CCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</residues>
+  </seq>
+  <seq id="band-40E3" length="17432" md5checksum="">
+    <name>band-40E3</name>
+  </seq>
+  <seq id="BACR06H06" length="186935" md5checksum="98ffe2df6c1cbf4f0e453bd4058481f1">
+    <name>BACR06H06</name>
+  </seq>
+  <seq id="CT30343.2">
+    <name>CT30343.2</name>
+    <description>CT30343 CG10834|FBgn0032972|CT30343|FBan0010834 GO:[motor protein (GO:0003774)]  located on: 2L 40B5-40B5; |cDNA sequence</description>
+    <residues>
+        ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAA
+        TGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCA
+        CCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTA
+        ACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCT
+        GGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCT
+        CCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</residues>
+  </seq>
+  <seq id="BX628045">
+    <name>BX628045</name>
+    <description>gb|BX628045 DESCRIPTION:"BX628045 NAP1 Anopheles gambiae cDNA clone ANGNP1272C05T7, mRNA sequence." organism:"Anopheles gambiae" (08-AUG-2003)</description>
+    <residues>
+        AAATTGCTAGTTTTCTACNAAAGAAAAGTTTTTCCAGCTGTTTGTACCGA
+        TTGTTTCCATAAAAAGCTGTTATCCGTGATAATCAAGCAAAACGGGTTGC
+        AGGACTTGAAGCGCATACGTTGTATTTTCGTTGAATAAAAGAAGAAAATG
+        TCGCAAGAAGTGGAGGAAACCCTAAAGCGCATCCAATCGCACAAAGGCGT
+        CGTAGGAACGATTGTGGTCAACAATGAAGGTATTCCAGTGAAAAGTACCC
+        TCGACAACACGTCCACCGTGCAGTACGCTGGGTTGATGAGCCAGCTGTCA
+        GACAAGGCCCGGTCGGTGGTCCGTGATCTGGATNCGTCGAACGATCTCTC
+        CTTTCTACGGGTGCGGTCCAAAAAGCACGAAATCATGGTCGCTCCCGATA
+        AGGACTTTCTGCTGATCGTCATCCAAAACCCGACGGACTGAGGTACTCGT
+        GCGTGCGCGCGGTGGTGATGCTGCTACAGCGAGGCAGCTGGCTTGTGTGG
+        CGTATATTTTCCCTTTTTTTGTTCTATTTTATCGTGCGTGTTGGCAACAA
+        CGCTTCAAATGGCTTGTCTGAGTGTATGTGCGTCCTGGTCCGGGGACGAT
+        TTAAT</residues>
+  </seq>
+  <seq id="146608_at_80" length="25" md5checksum="3f9812ae3e0aee267a284159d8326f7e">
+    <name>146608_at_80</name>
+    <description>146608_at_80 X=372 Y=547</description>
+    <residues>
+        TTTTGGACCCGTTCGCTATACCAAT</residues>
+  </seq>
+  <seq id="146608_at_175" length="25" md5checksum="f15d3bce7ddb6687276891d57e11f084">
+    <name>146608_at_175</name>
+    <description>146608_at_175 X=261 Y=325</description>
+    <residues>
+        GCCAAAATGATTACCAATTTGGATG</residues>
+  </seq>
+  <seq id="146608_at_250" length="25" md5checksum="dd198ea9b810db54a936d31e7cb8e949">
+    <name>146608_at_250</name>
+    <description>146608_at_250 X=222 Y=7</description>
+    <residues>
+        ATTGTGCTGCCCTCCGAGAACTACA</residues>
+  </seq>
+  <seq id="146608_at_128" length="25" md5checksum="bd08b98a1971bdc3a43af9449bdee99f">
+    <name>146608_at_128</name>
+    <description>146608_at_128 X=503 Y=503</description>
+    <residues>
+        TGACCGTGCATTACGCGGCCTTGAT</residues>
+  </seq>
+  <seq id="Q9V3S4">
+    <name>Q9V3S4</name>
+    <description>ID|Q9V3S4|SPTR|Q9V3S4 DESCRIPTION:"ROBL protein (RE64145p)" organism:"Drosophila melanogaster" EMBL:"AE003803; AAF57861.1; -." EMBL:"AF141920; AAD45986.1; -." EMBL:"AF141921; AAD45987.1; -." EMBL:"AY071587; AAL49209.1; -." (01-MAY-2000)</description>
+    <residues>
+        MSQEVEETLKRIQSHKGVVGTIVVNNEGIPVKSTLDNTTTVQYAGLMSQL
+        ADKARSVVRDLDPSNDMTFLRVRSKKHEIMVAPDKDFILIVIQNPTD</residues>
+  </seq>
+  <seq id="Contig3423_Contig4281-1">
+    <name>Contig3423_Contig4281-1</name>
+    <description>Contig3423_Contig4281-1 organism:"Drosophila pseudoobscura"</description>
+  </seq>
+  <seq id="Q9NP97">
+    <name>Q9NP97</name>
+    <description>ID|DL2A_HUMAN|SPTR|Q9NP97; Q96IV3; Q9NQM2 DESCRIPTION:"Dynein light chain 2A, cytoplasmic (Dynein-associated protein KM23) (Bithoraxoid-like protein) (BLP) (HSPC162)" organism:"Homo sapiens" EMBL:"AF161511; AAF29126.1; -." EMBL:"AF132750; AAL75951.1; -."</description>
+    <residues>
+        MAEVEETLKRLQSQKGVQGIIVVNTEGIPIKSTMDNPTTTQYASLMHSFI
+        LKARSTVRDIDPQNDLTFLRIRSKKNEIMVAPDKDYFLIVIQNPTE</residues>
+  </seq>
+  <seq id="BACR13A13" length="172746" md5checksum="204b96799758920f61fb877fd16935fb">
+    <name>BACR13A13</name>
+  </seq>
+  <seq id="146608_at_23" length="25" md5checksum="22c88a7494d32ad533e2afa8f24d904a">
+    <name>146608_at_23</name>
+    <description>146608_at_23 X=159 Y=131</description>
+    <residues>
+        AAATCGAGGATTTGCTGAAACGCTA</residues>
+  </seq>
+  <seq id="Q8TF09">
+    <name>Q8TF09</name>
+    <description>ID|DL2B_HUMAN|SPTR|Q8TF09 DESCRIPTION:"Dynein light chain 2B, cytoplasmic" organism:"Homo sapiens" EMBL:"AF125108; AAL75945.1; -." (10-OCT-2003)</description>
+    <residues>
+        MAEVEETLKRIQSHKGVIGTMVVNAEGIPIRTTLDNSTTVQYAGLLHHLT
+        MKAKSTVRDIDPQNDLTFLRIRSKKHEIMVAPDKEYLLIVIQNPCE</residues>
+  </seq>
+  <seq id="146608_at_166" length="25" md5checksum="08dc6cf9dcb7ab7be68153387af806c2">
+    <name>146608_at_166</name>
+    <description>146608_at_166 X=609 Y=573</description>
+    <residues>
+        TATAAGGCGGCCAAAATGATTACCA</residues>
+  </seq>
+  <seq id="Q9DAJ5">
+    <name>Q9DAJ5</name>
+    <description>ID|DL2B_MOUSE|SPTR|Q9DAJ5 DESCRIPTION:"Dynein light chain 2B, cytoplasmic" organism:"Mus musculus" EMBL:"AK005789; BAB24240.1; -." EMBL:"BC048623; AAH48623.1; -." MGD:"MGI:1922715; Dncl2b." (10-OCT-2003)</description>
+    <residues>
+        MTEVEETLKRIQSHKGVIGTMVVNAEGIPIRTTLDNSTTVQYAGLLHQLT
+        MKAKSTVRDIDPQNDLTFLRIRSKKHEIMVAPDKEYLLIVIQNPCE</residues>
+  </seq>
+  <seq id="Q9V9P1">
+    <name>Q9V9P1</name>
+    <description>ID|Q9V9P1|SPTR|Q9V9P1 DESCRIPTION:"CG10834 protein" organism:"Drosophila melanogaster" EMBL:"AE003782; AAF57245.1; -." (01-MAY-2000)</description>
+    <residues>
+        MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTL
+        TYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNPGT</residues>
+  </seq>
+  <seq id="146608_at_202" length="25" md5checksum="5826fef933999a1bb93e176de5cdc8e6">
+    <name>146608_at_202</name>
+    <description>146608_at_202 X=192 Y=77</description>
+    <residues>
+        AGCAATGAGCTGGTGACAATACGTC</residues>
+  </seq>
+  <seq id="146608_at_230" length="25" md5checksum="c2b409762b500b6cad9a5f910f9554af">
+    <name>146608_at_230</name>
+    <description>146608_at_230 X=217 Y=357</description>
+    <residues>
+        GCACCAAGGTTCACGAGGTGATTGT</residues>
+  </seq>
+  <seq id="BX555324">
+    <name>BX555324</name>
+    <description>gb|BX555324 DESCRIPTION:"BX555324 Glossina morsitans morsitans adult infected gut Glossina morsitans morsitans cDNA clone Tse1g09_q1c, mRNA sequence." organism:"Glossina morsitans" (10-OCT-2003)</description>
+    <residues>
+        ATCTTCAAACGAGAAAAAATAATTGTATTTTTTCATTGCAATTAAAAGAA
+        ATATATATCTTTTCATTATGTCGCAAGAAGTTGAGGAAACTTTAAAGCGC
+        ATACAATCTCATAAAGGCGTTGTCGGAACTATCGTGGTGAACAATGAAGG
+        CATTCCAGTTAAATCTACGCTAGATAATACCACCACGGATCAATACGCTG
+        GTCTTATGAGCCAATTGGCCGATAAAGCACGCAGTGTGGTGCGAGATTTA
+        GATCCATCTAATGATTTGACATTTTTACGAGTACGCTCGAAGAAACATGA
+        GATTATGGTGGCACCTGACAGGGATTTTATTTTGATTGTTATACAAAACC
+        CAACCGACTAATTTCTCTTAGATCATCCTCTTACTGCTCTTCGATATATA
+        TACTATACTAGTCCGTGAGATTTAAAAAATTGTTGAATTGTTCTTAGAAC
+        ATTTCCAAAACTTTTAAAATAAATTCTATTTTATCTCGCTTGGTGATTCT
+        TCCCCGAATTGCATGC</residues>
+  </seq>
+  <seq id="146608_at_167" length="25" md5checksum="556a3ad284bd32102a590fa9b780cb51">
+    <name>146608_at_167</name>
+    <description>146608_at_167 X=615 Y=19</description>
+    <residues>
+        ATAAGGCGGCCAAAATGATTACCAA</residues>
+  </seq>
+  <seq id="146608_at_85" length="25" md5checksum="bf5764df8d781ecfc487d964fe8ecb9d">
+    <name>146608_at_85</name>
+    <description>146608_at_85 X=210 Y=389</description>
+    <residues>
+        GACCCGTTCGCTATACCAATCAAGA</residues>
+  </seq>
+  <seq id="Contig5998_Contig6941-1">
+    <name>Contig5998_Contig6941-1</name>
+    <description>Contig5998_Contig6941-1 organism:"Drosophila pseudoobscura"</description>
+  </seq>
+  <seq id="AAH58437">
+    <name>AAH58437</name>
+    <description>ID|AAH58437|SPTR|AAH58437 DESCRIPTION:"Dynein-associated protein RKM23" organism:"Rattus norvegicus" EMBL:"BC058437; AAH58437.1; -." (08-OCT-2003)</description>
+    <residues>
+        MAEVEETLKRLQSQKGVQGIIVVNTEGIPIKSTMDNPTTTQYANLMHNFI
+        LKARSTVREIDPQNDLTFLRIRSKKNEIMVAPDKDYFLIVIQNPTE</residues>
+  </seq>
+  <seq id="146608_at_215" length="25" md5checksum="7ddc2770433d42dff208c22c3e38db26">
+    <name>146608_at_215</name>
+    <description>146608_at_215 X=372 Y=505</description>
+    <residues>
+        TGACAATACGTCTGCGCACCAAGGT</residues>
+  </seq>
+  <seq id="Q7ZUX8">
+    <name>Q7ZUX8</name>
+    <description>ID|Q7ZUX8|SPTR|Q7ZUX8 DESCRIPTION:"Similar to dynein, cytoplasmic, light polypeptide 2A" organism:"Brachydanio rerio (Zebrafish)" EMBL:"BC046084; AAH46084.1; -." (01-JUN-2003)</description>
+    <residues>
+        MAEVEETIKRIQSQKGVQGIIIVNAEGIPIKSTLDNTSTVQYAANIHQLL
+        MKARGIVRDIDPQNDLTFLRVRSKKNEIMIAPDKDYFLIVIQNPTE</residues>
+  </seq>
+  <seq id="band-40" length="838748" md5checksum="">
+    <name>band-40</name>
+  </seq>
+  <seq id="146608_at_94" length="25" md5checksum="397d57325f101331887d58e7c1fd4c57">
+    <name>146608_at_94</name>
+    <description>146608_at_94 X=324 Y=353</description>
+    <residues>
+        GCTATACCAATCAAGACCACCATGG</residues>
+  </seq>
+  <seq id="146608_at_136" length="25" md5checksum="fa9c46d7d7fdc95c13b8b3e64262751c">
+    <name>146608_at_136</name>
+    <description>146608_at_136 X=247 Y=215</description>
+    <residues>
+        CATTACGCGGCCTTGATCAGCACCT</residues>
+  </seq>
+  <seq id="CF350144">
+    <name>CF350144</name>
+    <description>gb|CF350144 DESCRIPTION:"DD3-45E Diff. display PCR-Script Amp lib. pg. 14-30 Haematobia irritans irritans cDNA, mRNA sequence." organism:"Haematobia irritans" (30-DEC-2003)</description>
+    <residues>
+        TTTTTTTTTTTCACAATAATAATTTAAGTATTTATTCCAAATATGTTTCT
+        AAATTTTACACAAATACTAAAATTTAATCGGTTGGATTTTGAATGACTAT
+        CAATATGAAGTCCTTGTCGGGTGCAACCATAATCTCATGTTTCTTTGATC
+        GTACACGCAAAAATGTTAAATCGTTCGATGGATCCAAATCACGTACAACA
+        CTACGGGCCTTATCCGACAATTGACTCATTAAGCCAGCATATTGGACAGT
+        AGTGGTATTGTCCAACGTTGATTTTACTGGAATGCCTTCGTTATTCACAA
+        CAATTGTACCGACAACACCTTTGTGGGCTTGTATGCGCTTTAAAGTTTCT
+        TCAACTTCTTGTGACATTCTAGTTTATAAAATTATTCACAGAAAACAAAG
+        ATTGAAGTGACAGCTCAAAATTGTTTTTTTCTTGACTGTCGTCATCTGTT
+        GTATGGACGAAAAAAAAAAAGCTTGCTTTTTTTTTTTCCAGTATCCGTCA
+        TTGGAGCACTGTAATTGATTTCATATCAATTGATTACAAATAAATAGAAT
+        AAACATGGTTGCTGTCAAGAAACAGAAAAAAGCCTTGG</residues>
+  </seq>
+  <seq id="Q9SWQ6">
+    <name>Q9SWQ6</name>
+    <description>ID|Q9SWQ6|SPTR|Q9SWQ6 DESCRIPTION:"Outer arm dynein light chain" organism:"Chlamydomonas reinhardtii" EMBL:"AF140239; AAD45881.1; -." (01-MAY-2000)</description>
+    <residues>
+        MVDIAAVDETFKRLQSHKGVLGIIVINAEGIAIRTTFDNDLTVQYAALVS
+        HFTVKARSAVRKLDGDNDLKFLRIRSKKHEIMIAPEFERSHEYYLVVVQD
+        PSREA</residues>
+  </seq>
+  <seq id="CG10834-RA.32">
+    <name>CG10834-RA.32</name>
+    <description>CG10834-RA type=mRNA; loc=2L:complement(21940027..21940320); ID=CG10834-RA; name=CG10834-RA; db_xref='CG10834,FlyBase:FBgn0032972'; len=294</description>
+    <residues>
+        ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAA
+        TGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCA
+        CCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTA
+        ACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCT
+        GGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCT
+        CCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</residues>
+  </seq>
+  <seq id="Q9VQA6">
+    <name>Q9VQA6</name>
+    <description>ID|Q9VQA6|SPTR|Q9VQA6 DESCRIPTION:"CG10838 protein" organism:"Drosophila melanogaster" EMBL:"AE003583; AAF51271.1; -." (01-MAY-2000)</description>
+    <residues>
+        MSAEVEELLKRFQSMKNVTGIVVVDNDGIPIKTTLDYTLTLHYAALMQTV
+        REKARQVVLDLDATNEFTFLRLRTEQNEVMLCPQEDYFIMVIQSPCD</residues>
+  </seq>
+  <seq id="band-40E" length="87160" md5checksum="">
+    <name>band-40E</name>
+  </seq>
+  <seq id="Q7PCW9">
+    <name>Q7PCW9</name>
+    <description>ID|Q7PCW9|SPTR|Q7PCW9 DESCRIPTION:"ENSANGP00000015035 (ENSANGP00000018736) (Fragment)" organism:"Anopheles gambiae str. PEST" EMBL:"AAAB01008851; EAA07371.2; -." EMBL:"AAAB01008904; EAA09669.2; -." (01-MAR-2004)</description>
+    <residues>
+        SQEVEETLKRIQSHKGVVGTIVVNNEGIPVKSTLDNTSTVQYAGLMSQLS
+        DKARSVVRDLDPSNDLSFLRVRSKKHEIMVAPDKDFLLIVIQNPTD</residues>
+  </seq>
+  <seq id="Q8T899">
+    <name>Q8T899</name>
+    <description>ID|Q8T899|SPTR|Q8T899 DESCRIPTION:"Roadblock-related dynein light chain" organism:"Ciona intestinalis" EMBL:"AB074929; BAB85843.1; -." (01-JUN-2002)</description>
+    <residues>
+        MSEVEETIKRIQSHKGVLGIIVVNSEGIPILTSLDNSTTVQYAGLIHQLT
+        MKARSTVRDIDPQNDLTFLRLRSKKHEIMVAPDKEYLLIVIQNPSE</residues>
+  </seq>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.dmel</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1088661271000">Thu Jul 01 01:54:31 EDT 2004</date>
+    <result_set id=":1577734_blastx_masked">
+      <name>Q9V3S4-AE003782.4-aa_SPTR.dmel-blastx_masked</name>
+      <result_span id=":5411208">
+        <type>blastx_masked:aa_SPTR.dmel</type>
+        <score>180</score>
+        <output>
+          <type>score</type>
+          <value>180</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>10</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q9V3S4">
+          <span>
+            <start>21854232</start>
+            <end>21854326</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1577731_blastx_masked">
+      <name>Q9VQA6-AE003782.4-aa_SPTR.dmel-blastx_masked</name>
+      <result_span id=":5411205">
+        <type>blastx_masked:aa_SPTR.dmel</type>
+        <score>232</score>
+        <output>
+          <type>score</type>
+          <value>232</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>61</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHE</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q9VQA6">
+          <span>
+            <start>21854232</start>
+            <end>21854309</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHE</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1577719_blastx_masked">
+      <name>Q9V9P1-AE003782.4-aa_SPTR.dmel-blastx_masked</name>
+      <result_span id=":5411183">
+        <type>blastx_masked:aa_SPTR.dmel</type>
+        <score>403</score>
+        <output>
+          <type>score</type>
+          <value>403</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>4</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNPGT</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q9V9P1">
+          <span>
+            <start>21854232</start>
+            <end>21854328</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNPGT</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>bdgp_unknown_clonelocator</program>
+    <database>scaffoldBACs</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1103658817000">Tue Dec 21 14:53:37 EST 2004</date>
+    <result_set id="BACR13A13-hit">
+      <name>BACR13A13-hit</name>
+      <result_span id="BACR13A13-hsp">
+        <type>bdgp_unknown_clonelocator:scaffoldBACs</type>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>-21603</start>
+            <end>151142</end>
+          </span>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="BACR13A13">
+          <span>
+            <start>-22094542</start>
+            <end>-21921797</end>
+          </span>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id="BACR06H06-hit">
+      <name>BACR06H06-hit</name>
+      <result_span id="BACR06H06-hsp">
+        <type>bdgp_unknown_clonelocator:scaffoldBACs</type>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>-95457</start>
+            <end>91477</end>
+          </span>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="BACR06H06">
+          <span>
+            <start>-22094542</start>
+            <end>-21907608</end>
+          </span>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>dmel_r3_to_dmel_r4_migration</program>
+    <database>dmel_r3_affy_oligos</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1106695338000">Tue Jan 25 18:22:18 EST 2005</date>
+    <result_set id="146608_at_166-hit:69030">
+      <name>146608_at_166-hit:69030</name>
+      <result_span id="146608_at_166-hsp:69030">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_155-hit:69031">
+      <name>146608_at_155-hit:69031</name>
+      <result_span id="146608_at_155-hsp:69031">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_136-hit:69032">
+      <name>146608_at_136-hit:69032</name>
+      <result_span id="146608_at_136-hsp:69032">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_128-hit:69033">
+      <name>146608_at_128-hit:69033</name>
+      <result_span id="146608_at_128-hsp:69033">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_250-hit:69024">
+      <name>146608_at_250-hit:69024</name>
+      <result_span id="146608_at_250-hsp:69024">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_94-hit:69034">
+      <name>146608_at_94-hit:69034</name>
+      <result_span id="146608_at_94-hsp:69034">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_230-hit:69025">
+      <name>146608_at_230-hit:69025</name>
+      <result_span id="146608_at_230-hsp:69025">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_85-hit:69035">
+      <name>146608_at_85-hit:69035</name>
+      <result_span id="146608_at_85-hsp:69035">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_215-hit:69026">
+      <name>146608_at_215-hit:69026</name>
+      <result_span id="146608_at_215-hsp:69026">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_80-hit:69036">
+      <name>146608_at_80-hit:69036</name>
+      <result_span id="146608_at_80-hsp:69036">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_202-hit:69027">
+      <name>146608_at_202-hit:69027</name>
+      <result_span id="146608_at_202-hsp:69027">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_23-hit:69037">
+      <name>146608_at_23-hit:69037</name>
+      <result_span id="146608_at_23-hsp:69037">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_175-hit:69028">
+      <name>146608_at_175-hit:69028</name>
+      <result_span id="146608_at_175-hsp:69028">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+    <result_set id="146608_at_167-hit:69029">
+      <name>146608_at_167-hit:69029</name>
+      <result_span id="146608_at_167-hsp:69029">
+        <type>dmel_r3_to_dmel_r4_migration:dmel_r3_affy_oligos</type>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>aubrey_cytolocator</program>
+    <database>cytology</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1103665903000">Tue Dec 21 16:51:43 EST 2004</date>
+    <result_set id="band-40E3-hit">
+      <name>band-40E3-hit</name>
+      <result_span id="band-40E3-hsp">
+        <type>aubrey_cytolocator:cytology</type>
+      </result_span>
+    </result_set>
+    <result_set id="band-40-hit">
+      <name>band-40-hit</name>
+      <result_span id="band-40-hsp">
+        <type>aubrey_cytolocator:cytology</type>
+      </result_span>
+    </result_set>
+    <result_set id="band-40E-hit">
+      <name>band-40E-hit</name>
+      <result_span id="band-40E-hsp">
+        <type>aubrey_cytolocator:cytology</type>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.othinv</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1089182921000">Wed Jul 07 02:48:41 EDT 2004</date>
+    <result_set id=":1578468_blastx_masked">
+      <name>Q8T899-AE003782.4-aa_SPTR.othinv-blastx_masked</name>
+      <result_span id=":5412214">
+        <type>blastx_masked:aa_SPTR.othinv</type>
+        <score>169</score>
+        <output>
+          <type>score</type>
+          <value>169</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>288</start>
+            <end>10</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q8T899">
+          <span>
+            <start>21854233</start>
+            <end>21854325</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.insect</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1088687802000">Thu Jul 01 09:16:42 EDT 2004</date>
+    <result_set id=":1577747_blastx_masked">
+      <name>Q7PCW9-AE003782.4-aa_SPTR.insect-blastx_masked</name>
+      <result_span id=":5411228">
+        <type>blastx_masked:aa_SPTR.insect</type>
+        <score>175</score>
+        <output>
+          <type>score</type>
+          <value>175</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>291</start>
+            <end>10</end>
+          </span>
+          <alignment>SAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q7PCW9">
+          <span>
+            <start>21854232</start>
+            <end>21854325</end>
+          </span>
+          <alignment>SAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.primate</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1088722523000">Thu Jul 01 18:55:23 EDT 2004</date>
+    <result_set id=":1583423_blastx_masked">
+      <name>Q9NP97-AE003782.4-aa_SPTR.primate-blastx_masked</name>
+      <result_span id=":5423928">
+        <type>blastx_masked:aa_SPTR.primate</type>
+        <score>158</score>
+        <output>
+          <type>score</type>
+          <value>158</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>288</start>
+            <end>10</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q9NP97">
+          <span>
+            <start>21854233</start>
+            <end>21854325</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1583417_blastx_masked">
+      <name>Q8TF09-AE003782.4-aa_SPTR.primate-blastx_masked</name>
+      <result_span id=":5423919">
+        <type>blastx_masked:aa_SPTR.primate</type>
+        <score>169</score>
+        <output>
+          <type>score</type>
+          <value>169</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>288</start>
+            <end>10</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q8TF09">
+          <span>
+            <start>21854233</start>
+            <end>21854325</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.rodent</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1088704749000">Thu Jul 01 13:59:09 EDT 2004</date>
+    <result_set id=":1583399_blastx_masked">
+      <name>Q9DAJ5-AE003782.4-aa_SPTR.rodent-blastx_masked</name>
+      <result_span id=":5423898">
+        <type>blastx_masked:aa_SPTR.rodent</type>
+        <score>166</score>
+        <output>
+          <type>score</type>
+          <value>166</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>285</start>
+            <end>10</end>
+          </span>
+          <alignment>EIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q9DAJ5">
+          <span>
+            <start>21854234</start>
+            <end>21854325</end>
+          </span>
+          <alignment>EIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1583398_blastx_masked">
+      <name>AAH58437-AE003782.4-aa_SPTR.rodent-blastx_masked</name>
+      <result_span id=":5423897">
+        <type>blastx_masked:aa_SPTR.rodent</type>
+        <score>153</score>
+        <output>
+          <type>score</type>
+          <value>153</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>288</start>
+            <end>10</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="AAH58437">
+          <span>
+            <start>21854233</start>
+            <end>21854325</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>assembly</program>
+    <database>path</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1086881503000">Thu Jun 10 11:31:43 EDT 2004</date>
+    <result_set id=":1402847_assembly">
+      <name>assembly:path-AE003782.4</name>
+      <result_span id=":5154670">
+        <type>assembly:path</type>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>-240311</start>
+            <end>57849</end>
+          </span>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="AE003782.4">
+          <span>
+            <start>57790</start>
+            <end>355950</end>
+          </span>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>genscan_masked</program>
+    <database>dummy</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>Gene Prediction</value>
+    </property>
+    <date timestamp="1083172199000">Wed Apr 28 13:09:59 EDT 2004</date>
+    <result_set id=":256711_genscan_masked">
+      <name>240606,240312-AE003782.4-dummy-GENSCAN_masked</name>
+      <result_span id=":678284">
+        <type>genscan_masked:dummy</type>
+        <score>29.25</score>
+        <output>
+          <type>score</type>
+          <value>29.25</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>1</end>
+          </span>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>sim4</program>
+    <database>na_transcript.dmel.RELEASE31</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1082514386000">Tue Apr 20 22:26:26 EDT 2004</date>
+    <result_set id=":108634_sim4">
+      <name>CG10834-RA.31-AE003782.4-na_transcript.dmel.RELEASE31-sim4</name>
+      <result_span id=":316054">
+        <type>sim4:na_transcript.dmel.RELEASE31</type>
+        <score>100</score>
+        <output>
+          <type>score</type>
+          <value>100</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>1</end>
+          </span>
+          <alignment>ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAATGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCACCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTAACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCTGGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCTCCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="CG10834-RA.31">
+          <span>
+            <start>21854232</start>
+            <end>21854525</end>
+          </span>
+          <alignment>ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAATGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCACCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTAACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCTGGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCTCCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>sim4</program>
+    <database>na_transcript.dmel.RELEASE32</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1083180585000">Wed Apr 28 15:29:45 EDT 2004</date>
+    <result_set id=":273393_sim4">
+      <name>CG10834-RA.32-AE003782.4-na_transcript.dmel.RELEASE32-sim4</name>
+      <result_span id=":750126">
+        <type>sim4:na_transcript.dmel.RELEASE32</type>
+        <score>100</score>
+        <output>
+          <type>score</type>
+          <value>100</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>1</end>
+          </span>
+          <alignment>ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAATGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCACCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTAACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCTGGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCTCCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="CG10834-RA.32">
+          <span>
+            <start>21854232</start>
+            <end>21854525</end>
+          </span>
+          <alignment>ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAATGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCACCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTAACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCTGGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCTCCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>sim4</program>
+    <database>na_gadfly.dros.RELEASE2</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1083439266000">Sat May 01 15:21:06 EDT 2004</date>
+    <result_set id=":492444_sim4">
+      <name>CT30343.2-AE003782.4-na_gadfly.dros.RELEASE2-sim4</name>
+      <result_span id=":1523515">
+        <type>sim4:na_gadfly.dros.RELEASE2</type>
+        <score>100</score>
+        <output>
+          <type>score</type>
+          <value>100</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>1</end>
+          </span>
+          <alignment>ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAATGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCACCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTAACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCTGGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCTCCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="CT30343.2">
+          <span>
+            <start>21854232</start>
+            <end>21854525</end>
+          </span>
+          <alignment>ATGTCCGCGGAAATCGAGGATTTGCTGAAACGCTATCAAAACTACCCCAATGTTTCTGGCATAATTATTTTGGACCCGTTCGCTATACCAATCAAGACCACCATGGAGTACACCTTGACCGTGCATTACGCGGCCTTGATCAGCACCTTAACTTATAAGGCGGCCAAAATGATTACCAATTTGGATGCCAGCAATGAGCTGGTGACAATACGTCTGCGCACCAAGGTTCACGAGGTGATTGTGCTGCCCTCCGAGAACTACATCATTATTGTAGTGCAAAATCCAGGCACCTAA</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.plant</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1088751040000">Fri Jul 02 02:50:40 EDT 2004</date>
+    <result_set id=":1545791_blastx_masked">
+      <name>Q9SWQ6-AE003782.4-aa_SPTR.plant-blastx_masked</name>
+      <result_span id=":5350635">
+        <type>blastx_masked:aa_SPTR.plant</type>
+        <score>160</score>
+        <output>
+          <type>score</type>
+          <value>160</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>288</start>
+            <end>61</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHE</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q9SWQ6">
+          <span>
+            <start>21854236</start>
+            <end>21854311</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHE</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>tblastx_masked</program>
+    <database>na_dbEST.insect</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1088771735000">Fri Jul 02 08:35:35 EDT 2004</date>
+    <result_set id=":1411078_tblastx_masked">
+      <name>BX628045-AE003782.4-na_dbEST.insect-tblastx_masked</name>
+      <result_span id=":5167361">
+        <type>tblastx_masked:na_dbEST.insect</type>
+        <score>229</score>
+        <output>
+          <type>score</type>
+          <value>229</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>10</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="BX628045">
+          <span>
+            <start>21854379</start>
+            <end>21854663</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1411077_tblastx_masked">
+      <name>CF350144-AE003782.4-na_dbEST.insect-tblastx_masked</name>
+      <result_span id=":5167360">
+        <type>tblastx_masked:na_dbEST.insect</type>
+        <score>238</score>
+        <output>
+          <type>score</type>
+          <value>238</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>-8</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNPGT*IIV</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="CF350144">
+          <span>
+            <start>21854598</start>
+            <end>21854296</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNPGT*IIV</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1411063_tblastx_masked">
+      <name>BX555324-AE003782.4-na_dbEST.insect-tblastx_masked</name>
+      <result_span id=":5167346">
+        <type>tblastx_masked:na_dbEST.insect</type>
+        <score>238</score>
+        <output>
+          <type>score</type>
+          <value>238</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>303</start>
+            <end>-17</end>
+          </span>
+          <alignment>LYIMSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNPGT*IIVLSH</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="BX555324">
+          <span>
+            <start>21854290</start>
+            <end>21854607</end>
+          </span>
+          <alignment>LYIMSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNPGT*IIVLSH</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>blastx_masked</program>
+    <database>aa_SPTR.othvert</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <property>
+      <type>type</type>
+      <value>BLASTX Similarity to Fly</value>
+    </property>
+    <date timestamp="1088811796000">Fri Jul 02 19:43:16 EDT 2004</date>
+    <result_set id=":1573130_blastx_masked">
+      <name>Q7ZUX8-AE003782.4-aa_SPTR.othvert-blastx_masked</name>
+      <result_span id=":5403403">
+        <type>blastx_masked:aa_SPTR.othvert</type>
+        <score>163</score>
+        <output>
+          <type>score</type>
+          <value>163</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>288</start>
+            <end>10</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Q7ZUX8">
+          <span>
+            <start>21854233</start>
+            <end>21854325</end>
+          </span>
+          <alignment>AEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEXXXXXXXXXXXXXXQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+  <computational_analysis>
+    <program>tblastxwrap_masked</program>
+    <database>na_baylorf1_scfchunk.dpse</database>
+    <property>
+      <type>qseq_type</type>
+      <value>genomic</value>
+    </property>
+    <date timestamp="1089228342000">Wed Jul 07 15:25:42 EDT 2004</date>
+    <result_set id=":1539512_tblastxwrap_masked">
+      <name>Contig5998_Contig6941-1-AE003782.4_22053020_22152392-na_baylorf1</name>
+      <result_span id=":5339415">
+        <type>tblastxwrap_masked:na_baylorf1_scfchunk.dpse</type>
+        <score>178</score>
+        <output>
+          <type>score</type>
+          <value>178</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>228</start>
+            <end>10</end>
+          </span>
+          <alignment>ILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Contig5998_Contig6941-1">
+          <span>
+            <start>21897698</start>
+            <end>21897916</end>
+          </span>
+          <alignment>ILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1539520_tblastxwrap_masked">
+      <name>Contig3423_Contig4281-1-AE003782.4_22053020_22152392-na_baylorf1</name>
+      <result_span id=":5339423">
+        <type>tblastxwrap_masked:na_baylorf1_scfchunk.dpse</type>
+        <score>144</score>
+        <output>
+          <type>score</type>
+          <value>144</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>282</start>
+            <end>10</end>
+          </span>
+          <alignment>IEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Contig3423_Contig4281-1">
+          <span>
+            <start>21954879</start>
+            <end>21955151</end>
+          </span>
+          <alignment>IEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1539511_tblastxwrap_masked">
+      <name>Contig5998_Contig6941-1-AE003782.4_22053020_22152392-na_baylorf1</name>
+      <result_span id=":5339414">
+        <type>tblastxwrap_masked:na_baylorf1_scfchunk.dpse</type>
+        <score>138</score>
+        <output>
+          <type>score</type>
+          <value>138</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>282</start>
+            <end>13</end>
+          </span>
+          <alignment>IEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQN</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Contig5998_Contig6941-1">
+          <span>
+            <start>21896950</start>
+            <end>21896681</end>
+          </span>
+          <alignment>IEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQN</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1539510_tblastxwrap_masked">
+      <name>Contig1006_Contig943-10-AE003782.4_22053020_22152392-na_baylorf1</name>
+      <result_span id=":5339413">
+        <type>tblastxwrap_masked:na_baylorf1_scfchunk.dpse</type>
+        <score>263</score>
+        <output>
+          <type>score</type>
+          <value>263</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>294</start>
+            <end>10</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Contig1006_Contig943-10">
+          <span>
+            <start>21936014</start>
+            <end>21936298</end>
+          </span>
+          <alignment>MSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+    <result_set id=":1539509_tblastxwrap_masked">
+      <name>Contig6773_Contig6970-2-AE003782.4_22053020_22152392-na_baylorf1</name>
+      <result_span id=":5339412">
+        <type>tblastxwrap_masked:na_baylorf1_scfchunk.dpse</type>
+        <score>348</score>
+        <output>
+          <type>score</type>
+          <value>348</value>
+        </output>
+        <seq_relationship type="query" seq="CG10834">
+          <span>
+            <start>300</start>
+            <end>10</end>
+          </span>
+          <alignment>YIMSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+        <seq_relationship type="subject" seq="Contig6773_Contig6970-2">
+          <span>
+            <start>21926378</start>
+            <end>21926088</end>
+          </span>
+          <alignment>YIMSAEIEDLLKRYQNYPNVSGIIILDPFAIPIKTTMEYTLTVHYAALISTLTYKAAKMITNLDASNELVTIRLRTKVHEVIVLPSENYIIIVVQNP</alignment>
+        </seq_relationship>
+      </result_span>
+    </result_set>
+  </computational_analysis>
+</game>
