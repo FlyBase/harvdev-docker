@@ -59,6 +59,8 @@ RUN curl -L http://xrl.us/cpanm > /bin/cpanm && chmod +x /bin/cpanm
 
 RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --quiet --notest XML::Parser::PerlSAX &&\
+    cpanm --quiet --notest XML::XQL &&\
+    cpanm --quiet --notest XML::XPath &&\
     cpanm --quiet --notest DBI &&\
     cpanm --quiet --notest Bio::DB::GenBank &&\
     cpanm --quiet --notest Bio::Tools::Run::StandAloneBlast &&\
@@ -66,6 +68,13 @@ RUN cpanm --quiet --notest XML::DOM &&\
     cpanm --query --notest Sort::Key::Natural &&\
     cpanm --query --notest LWP::Protocol::https
 
-# Remove CPANM cache. 
+# Remove CPANM cache.
 RUN rm -fr /root/.cpanm/work
+
+# Download and install XML-XORT library from harvdev-XORT repository
+# This library provides XML-to-database transformation capabilities for ARGS metrics
+RUN wget -q https://github.com/FlyBase/harvdev-XORT/raw/master/XML-XORT-0.010.tar.gz && \
+    tar -xzf XML-XORT-0.010.tar.gz && \
+    mv XML-XORT-0.010 /usr/local/lib/ && \
+    rm XML-XORT-0.010.tar.gz
 
