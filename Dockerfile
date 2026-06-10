@@ -43,6 +43,10 @@ RUN apk add --update --no-cache \
     cargo \
     zip
 
+# Drop stale distutils egg-info so modern pip can upgrade 'packaging'
+# (otherwise pip fails: uninstall-distutils-installed-package).
+RUN rm -rf /usr/lib/python3*/site-packages/packaging-*.egg-info
+
 RUN pip install --upgrade pip &&\
     pip install wheel &&\
     pip install "Cython<3.0" pyyaml --no-build-isolation &&\ 
